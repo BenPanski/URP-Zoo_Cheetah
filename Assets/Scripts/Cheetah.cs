@@ -23,7 +23,7 @@ public class Cheetah : MonoBehaviour
     int NextPoint;
     int CurrentHidingCam;
 
-    private void Awake()
+    private void Awake() // add all "animations" to allAnim list
     {
 
         allAnims.Add(Animation1);
@@ -35,7 +35,7 @@ public class Cheetah : MonoBehaviour
           allAnims.Add(Animation7);
           allAnims.Add(Animation8);*/
     }
-    private void Start()
+    private void Start()  // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
         NewCheetahLoc();
         CheetahSpawn();
@@ -44,15 +44,19 @@ public class Cheetah : MonoBehaviour
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, allAnims[CurrentHidingCam][NextPoint].PointPosition, Speed * Time.deltaTime);
-
     }
 
+    /// <summary>
+    /// set CurrentHidingCam to random camera
+    /// </summary>
     public void NewCheetahLoc()
     {
         CurrentHidingCam = Random.Range(0, HidingCameras.Count);
         print(CurrentHidingCam);
     }
-
+    /// <summary>
+    /// Set NextPoint, new speed & animation
+    /// </summary>
     public void CheetahMove()
     {
         NextPoint++;
@@ -65,20 +69,16 @@ public class Cheetah : MonoBehaviour
         Speed = allAnims[CurrentHidingCam][NextPoint].SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
         transform.LookAt(Animation1[NextPoint].PointPosition);
-
     }
-
+    /// <summary>
+    /// Set Cheetah spawn to the new currentHidingCam in point 0
+    /// </summary>
     public void CheetahSpawn()
     {
         transform.position = allAnims[CurrentHidingCam][0].PointPosition;
     }
 
-    public void UpdateSpeed()
-    {
-        MyAnimator.SetFloat("Speed", Speed);
-    }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // when cheetha collides with point call CheetahMove()
     {
         if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPoint].PointPosition)
         {
