@@ -52,7 +52,7 @@ public class Cheetah : MonoBehaviour
     public void NewCheetahLoc()
     {
         CurrentHidingCam = Random.Range(0, HidingCameras.Count);
-        print(CurrentHidingCam);
+       // print(CurrentHidingCam);
     }
     /// <summary>
     /// Set NextPoint, new speed & animation
@@ -80,7 +80,12 @@ public class Cheetah : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) // when cheetha collides with point call CheetahMove()
     {
-        if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPoint].PointPosition)
+        FinishLine fl;
+        if (fl = other.GetComponent<FinishLine>())
+        {
+            fl.FinishRace();
+        }
+        else if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPoint].PointPosition)
         {
             CheetahMove();
         }
