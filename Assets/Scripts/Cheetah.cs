@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cheetah : MonoBehaviour
 {
-
+    [Header("Hide cameras and hiding points")]
     [SerializeField] public List<Camera> HidingCameras;
     [SerializeField] public List<Point> Animation1;
     [SerializeField] public List<Point> Animation2;
@@ -14,13 +14,24 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public List<Point> Animation6;
     [SerializeField] public List<Point> Animation7;
     [SerializeField] public List<Point> Animation8;
-
     List<List<Point>> allAnims = new List<List<Point>>();
 
-    [SerializeField] public float Speed;
-    [SerializeField] public Animator MyAnimator;
+    [Header("Start of race")]
+    [SerializeField] public Point StartRacePoint;
+    [SerializeField] public Camera RunningCam;
 
-    int NextPoint;
+    [Header("End of race")]
+    [SerializeField] public Point EndOfRacePoint;
+
+    [Header("Cheetah attributes")]
+    [SerializeField] public Animator MyAnimator;
+    [SerializeField] public float Speed;
+    [SerializeField] public bool RunToBeginingOfRace = false;
+
+    bool HidePhaseEnded;
+    bool NextPointIsEndOfRacePoint;
+    Point NextPoint;
+    int NextPointNum;
     int CurrentHidingCam;
 
     private void Awake() // add all "animations" to allAnim list
@@ -43,7 +54,26 @@ public class Cheetah : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, allAnims[CurrentHidingCam][NextPoint].PointPosition, Speed * Time.deltaTime);
+        if (RunToBeginingOfRace)
+        {
+            ChangeNextPoint(StartRacePoint);
+            RunToBeginingOfRace = false;
+            HidePhaseEnded = true;
+        }
+        else if (NextPointIsEndOfRacePoint)
+        {
+            NextPointIsEndOfRacePoint = false;
+            ChangeNextPoint(EndOfRacePoint);
+        }
+
+        if (!HidePhaseEnded)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, allAnims[CurrentHidingCam][NextPointNum].PointPosition, Speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, NextPoint.PointPosition, Speed * Time.deltaTime);
+        }
     }
 
     /// <summary>
@@ -52,23 +82,33 @@ public class Cheetah : MonoBehaviour
     public void NewCheetahLoc()
     {
         CurrentHidingCam = Random.Range(0, HidingCameras.Count);
-       // print(CurrentHidingCam);
+        // print(CurrentHidingCam);
     }
     /// <summary>
     /// Set NextPoint, new speed & animation
     /// </summary>
     public void CheetahMove()
     {
-        NextPoint++;
-        if (NextPoint > allAnims[CurrentHidingCam].Count)
+        NextPointNum++;
+        if (NextPointNum >= allAnims[CurrentHidingCam].Count)
         {
-            NextPoint = 1;
+            print("Cheetha finished current list of points and is going back to the first point");
+            NextPointNum = 1;
             NewCheetahLoc();
             CheetahSpawn();
         }
-        Speed = allAnims[CurrentHidingCam][NextPoint].SpeedToMe;
+        Speed = allAnims[CurrentHidingCam][NextPointNum].SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
-        transform.LookAt(Animation1[NextPoint].PointPosition);
+        transform.LookAt(Animation1[NextPointNum].PointPosition);
+        NextPoint = Animation1[NextPointNum];
+    }
+
+
+    public void ChangeNextPoint(Point point)
+    {
+        Speed = point.SpeedToMe;
+        MyAnimator.SetFloat("Speed", Speed);
+        transform.LookAt(point.PointPosition);
     }
     /// <summary>
     /// Set Cheetah spawn to the new currentHidingCam in point 0
@@ -80,14 +120,17 @@ public class Cheetah : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) // when cheetha collides with point call CheetahMove()
     {
-        FinishLine fl;
-        if (fl = other.GetComponent<FinishLine>())
+        if (!HidePhaseEnded)
         {
-            fl.FinishRace();
-        }
-        else if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPoint].PointPosition)
-        {
-            CheetahMove();
+            FinishLine fl;
+            if (fl = other.GetComponent<FinishLine>())
+            {
+                fl.FinishRace();
+            }
+            else if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
+            {
+                CheetahMove();
+            }
         }
     }
 

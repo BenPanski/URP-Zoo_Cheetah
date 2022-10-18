@@ -9,7 +9,7 @@ public class FinishLine : MonoBehaviour
     [SerializeField] bool raceFinished;
     [SerializeField] Cheetah cheetah;
 
-    float CheethaDis;
+    float CheetahDis;
     float RaceLength;
     private void Start()
     {
@@ -29,8 +29,8 @@ public class FinishLine : MonoBehaviour
 
     private void CalculateCheetahDis()
     {
-        CheethaDis = Vector3.Distance(cheetah.transform.position, startingPoint.transform.position);
-        print(CheethaDis * 100 / RaceLength);
+        CheetahDis = Vector3.Distance(cheetah.transform.position, startingPoint.transform.position);
+        print(CheetahDis * 100 / RaceLength);
     }
 
    
