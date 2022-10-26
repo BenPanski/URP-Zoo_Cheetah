@@ -66,14 +66,20 @@ public class Cheetah : MonoBehaviour
             ChangeNextPoint(EndOfRacePoint);
         }
 
+        Vector3 destination = Vector3.zero;
+
         if (!HidePhaseEnded)
         {
-            transform.position = Vector3.MoveTowards(transform.position, allAnims[CurrentHidingCam][NextPointNum].PointPosition, Speed * Time.deltaTime);
+            destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
+
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, NextPoint.PointPosition, Speed * Time.deltaTime);
+            destination = NextPoint.PointPosition;
         }
+
+        Vector3 targetPos = new Vector3(destination.x, transform.position.y, destination.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
     }
 
     /// <summary>

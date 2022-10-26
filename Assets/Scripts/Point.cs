@@ -5,6 +5,8 @@ using UnityEngine;
 public class Point : MonoBehaviour
 {
     [SerializeField] public float SpeedToMe;
+    [SerializeField] public bool stopHere = false;
+    [SerializeField] public float waitHereForSec;
     internal Vector3 PointPosition;
 
     private void Awake()
