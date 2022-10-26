@@ -21,19 +21,26 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PalmTrees Leafs Mat
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: e5045394808f21b4a857ed075219970d, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _NORMALMAP _SPECULARHIGHLIGHTS_OFF _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses:
   - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_1a3fd1f7c10f4e7b8065ecb5fd2d5f4b:
+        m_Texture: {fileID: 2800000, guid: 238ec53f1682958499b657692cb298fc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_c000b99521f44a548d156e0a4442ae32:
+        m_Texture: {fileID: 2800000, guid: 35651144e1d82d9428c70a87fa6e77a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 238ec53f1682958499b657692cb298fc, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -91,6 +98,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_06853819c0924d8294673c3322f6b3aa: 0.1
+    - Vector1_06971caf22364b8082db1b02e9337456: 2
     - _AlphaClip: 1
     - _Blend: 0
     - _BumpScale: 1
@@ -122,6 +131,7 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 0
     m_Colors:
+    - Vector2_332c2fbd58e74127a97c802af2c0cc21: {r: 0.1, g: 0.1, b: 0.1, a: 2}
     - _BaseColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 0.033035718}
     - _Color: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
