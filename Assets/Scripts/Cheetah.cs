@@ -53,11 +53,15 @@ public class Cheetah : MonoBehaviour
         {
             if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <=1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <=1.1)
             {
-                print("cat was visable");
+                print("cat was visable!");
+                HidePhaseEnded = true;
+                transform.position = StartRacePoint.transform.position;
+                NextPoint = EndOfRacePoint;
+
             }
             else
             {
-                print("missed the cat");
+                print("missed the cat, you lost!");
             }
             
             //check if cat is visable
@@ -100,6 +104,11 @@ public class Cheetah : MonoBehaviour
 
         Vector3 targetPos = new Vector3(destination.x, transform.position.y, destination.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
+        if (NextPointNum < Animation1.Count)
+        { 
+            transform.LookAt(Animation1[NextPointNum].PointPosition);
+
+        }
         TryToCatchCat();
     }
 
@@ -116,6 +125,10 @@ public class Cheetah : MonoBehaviour
     /// </summary>
     public void CheetahMove()
     {
+        if (HidePhaseEnded)
+        {
+            return;
+        }
         NextPointNum++;
         if (NextPointNum >= allAnims[CurrentHidingCam].Count)
         {
@@ -132,7 +145,8 @@ public class Cheetah : MonoBehaviour
         {
            
             NextPoint = Animation1[NextPointNum];
-            transform.LookAt(Animation1[NextPointNum].PointPosition);
+           transform.LookAt(Animation1[NextPointNum].PointPosition);
+
         }
       
        
@@ -144,7 +158,7 @@ public class Cheetah : MonoBehaviour
     {
         Speed = point.SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
-        transform.LookAt(point.PointPosition);
+       transform.LookAt(point.PointPosition);
     }
     /// <summary>
     /// Set Cheetah spawn to the new currentHidingCam in point 0
