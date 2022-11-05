@@ -29,7 +29,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public bool RunToBeginingOfRace = false;
 
     bool HidePhaseEnded;
-    bool NextPointIsEndOfRacePoint;
+   // bool NextPointIsEndOfRacePoint;
     Point NextPoint;
     int NextPointNum;
     int CurrentHidingCam;
@@ -45,6 +45,25 @@ public class Cheetah : MonoBehaviour
         allAnims.Add(Animation6);
         allAnims.Add(Animation7);
         allAnims.Add(Animation8);
+    }
+
+    public void TryToCatchCat() 
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <=1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <=1.1)
+            {
+                print("cat was visable");
+            }
+            else
+            {
+                print("missed the cat");
+            }
+            
+            //check if cat is visable
+            //if he is go to run screen
+            //else print that the cat wasnt visable
+        }
     }
     private void Start()  // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
@@ -81,6 +100,7 @@ public class Cheetah : MonoBehaviour
 
         Vector3 targetPos = new Vector3(destination.x, transform.position.y, destination.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
+        TryToCatchCat();
     }
 
     /// <summary>
@@ -106,8 +126,17 @@ public class Cheetah : MonoBehaviour
         }
         Speed = allAnims[CurrentHidingCam][NextPointNum].SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
-        transform.LookAt(Animation1[NextPointNum].PointPosition);
-        NextPoint = Animation1[NextPointNum];
+        
+        
+        if (NextPointNum < Animation1.Count)
+        {
+           
+            NextPoint = Animation1[NextPointNum];
+            transform.LookAt(Animation1[NextPointNum].PointPosition);
+        }
+      
+       
+       
     }
 
 
@@ -136,6 +165,7 @@ public class Cheetah : MonoBehaviour
             }
             else*/ if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
             {
+                
                 CheetahMove();
             }
         }
