@@ -27,12 +27,14 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public Animator MyAnimator;
     [SerializeField] public float Speed;
     [SerializeField] public bool RunToBeginingOfRace = false;
+    [SerializeField] bool SpawnOnlyInCam1;
 
     bool HidePhaseEnded;
    // bool NextPointIsEndOfRacePoint;
     Point NextPoint;
     int NextPointNum;
     int CurrentHidingCam;
+    
 
     private void Awake() // add all "animations" to allAnim list
     {
@@ -117,7 +119,16 @@ public class Cheetah : MonoBehaviour
     /// </summary>
     public void NewCheetahLoc()
     {
-        CurrentHidingCam = Random.Range(0, HidingCameras.Count);
+        if (SpawnOnlyInCam1)
+        {
+            print("SpawnOnlyInCam1 is true");
+            CurrentHidingCam = 0;
+        }
+        else
+        {
+            CurrentHidingCam = Random.Range(0, HidingCameras.Count);
+        }
+      
         // print(CurrentHidingCam);
     }
     /// <summary>
