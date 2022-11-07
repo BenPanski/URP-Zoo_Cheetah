@@ -59,6 +59,8 @@ public class Cheetah : MonoBehaviour
                 HidePhaseEnded = true;
                 transform.position = StartRacePoint.transform.position;
                 NextPoint = EndOfRacePoint;
+                //gameObject.transform.LookAt(NextPoint.PointPosition);
+                Speed = NextPoint.SpeedToMe;
 
             }
             else
@@ -73,11 +75,12 @@ public class Cheetah : MonoBehaviour
     }
     private void Start()  // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
-       
         NewCheetahLoc();
         CheetahSpawn();
         CheetahMove();
     }
+
+  
     private void Update()
     {
        /* if (RunToBeginingOfRace)
@@ -107,9 +110,9 @@ public class Cheetah : MonoBehaviour
         Vector3 targetPos = new Vector3(destination.x, transform.position.y, destination.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
         if (NextPointNum < Animation1.Count)
-        { 
-            transform.LookAt(Animation1[NextPointNum].PointPosition);
-
+        {
+            //  transform.LookAt(Animation1[NextPointNum].PointPosition);
+            transform.LookAt(NextPoint.PointPosition);
         }
         TryToCatchCat();
     }
