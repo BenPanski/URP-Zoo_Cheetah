@@ -36,6 +36,7 @@ public class Cheetah : MonoBehaviour
     int NextPointNum;
     int CurrentHidingCam;
     float temp;
+    bool YouMayMove = true;
 
 
 
@@ -86,44 +87,41 @@ public class Cheetah : MonoBehaviour
   
     private void Update()
     {
-       /* if (RunToBeginingOfRace)
+        if (YouMayMove)
         {
-            ChangeNextPoint(StartRacePoint);
-            RunToBeginingOfRace = false;
-            HidePhaseEnded = true;
-        }
-        else if (NextPointIsEndOfRacePoint)
-        {
-            NextPointIsEndOfRacePoint = false;
-            ChangeNextPoint(EndOfRacePoint);
-        }*/
+            Vector3 destination = Vector3.zero;
+            if (true)
+            {
 
-        Vector3 destination = Vector3.zero;
+            }
+            if (!HidePhaseEnded)
+            {
+                destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
 
-        if (!HidePhaseEnded)
-        {
-            destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
+            }
+            else
+            {
+                destination = NextPoint.PointPosition;
+            }
+            if (OFIR_Y)
+            {
+                temp = destination.y;
+            }
+            else
+            {
+                temp = transform.position.y;
+            }
+            Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
+            if (NextPointNum < Animation1.Count)
+            {
+                //  transform.LookAt(Animation1[NextPointNum].PointPosition);
+                transform.LookAt(NextPoint.PointPosition);
+            }
+        }
+    
 
-        }
-        else
-        {
-            destination = NextPoint.PointPosition;
-        }
-        if (OFIR_Y)
-        {
-             temp = destination.y;
-        }
-        else
-        {
-             temp = transform.position.y;
-        }
-        Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
-        if (NextPointNum < Animation1.Count)
-        {
-            //  transform.LookAt(Animation1[NextPointNum].PointPosition);
-            transform.LookAt(NextPoint.PointPosition);
-        }
+        
         TryToCatchCat();
     }
 
@@ -196,17 +194,13 @@ public class Cheetah : MonoBehaviour
     {
         if (!HidePhaseEnded)
         {
-            /* FinishLine fl;
-             if (fl = other.GetComponent<FinishLine>())
-             {
-                 fl.FinishRace();
-             }
-             else*/
             if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
             {
                 if (other.GetComponent<Point>().stopHere != null && other.GetComponent<Point>().stopHere == true)
                 {
-                    Invoke("CheetahMove", (other.GetComponent<Point>().waitHereForSec));
+                    YouMayMove = false;
+                    Invoke("MayMove", (other.GetComponent<Point>().waitHereForSec));
+                   
                 }
                 else
                 {
@@ -215,5 +209,10 @@ public class Cheetah : MonoBehaviour
             }
         }
 
+    }
+
+    public void MayMove(float time) 
+    {
+        YouMayMove = true;
     }
 }
