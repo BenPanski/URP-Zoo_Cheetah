@@ -4717,7 +4717,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6629951750969658805}
   - component: {fileID: 4413655836561233361}
-  - component: {fileID: 2122428088}
+  - component: {fileID: 1459892277814557999}
+  - component: {fileID: 2122428089}
   m_Layer: 0
   m_Name: MDLSource_cat
   m_TagString: Untagged
@@ -4755,41 +4756,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HidingCameras:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Animation1:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Animation2: []
-  Animation3: []
-  Animation4: []
-  Animation5: []
-  Animation6: []
-  Animation7: []
-  Animation8: []
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Animation2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Animation3:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Animation4:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Animation5:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Animation6:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Animation7:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Animation8:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   StartRacePoint: {fileID: 0}
   RunningCam: {fileID: 0}
   EndOfRacePoint: {fileID: 0}
   MyAnimator: {fileID: 6595777294968910327}
   Speed: 5
   RunToBeginingOfRace: 0
---- !u!54 &2122428088
-Rigidbody:
+  SpawnOnlyInCam1: 1
+--- !u!65 &1459892277814557999
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6289700539629754127}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 280
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2122428089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289700539629754127}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.43, y: 1, z: 2}
+  m_Center: {x: 0, y: 0.55, z: 0}
 --- !u!1 &6344988116745317041
 GameObject:
   m_ObjectHideFlags: 0

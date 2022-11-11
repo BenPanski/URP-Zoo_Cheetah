@@ -193,7 +193,7 @@ public class Cheetah : MonoBehaviour
             }
             else*/ if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
             {
-                
+                print("gay");
                 CheetahMove();
             }
         }
