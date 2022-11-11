@@ -28,13 +28,16 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public float Speed;
     [SerializeField] public bool RunToBeginingOfRace = false;
     [SerializeField] bool SpawnOnlyInCam1;
+    [SerializeField] bool OFIR_Y;
 
     bool HidePhaseEnded;
    // bool NextPointIsEndOfRacePoint;
     Point NextPoint;
     int NextPointNum;
     int CurrentHidingCam;
-    
+    float temp;
+
+
 
     private void Awake() // add all "animations" to allAnim list
     {
@@ -106,8 +109,15 @@ public class Cheetah : MonoBehaviour
         {
             destination = NextPoint.PointPosition;
         }
-
-        Vector3 targetPos = new Vector3(destination.x, transform.position.y, destination.z);
+        if (OFIR_Y)
+        {
+             temp = destination.y;
+        }
+        else
+        {
+             temp = transform.position.y;
+        }
+        Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
         if (NextPointNum < Animation1.Count)
         {
@@ -193,7 +203,6 @@ public class Cheetah : MonoBehaviour
             }
             else*/ if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
             {
-                print("gay");
                 CheetahMove();
             }
         }
