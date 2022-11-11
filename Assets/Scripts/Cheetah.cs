@@ -196,17 +196,24 @@ public class Cheetah : MonoBehaviour
     {
         if (!HidePhaseEnded)
         {
-           /* FinishLine fl;
-            if (fl = other.GetComponent<FinishLine>())
+            /* FinishLine fl;
+             if (fl = other.GetComponent<FinishLine>())
+             {
+                 fl.FinishRace();
+             }
+             else*/
+            if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
             {
-                fl.FinishRace();
-            }
-            else*/ if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
-            {
-                CheetahMove();
+                if (other.GetComponent<Point>().stopHere != null && other.GetComponent<Point>().stopHere == true)
+                {
+                    Invoke("CheetahMove", (other.GetComponent<Point>().waitHereForSec));
+                }
+                else
+                {
+                    CheetahMove();
+                }
             }
         }
+
     }
-
-
 }
