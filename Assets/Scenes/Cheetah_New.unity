@@ -692,6 +692,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1092903231, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
+      propertyPath: OFIR_Y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
       propertyPath: RunningCam
       value: 
@@ -704,6 +712,10 @@ PrefabInstance:
       propertyPath: StartRacePoint
       value: 
       objectReference: {fileID: 1100226613}
+    - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
+      propertyPath: RunToBeginingOfRace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
       propertyPath: Animation1.Array.data[0]
       value: 
@@ -7009,12 +7021,12 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 16.63841
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -7023,7 +7035,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 20
+  field of view: 71.6
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -7032,7 +7044,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 2
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -10263,13 +10275,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577424418}
-  m_LocalRotation: {x: -0, y: 0.95404893, z: -0, w: 0.29965097}
-  m_LocalPosition: {x: 581, y: 8.9, z: 149.9}
+  m_LocalRotation: {x: -0, y: 0.99941707, z: -0, w: 0.034141637}
+  m_LocalPosition: {x: 579.29, y: 8.9, z: 202.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1859905144}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 145.127, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 176.087, z: 0}
 --- !u!114 &1577424420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10297,7 +10309,7 @@ MonoBehaviour:
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
-  m_Dithering: 0
+  m_Dithering: 1
   m_ClearDepth: 1
   m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
@@ -10322,12 +10334,12 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 19.278807
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -10336,7 +10348,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 20
+  field of view: 63.8
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -14667,8 +14679,16 @@ PrefabInstance:
       value: Point
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901143, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
+      propertyPath: stopHere
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764004533733901143, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: SpeedToMe
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764004533733901143, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
+      propertyPath: waitHereForSec
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
