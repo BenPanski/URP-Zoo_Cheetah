@@ -81,7 +81,7 @@ MonoBehaviour:
     m_Value: 0.1
   contrast:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
     min: -100
     max: 100
   colorFilter:
@@ -97,9 +97,26 @@ MonoBehaviour:
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 40
     min: -100
     max: 100
+--- !u!114 &-641826431485608552
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
+  m_Name: Tonemapping
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +133,7 @@ MonoBehaviour:
   - {fileID: 2463355909347133991}
   - {fileID: -8639360212171717456}
   - {fileID: -6175714341043696245}
+  - {fileID: -641826431485608552}
 --- !u!114 &2463355909347133991
 MonoBehaviour:
   m_ObjectHideFlags: 3
