@@ -17,6 +17,9 @@
         },
         {
             "m_Id": "332c2fbd58e74127a97c802af2c0cc21"
+        },
+        {
+            "m_Id": "2646336fa2c4441b84f6cda1312959e7"
         }
     ],
     "m_Keywords": [],
@@ -143,6 +146,9 @@
         },
         {
             "m_Id": "d61c9569995c401992f0be173827f651"
+        },
+        {
+            "m_Id": "b0895196ab484dbbb86e38728d4e951f"
         }
     ],
     "m_GroupDatas": [
@@ -444,6 +450,20 @@
                     "m_Id": "a30f67fa9cab44f88ad5582f743abc90"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "b0895196ab484dbbb86e38728d4e951f"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "606cee6c45074b6096fb06f1308fe648"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -1392,6 +1412,29 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "2646336fa2c4441b84f6cda1312959e7",
+    "m_Guid": {
+        "m_GuidSerialized": "2e8c54c5-9edf-487e-bbd3-1580038c7860"
+    },
+    "m_Name": "Alpha Clip",
+    "m_DefaultReferenceName": "Vector1_2646336fa2c4441b84f6cda1312959e7",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.10000000149011612,
+    "m_FloatType": 1,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "26ddea236b834b7c9d4fe77c73df8182",
@@ -1961,6 +2004,21 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "5098d4c5c4e3437399d0c436d4b4bdac",
+    "m_Id": 0,
+    "m_DisplayName": "Alpha Clip",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -3667,6 +3725,41 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "b0895196ab484dbbb86e38728d4e951f",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -112.0,
+            "y": 642.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "5098d4c5c4e3437399d0c436d4b4bdac"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "2646336fa2c4441b84f6cda1312959e7"
+    }
 }
 
 {
