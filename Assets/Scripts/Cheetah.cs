@@ -88,6 +88,12 @@ public class Cheetah : MonoBehaviour
   
     private void Update()
     {
+        if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) <1f)
+        {
+            print("won race");
+            this.gameObject.SetActive(false);
+        }
+        
         if (YouMayMove)
         {
             Vector3 destination = Vector3.zero;
@@ -152,11 +158,7 @@ public class Cheetah : MonoBehaviour
         NextPointNum++;
         if (NextPointNum >= allAnims[CurrentHidingCam].Count)
         {
-            if (transform.position == RunAnimation[1].transform.position)
-            {
-                this.gameObject.SetActive(false);
-                print("won race");
-            }
+            
             NewCheetahLoc();
             CheetahSpawn();
             NextPointNum = 1;
