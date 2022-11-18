@@ -14,6 +14,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public List<Point> Animation6;
     [SerializeField] public List<Point> Animation7;
     [SerializeField] public List<Point> Animation8;
+    [SerializeField] public List<Point> RunAnimation;
     List<List<Point>> allAnims = new List<List<Point>>();
 
     [Header("Start of race")]
@@ -36,7 +37,7 @@ public class Cheetah : MonoBehaviour
     int NextPointNum;
     int CurrentHidingCam;
     float temp;
-    bool YouMayMove = true;
+    [SerializeField] bool YouMayMove = true;
 
 
 
@@ -61,8 +62,8 @@ public class Cheetah : MonoBehaviour
             {
                 print("cat was visable!");
                 HidePhaseEnded = true;
-                transform.position = StartRacePoint.transform.position;
-                NextPoint = EndOfRacePoint;
+                transform.position = RunAnimation[0].transform.position;
+                NextPoint = RunAnimation[1];
                 //gameObject.transform.LookAt(NextPoint.PointPosition);
                 Speed = NextPoint.SpeedToMe;
 
@@ -90,10 +91,7 @@ public class Cheetah : MonoBehaviour
         if (YouMayMove)
         {
             Vector3 destination = Vector3.zero;
-            if (true)
-            {
-
-            }
+            
             if (!HidePhaseEnded)
             {
                 destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
@@ -154,7 +152,11 @@ public class Cheetah : MonoBehaviour
         NextPointNum++;
         if (NextPointNum >= allAnims[CurrentHidingCam].Count)
         {
-
+            if (transform.position == RunAnimation[1].transform.position)
+            {
+                this.gameObject.SetActive(false);
+                print("won race");
+            }
             NewCheetahLoc();
             CheetahSpawn();
             NextPointNum = 1;
