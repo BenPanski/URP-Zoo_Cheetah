@@ -20,6 +20,7 @@ public class Cheetah : MonoBehaviour
     [Header("Start of race")]
     [SerializeField] public Point StartRacePoint;
     [SerializeField] public Camera RunningCam;
+    [SerializeField] public GameObject RunningSpotLight;
 
     [Header("End of race")]
     [SerializeField] public Point EndOfRacePoint;
@@ -37,9 +38,13 @@ public class Cheetah : MonoBehaviour
     int NextPointNum;
     int CurrentHidingCam;
     float temp;
+    [Header("Stop the cheetah")]
     [SerializeField] bool YouMayMove = true;
 
-
+    private void OnEnable()
+    {
+        RunningSpotLight.SetActive(false);
+    }
 
     private void Awake() // add all "animations" to allAnim list
     {
@@ -64,6 +69,7 @@ public class Cheetah : MonoBehaviour
                 HidePhaseEnded = true;
                 transform.position = RunAnimation[0].transform.position;
                 NextPoint = RunAnimation[1];
+                RunningSpotLight.SetActive(true);
                 //gameObject.transform.LookAt(NextPoint.PointPosition);
                 Speed = NextPoint.SpeedToMe;
 
@@ -123,9 +129,7 @@ public class Cheetah : MonoBehaviour
                 transform.LookAt(NextPoint.PointPosition);
             }
         }
-    
-
-        
+      
         TryToCatchCat();
     }
 
