@@ -123,9 +123,9 @@ public class Cheetah : MonoBehaviour
             }
             Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
-            if (NextPointNum < Animation1.Count)
+            //  transform.LookAt(Animation1[NextPointNum].PointPosition);
+            if (NextPoint.PointPosition != allAnims[CurrentHidingCam][allAnims[CurrentHidingCam].Count -1].PointPosition)
             {
-                //  transform.LookAt(Animation1[NextPointNum].PointPosition);
                 transform.LookAt(NextPoint.PointPosition);
             }
         }
