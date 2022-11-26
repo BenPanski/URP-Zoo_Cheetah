@@ -124,10 +124,10 @@ public class Cheetah : MonoBehaviour
             Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
             //  transform.LookAt(Animation1[NextPointNum].PointPosition);
-            if (NextPoint.PointPosition != allAnims[CurrentHidingCam][allAnims[CurrentHidingCam].Count -1].PointPosition)
+           /* if (NextPoint.PointPosition != allAnims[CurrentHidingCam][allAnims[CurrentHidingCam].Count -1].PointPosition)
             {
                 transform.LookAt(NextPoint.PointPosition);
-            }
+            }*/
         }
       
         TryToCatchCat();
@@ -171,16 +171,17 @@ public class Cheetah : MonoBehaviour
         MyAnimator.SetFloat("Speed", Speed);
         
         
-        if (NextPointNum < Animation1.Count)
+        if (NextPointNum < allAnims[CurrentHidingCam].Count)
         {
            
             NextPoint = Animation1[NextPointNum];
            transform.LookAt(Animation1[NextPointNum].PointPosition);
 
         }
-      
-       
-       
+
+        print("next point is " + NextPointNum);
+        print("current animation is " + CurrentHidingCam);
+
     }
 
 
@@ -188,7 +189,7 @@ public class Cheetah : MonoBehaviour
     {
         Speed = point.SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
-       transform.LookAt(point.PointPosition);
+       //transform.LookAt(point.PointPosition);
     }
     /// <summary>
     /// Set Cheetah spawn to the new currentHidingCam in point 0
@@ -204,7 +205,7 @@ public class Cheetah : MonoBehaviour
         {
             if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
             {
-                if (other.GetComponent<Point>().stopHere != null && other.GetComponent<Point>().stopHere == true)
+                if ( other.GetComponent<Point>().stopHere == true)
                 {
                     YouMayMove = false;
                     Invoke("MayMove", (other.GetComponent<Point>().waitHereForSec));
