@@ -24,7 +24,7 @@ public class Point : MonoBehaviour
             {
                 
                 Invoke("DontStop", 1f);
-                Invoke("StopHere", 60f);
+                Invoke("StopHere", waitHereForSec*2);
 
             }
         }
