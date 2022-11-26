@@ -33,7 +33,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool OFIR_Y;
 
     bool HidePhaseEnded;
-   // bool NextPointIsEndOfRacePoint;
+    // bool NextPointIsEndOfRacePoint;
     Point NextPoint;
     int NextPointNum;
     int CurrentHidingCam;
@@ -59,11 +59,11 @@ public class Cheetah : MonoBehaviour
         allAnims.Add(Animation8);
     }
 
-    public void TryToCatchCat() 
+    public void TryToCatchCat()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <=1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <=1.1)
+            if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1)
             {
                 print("cat was visable!");
                 HidePhaseEnded = true;
@@ -78,7 +78,7 @@ public class Cheetah : MonoBehaviour
             {
                 print("missed the cat, you lost!");
             }
-            
+
             //check if cat is visable
             //if he is go to run screen
             //else print that the cat wasnt visable
@@ -91,7 +91,7 @@ public class Cheetah : MonoBehaviour
         CheetahMove();
     }
 
-  
+
     private void Update()
     {
         if (NextPointNum < allAnims[CurrentHidingCam].Count)
@@ -101,16 +101,16 @@ public class Cheetah : MonoBehaviour
             transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
 
         }
-        if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) <1f)
+        if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 1f)
         {
             print("won race");
             this.gameObject.SetActive(false);
         }
-        
+
         if (YouMayMove)
         {
             Vector3 destination = Vector3.zero;
-            
+
             if (!HidePhaseEnded)
             {
                 destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
@@ -131,12 +131,12 @@ public class Cheetah : MonoBehaviour
             Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
             //  transform.LookAt(Animation1[NextPointNum].PointPosition);
-           /* if (NextPoint.PointPosition != allAnims[CurrentHidingCam][allAnims[CurrentHidingCam].Count -1].PointPosition)
-            {
-                transform.LookAt(NextPoint.PointPosition);
-            }*/
+            /* if (NextPoint.PointPosition != allAnims[CurrentHidingCam][allAnims[CurrentHidingCam].Count -1].PointPosition)
+             {
+                 transform.LookAt(NextPoint.PointPosition);
+             }*/
         }
-      
+
         TryToCatchCat();
     }
 
@@ -152,10 +152,16 @@ public class Cheetah : MonoBehaviour
         }
         else
         {
-            CurrentHidingCam = Random.Range(0, HidingCameras.Count);
+
+            int x = CurrentHidingCam;  // set x to current hiding cam
+            while (x == CurrentHidingCam)
+            {
+                x = Random.Range(0, HidingCameras.Count);
+            }
+
+            CurrentHidingCam = x;
         }
-      
-        // print(CurrentHidingCam);
+
     }
     /// <summary>
     /// Set NextPoint, new speed & animation
@@ -169,19 +175,19 @@ public class Cheetah : MonoBehaviour
         NextPointNum++;
         if (NextPointNum >= allAnims[CurrentHidingCam].Count)
         {
-            
+
             NewCheetahLoc();
             CheetahSpawn();
             NextPointNum = 1;
         }
         Speed = allAnims[CurrentHidingCam][NextPointNum].SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
-        
-        
-     
+
+
+
 
         print("next point is " + NextPointNum);
-        print("current animation is " + (CurrentHidingCam +1));
+        print("current animation is " + (CurrentHidingCam + 1));
 
     }
 
@@ -190,7 +196,7 @@ public class Cheetah : MonoBehaviour
     {
         Speed = point.SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
-       //transform.LookAt(point.PointPosition);
+        //transform.LookAt(point.PointPosition);
     }
     /// <summary>
     /// Set Cheetah spawn to the new currentHidingCam in point 0
@@ -206,11 +212,12 @@ public class Cheetah : MonoBehaviour
         {
             if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
             {
-                if ( other.GetComponent<Point>().stopHere == true)
+                if (other.GetComponent<Point>().stopHere == true)
                 {
                     YouMayMove = false;
                     Invoke("MayMove", (other.GetComponent<Point>().waitHereForSec));
-                   
+                    MyAnimator.SetFloat("Speed", 0);
+
                 }
                 else
                 {
@@ -221,8 +228,11 @@ public class Cheetah : MonoBehaviour
 
     }
 
-    public void MayMove(float time) 
+    public void MayMove()
     {
         YouMayMove = true;
+        MyAnimator.SetFloat("Speed", Speed);
+
+
     }
 }
