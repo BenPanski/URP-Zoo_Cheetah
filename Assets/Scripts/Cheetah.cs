@@ -94,6 +94,13 @@ public class Cheetah : MonoBehaviour
   
     private void Update()
     {
+        if (NextPointNum < allAnims[CurrentHidingCam].Count)
+        {
+
+            NextPoint = allAnims[CurrentHidingCam][NextPointNum];
+            transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
+
+        }
         if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) <1f)
         {
             print("won race");
@@ -171,16 +178,10 @@ public class Cheetah : MonoBehaviour
         MyAnimator.SetFloat("Speed", Speed);
         
         
-        if (NextPointNum < allAnims[CurrentHidingCam].Count)
-        {
-           
-            NextPoint = Animation1[NextPointNum];
-           transform.LookAt(Animation1[NextPointNum].PointPosition);
-
-        }
+     
 
         print("next point is " + NextPointNum);
-        print("current animation is " + CurrentHidingCam);
+        print("current animation is " + (CurrentHidingCam +1));
 
     }
 
