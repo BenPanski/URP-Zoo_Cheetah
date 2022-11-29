@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: c7bf2db6b205d1141a77d165f0830163, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -133,8 +133,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_1: 0.5
+    - Vector1_20e4d9d543bd4c3eb2e85bf63fa5d877: 0
     - Vector1_27a4f3710f91496799a0d7626a8fd99c: 2
     - Vector1_6826c5c35ee84509825d9034f5f94002: 1
+    - Vector1_7cc307b63eef44a3b634c26baf3d8af2: 0
     - Vector1_8afd987b09964fd5924f92a4a06bfcd0: 5
     - Vector1_8f51bf0f90c0492b9ce0285225583544: 0
     - _AlphaClip: 1
