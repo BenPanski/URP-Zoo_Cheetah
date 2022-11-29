@@ -69,10 +69,13 @@ public class Cheetah : MonoBehaviour
                 HidePhaseEnded = true;
                 transform.position = RunAnimation[0].PointPosition;
                 NextPoint = RunAnimation[1];
-                transform.LookAt(NextPoint.PointPosition);
                 RunningSpotLight.SetActive(true);
                 //gameObject.transform.LookAt(NextPoint.PointPosition);
                 Speed = NextPoint.SpeedToMe;
+                MyAnimator.SetFloat("Speed", Speed);
+                transform.LookAt(NextPoint.PointPosition);
+
+
             }
             else
             {
@@ -94,7 +97,7 @@ public class Cheetah : MonoBehaviour
 
     private void Update()
     {
-        if (NextPointNum < allAnims[CurrentHidingCam].Count)
+        if (NextPointNum < allAnims[CurrentHidingCam].Count&& !HidePhaseEnded)
         {
 
             NextPoint = allAnims[CurrentHidingCam][NextPointNum];
