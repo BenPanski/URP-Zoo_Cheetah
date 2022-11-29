@@ -68,10 +68,11 @@ public class Cheetah : MonoBehaviour
                 print("cat was visable!");
                 HidePhaseEnded = true;
                 transform.position = RunAnimation[0].PointPosition;
+                NextPoint = RunAnimation[1];
+                transform.LookAt(NextPoint.PointPosition);
                 RunningSpotLight.SetActive(true);
                 //gameObject.transform.LookAt(NextPoint.PointPosition);
                 Speed = NextPoint.SpeedToMe;
-
             }
             else
             {
