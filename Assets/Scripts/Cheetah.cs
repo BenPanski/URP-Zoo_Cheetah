@@ -44,11 +44,12 @@ public class Cheetah : MonoBehaviour
     private void OnEnable()
     {
         RunningSpotLight.SetActive(false);
+
+        
     }
 
     private void Awake() // add all "animations" to allAnim list
     {
-
         allAnims.Add(Animation1);
         allAnims.Add(Animation2);
         allAnims.Add(Animation3);
@@ -57,6 +58,9 @@ public class Cheetah : MonoBehaviour
         allAnims.Add(Animation6);
         allAnims.Add(Animation7);
         allAnims.Add(Animation8);
+
+        print("press space to try and catch the cheetah");
+        print("press v to simulate the players finishing the race");
     }
 
     public void TryToCatchCat()
@@ -141,6 +145,15 @@ public class Cheetah : MonoBehaviour
         }
 
         TryToCatchCat();
+        PlayerWonRace();
+    }
+
+    private void PlayerWonRace()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Time.timeScale = 0;
+        }
     }
 
     /// <summary>
