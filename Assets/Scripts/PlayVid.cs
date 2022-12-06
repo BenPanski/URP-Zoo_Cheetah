@@ -7,11 +7,11 @@ public class PlayVid : MonoBehaviour
 {
     public void Awake()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
     public void Start()
     {
-        StartCoroutine(DestroyAfter6sec());
+        //StartCoroutine(DestroyAfter6sec());
     }
 
     public void DestroyThis() 
