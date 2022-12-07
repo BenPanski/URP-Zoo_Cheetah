@@ -41,6 +41,8 @@ public class Cheetah : MonoBehaviour
     [Header("Stop the cheetah")]
     [SerializeField] bool YouMayMove = true;
 
+   [SerializeField] GameManager gameManger;
+
     private void OnEnable()
     {
         RunningSpotLight.SetActive(false);
@@ -110,6 +112,7 @@ public class Cheetah : MonoBehaviour
         }
         if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 1f)
         {
+            gameManger.CatWon();
             print("won race");
             this.gameObject.SetActive(false);
         }
