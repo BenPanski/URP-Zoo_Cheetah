@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject catCoughtPlayer;
     [SerializeField] GameObject PlayerWon;
+    [SerializeField] GameObject Cat;
     // Start is called before the first frame update
     public void CatWon()
     {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             PlayerWon.SetActive(true);
+            Cat.SetActive(false);
         }
     }
 }
