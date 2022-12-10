@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            PlayerWon.SetActive(true);
             Cat.SetActive(false);
+            PlayerWon.SetActive(true);
+            
         }
     }
 }
