@@ -113,7 +113,7 @@ public class Cheetah : MonoBehaviour
         if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 1f)
         {
             gameManger.CatWon();
-            print("won race");
+            print("Cheetah finished race");
             this.gameObject.SetActive(false);
         }
 
