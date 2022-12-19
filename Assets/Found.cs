@@ -11,11 +11,13 @@ public class Found : MonoBehaviour
 
 
 
-    public void RunThroughHideScreens() 
+    public Vector3 RunThroughHideScreens() 
     {
         for (int i = cheetah.CurrentHidingCam; i==0; i--)
         {
             
         }
+
+        return Vector3.zero; 
     }
 }

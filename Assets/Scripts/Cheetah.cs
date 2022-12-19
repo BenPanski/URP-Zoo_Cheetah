@@ -40,7 +40,7 @@ public class Cheetah : MonoBehaviour
     float temp;
     [Header("Stop the cheetah")]
     [SerializeField] bool YouMayMove = true;
-
+    [SerializeField] Found found;
    [SerializeField] GameManager gameManger;
 
     private void OnEnable()
@@ -128,7 +128,7 @@ public class Cheetah : MonoBehaviour
             }
             else
             {
-                destination = RunAnimation[1].PointPosition;
+                destination = found.RunThroughHideScreens();
             }
             if (OFIR_Y)
             {
