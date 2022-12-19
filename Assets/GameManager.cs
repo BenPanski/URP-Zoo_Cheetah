@@ -8,23 +8,37 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject PlayerWon;
     [SerializeField] GameObject Cat;
     [SerializeField] bool CatFinishedRace;
+    [SerializeField] bool PlayersLost;
+    [SerializeField] bool GameEnded;
     // Start is called before the first frame update
     public void CatWon()
     {
-         CatFinishedRace = true;
+        CatFinishedRace = true;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (!GameEnded)
         {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (CatFinishedRace)
+                {
+                    PlayersLost = true;
+                }
+            }
+
             if (CatFinishedRace)
             {
-                catCoughtPlayer.SetActive(true);
-            }
-            else
-            {
-                PlayerWon.SetActive(true);
+                if (PlayersLost)
+                {
+                    catCoughtPlayer.SetActive(true);
+                }
+                else
+                {
+                    PlayerWon.SetActive(true);
+                }
+                GameEnded = true;
             }
         }
     }

@@ -124,11 +124,12 @@ public class Cheetah : MonoBehaviour
             if (!HidePhaseEnded)
             {
                 destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
-
+                     destination = RunAnimation[1].PointPosition;
             }
             else
             {
-                destination = found.RunThroughHideScreens();
+                destination = RunAnimation[1].PointPosition;
+                //destination = found.RunThroughHideScreens();
             }
             if (OFIR_Y)
             {
