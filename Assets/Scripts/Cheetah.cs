@@ -36,7 +36,7 @@ public class Cheetah : MonoBehaviour
     // bool NextPointIsEndOfRacePoint;
     Point NextPoint;
     int NextPointNum;
-    int CurrentHidingCam;
+   public int CurrentHidingCam;
     float temp;
     [Header("Stop the cheetah")]
     [SerializeField] bool YouMayMove = true;
