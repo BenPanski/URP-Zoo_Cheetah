@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: feather
-  m_Shader: {fileID: -6465566751694194690, guid: 3150e6f93363ab3428bea27eb750414d, type: 3}
+  m_Name: feather_m_mat
+  m_Shader: {fileID: -6465566751694194690, guid: cfbaa50031104bc48b33ea308f81131c, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -116,13 +116,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_683b8b612b0a431f94b566fe0128cdca: 0
     - _AlphaClip: 1
     - _Blend: 0
     - _BumpScale: 0.3
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 0
-    - _Cutoff: 0.009
+    - _Cutoff: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
