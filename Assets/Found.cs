@@ -13,13 +13,13 @@ public class Found : MonoBehaviour
 
     private void Update()
     {
-
+/*
         if (cheetah.CurrentHidingCam == 0)
         { print(8); }
         else
         {
             print(cheetah.CurrentHidingCam - 1);
-        }
+        }*/
     }
 
 
