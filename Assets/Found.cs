@@ -5,19 +5,24 @@ using UnityEngine;
 public class Found : MonoBehaviour
 {
     [SerializeField] Cheetah cheetah;
-    List<Point> RunThroughPoints = new List<Point>();
+    List<Point> RunThroughPoints = new List<Point>(); //9 points, first point is hide cam 8, last point is hide cam 1,run cam is the 9th point
 
 
 
 
 
-    public Vector3 RunThroughHideScreens() 
+    private void Update()
     {
-        for (int i = cheetah.CurrentHidingCam; i==0; i--)
-        {
-            
-        }
 
-        return Vector3.zero; 
+        if (cheetah.CurrentHidingCam == 0)
+        { print(8); }
+        else
+        {
+            print(cheetah.CurrentHidingCam - 1);
+        }
     }
+
+
+
+    
 }
