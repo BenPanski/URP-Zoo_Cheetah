@@ -36,18 +36,18 @@ public class Cheetah : MonoBehaviour
     // bool NextPointIsEndOfRacePoint;
     Point NextPoint;
     int NextPointNum;
-   public int CurrentHidingCam;
+    int CurrentHidingCam;
     float temp;
     [Header("Stop the cheetah")]
     [SerializeField] bool YouMayMove = true;
-    [SerializeField] Found found;
-   [SerializeField] GameManager gameManger;
+
+    [SerializeField] GameManager gameManger;
 
     private void OnEnable()
     {
         RunningSpotLight.SetActive(false);
 
-        
+
     }
 
     private void Awake() // add all "animations" to allAnim list
@@ -103,7 +103,7 @@ public class Cheetah : MonoBehaviour
 
     private void Update()
     {
-        if (NextPointNum < allAnims[CurrentHidingCam].Count&& !HidePhaseEnded)
+        if (NextPointNum < allAnims[CurrentHidingCam].Count && !HidePhaseEnded)
         {
 
             NextPoint = allAnims[CurrentHidingCam][NextPointNum];
@@ -124,12 +124,11 @@ public class Cheetah : MonoBehaviour
             if (!HidePhaseEnded)
             {
                 destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
-                     destination = RunAnimation[1].PointPosition;
+
             }
             else
             {
                 destination = RunAnimation[1].PointPosition;
-                //destination = found.RunThroughHideScreens();
             }
             if (OFIR_Y)
             {
