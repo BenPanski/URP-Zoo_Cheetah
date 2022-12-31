@@ -46,8 +46,6 @@ public class Cheetah : MonoBehaviour
     private void OnEnable()
     {
         RunningSpotLight.SetActive(false);
-
-
     }
 
     private void Awake() // add all "animations" to allAnim list
@@ -69,29 +67,27 @@ public class Cheetah : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1)
+            if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1) // if cat is visble 
             {
                 print("cat was visable!");
-                HidePhaseEnded = true;
-                transform.position = RunAnimation[0].PointPosition;
-                NextPoint = RunAnimation[1];
-                RunningSpotLight.SetActive(true);
-                //gameObject.transform.LookAt(NextPoint.PointPosition);
+                SpawnCatInRunScreen();
                 Speed = NextPoint.SpeedToMe;
                 MyAnimator.SetFloat("Speed", Speed);
                 transform.LookAt(NextPoint.PointPosition);
-
-
             }
             else
             {
                 print("missed the cat, you lost!");
             }
-
-            //check if cat is visable
-            //if he is go to run screen
-            //else print that the cat wasnt visable
         }
+    }
+    private void SpawnCatInRunScreen() 
+    {
+                HidePhaseEnded = true;
+                transform.position = RunAnimation[0].PointPosition;
+                NextPoint = RunAnimation[1];
+                RunningSpotLight.SetActive(true);
+        
     }
     private void Start()  // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
@@ -236,7 +232,6 @@ public class Cheetah : MonoBehaviour
                     YouMayMove = false;
                     Invoke("MayMove", (other.GetComponent<Point>().waitHereForSec));
                     MyAnimator.SetFloat("Speed", 0);
-
                 }
                 else
                 {
