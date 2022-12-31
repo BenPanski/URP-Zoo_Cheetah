@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cheetah : MonoBehaviour
 {
+    [SerializeField] GameManager gameManger;
+
     [Header("Hide cameras and hiding points")]
     [SerializeField] public List<Camera> HidingCameras;
     [SerializeField] public List<Point> Animation1;
@@ -20,7 +22,6 @@ public class Cheetah : MonoBehaviour
     [Header("Start of race")]
     [SerializeField] public Point StartRacePoint;
     [SerializeField] public Camera RunningCam;
-    [SerializeField] public GameObject RunningSpotLight;
 
     [Header("End of race")]
     [SerializeField] public Point EndOfRacePoint;
@@ -29,8 +30,6 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public Animator MyAnimator;
     [SerializeField] public float Speed;
     [SerializeField] public bool RunToBeginingOfRace = false;
-    [SerializeField] bool SpawnOnlyInCam1;
-    [SerializeField] bool OFIR_Y;
 
     bool HidePhaseEnded;
     // bool NextPointIsEndOfRacePoint;
@@ -41,12 +40,13 @@ public class Cheetah : MonoBehaviour
     [Header("Stop the cheetah")]
     [SerializeField] bool YouMayMove = true;
 
-    [SerializeField] GameManager gameManger;
-
-    private void OnEnable()
-    {
-        RunningSpotLight.SetActive(false);
-    }
+    [Header("Tests")]
+    [SerializeField] bool SpawnOnlyInCam1;
+    [SerializeField] bool OFIR_Y;
+    [SerializeField] bool MoveThroughAnimsInOrder = false;
+    [SerializeField] bool WorldSpeedTimes5 = false;
+    [SerializeField] bool PrintAnimNum = true;
+    [SerializeField] bool PrintPointNum = true;
 
     private void Awake() // add all "animations" to allAnim list
     {
@@ -71,9 +71,7 @@ public class Cheetah : MonoBehaviour
             {
                 print("cat was visable!");
                 SpawnCatInRunScreen();
-                Speed = NextPoint.SpeedToMe;
-                MyAnimator.SetFloat("Speed", Speed);
-                transform.LookAt(NextPoint.PointPosition);
+
             }
             else
             {
@@ -81,32 +79,41 @@ public class Cheetah : MonoBehaviour
             }
         }
     }
-    private void SpawnCatInRunScreen() 
+    private void SpawnCatInRunScreen()
     {
-                HidePhaseEnded = true;
-                transform.position = RunAnimation[0].PointPosition;
-                NextPoint = RunAnimation[1];
-                RunningSpotLight.SetActive(true);
-        
+        print("cat was caught!");
+        HidePhaseEnded = true;
+        transform.position = RunAnimation[0].PointPosition;
+        NextPoint = RunAnimation[1];
+        Speed = NextPoint.SpeedToMe;
+        MyAnimator.SetFloat("Speed", Speed);
+        transform.LookAt(NextPoint.PointPosition);
+
     }
     private void Start()  // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
-        NewCheetahLoc();
+        InitCheetahLoc();
         CheetahSpawn();
         CheetahMove();
+
+        if (WorldSpeedTimes5)
+        {
+            print("WorldSpeedTimes5");
+            Time.timeScale = 5f;
+        }
     }
 
 
     private void Update()
     {
-        if (NextPointNum < allAnims[CurrentHidingCam].Count && !HidePhaseEnded)
+        if (NextPointNum < allAnims[CurrentHidingCam].Count && !HidePhaseEnded) // if in hide phase and not at the end of animation
         {
 
             NextPoint = allAnims[CurrentHidingCam][NextPointNum];
             transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
 
         }
-        if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 1f)
+        if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 1f) // if cat is at end of run animation
         {
             gameManger.CatWon();
             print("Cheetah finished race");
@@ -115,39 +122,34 @@ public class Cheetah : MonoBehaviour
 
         if (YouMayMove)
         {
-            Vector3 destination = Vector3.zero;
+            Vector3 destination = Vector3.zero; // reset destination
 
             if (!HidePhaseEnded)
             {
-                destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
+                destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition; // set destination to next point
 
             }
             else
             {
-                destination = RunAnimation[1].PointPosition;
+                destination = RunAnimation[1].PointPosition;// set destination to run point
             }
             if (OFIR_Y)
             {
-                temp = destination.y;
+                temp = destination.y; // set destination  y
             }
             else
             {
-                temp = transform.position.y;
+                temp = transform.position.y;// change destination y to current y
             }
             Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
-            //  transform.LookAt(Animation1[NextPointNum].PointPosition);
-            /* if (NextPoint.PointPosition != allAnims[CurrentHidingCam][allAnims[CurrentHidingCam].Count -1].PointPosition)
-             {
-                 transform.LookAt(NextPoint.PointPosition);
-             }*/
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime); // move to destenation
         }
 
         TryToCatchCat();
-        PlayerWonRace();
+        PlayerWinCheck();
     }
 
-    private void PlayerWonRace()
+    private void PlayerWinCheck() //???
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
@@ -165,18 +167,46 @@ public class Cheetah : MonoBehaviour
             print("SpawnOnlyInCam1 is true");
             CurrentHidingCam = 0;
         }
+        else if (MoveThroughAnimsInOrder)
+        {
+            CurrentHidingCam++;
+            if (CurrentHidingCam >= allAnims.Count)
+            {
+                SpawnCatInRunScreen();
+            }
+        }
         else
         {
-
-            int x = CurrentHidingCam;  // set x to current hiding cam
-            while (x == CurrentHidingCam)
-            {
-                x = Random.Range(0, HidingCameras.Count);
-            }
-
-            CurrentHidingCam = x;
+            RandomizeHideCam();
         }
 
+    }
+    private void InitCheetahLoc()
+    {
+        if (SpawnOnlyInCam1)
+        {
+            print("SpawnOnlyInCam1 is true");
+            CurrentHidingCam = 0;
+        }
+        else if (MoveThroughAnimsInOrder)
+        {
+            print("MoveThroughAnimsInOrder");
+            CurrentHidingCam = 0;
+        }
+        else
+        {
+            RandomizeHideCam();
+        }
+    }
+
+    public void RandomizeHideCam()
+    {
+        int x = CurrentHidingCam;  // set x to current hiding cam
+        while (x == CurrentHidingCam)
+        {
+            x = Random.Range(0, HidingCameras.Count);
+        }
+        CurrentHidingCam = x;
     }
     /// <summary>
     /// Set NextPoint, new speed & animation
@@ -187,8 +217,9 @@ public class Cheetah : MonoBehaviour
         {
             return;
         }
+
         NextPointNum++;
-        if (NextPointNum >= allAnims[CurrentHidingCam].Count)
+        if (NextPointNum >= allAnims[CurrentHidingCam].Count) // if at the end of current animation
         {
 
             NewCheetahLoc();
@@ -198,11 +229,8 @@ public class Cheetah : MonoBehaviour
         Speed = allAnims[CurrentHidingCam][NextPointNum].SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
 
-
-
-
-        print("next point is " + NextPointNum);
-        print("current animation is " + (CurrentHidingCam + 1));
+        if (PrintAnimNum) { print("current animation is " + (CurrentHidingCam + 1)); }
+        if (PrintPointNum) { print("next point is " + NextPointNum); }
 
     }
 
