@@ -18,6 +18,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public List<Point> Animation8;
     [SerializeField] public List<Point> RunAnimation;
     List<List<Point>> allAnims = new List<List<Point>>();
+    List<List<Point>> LastPointsList = new List<List<Point>>();
 
     [Header("Start of race")]
     [SerializeField] public Point StartRacePoint;
@@ -122,31 +123,38 @@ public class Cheetah : MonoBehaviour
 
         if (YouMayMove)
         {
-            Vector3 destination = Vector3.zero; // reset destination
-
-            if (!HidePhaseEnded)
-            {
-                destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition; // set destination to next point
-
-            }
-            else
-            {
-                destination = RunAnimation[1].PointPosition;// set destination to run point
-            }
-            if (OFIR_Y)
-            {
-                temp = destination.y; // set destination  y
-            }
-            else
-            {
-                temp = transform.position.y;// change destination y to current y
-            }
+            Vector3 destination = SetCatDestination();
             Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime); // move to destenation
         }
 
         TryToCatchCat();
         PlayerWinCheck();
+    }
+
+    private Vector3 SetCatDestination()
+    {
+        Vector3 destination = Vector3.zero; // reset destination
+
+        if (!HidePhaseEnded)
+        {
+            destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition; // set destination to next point
+
+        }
+        else
+        {
+            destination = RunAnimation[1].PointPosition;// set destination to run point
+        }
+        if (OFIR_Y)
+        {
+            temp = destination.y; // set destination  y
+        }
+        else
+        {
+            temp = transform.position.y;// change destination y to current y
+        }
+
+        return destination;
     }
 
     private void PlayerWinCheck() //???
