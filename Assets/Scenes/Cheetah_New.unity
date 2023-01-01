@@ -2315,7 +2315,7 @@ PrefabInstance:
       objectReference: {fileID: 931161699}
     - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
       propertyPath: WorldSpeedTimes5
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
       propertyPath: RunToBeginingOfRace

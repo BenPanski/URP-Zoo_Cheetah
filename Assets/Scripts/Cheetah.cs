@@ -117,6 +117,12 @@ public class Cheetah : MonoBehaviour
 
     private void Update()
     {
+        if (YouMayMove)
+        {
+            CatMovement(); // move to destenation
+        }
+        PlayerWinCheck();
+        
         if (NextPointNum < allAnims[CurrentHidingCam].Count && !HidePhaseEnded) // if in hide phase and not at the end of animation
         {
 
@@ -131,15 +137,17 @@ public class Cheetah : MonoBehaviour
             this.gameObject.SetActive(false);
         }
 
-        if (YouMayMove)
-        {
-            Vector3 destination = SetCatDestination();
-            Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime); // move to destenation
-        }
+       
 
         TryToCatchCat();
-        PlayerWinCheck();
+       
+    }
+
+    private void CatMovement()
+    {
+        Vector3 destination = SetCatDestination();
+        Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
     }
 
     private Vector3 SetCatDestination()
