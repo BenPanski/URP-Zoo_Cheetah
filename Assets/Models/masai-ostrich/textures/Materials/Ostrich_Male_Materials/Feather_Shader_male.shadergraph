@@ -73,6 +73,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "219e809deef74defb7fbcdd5e4a16568"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "b1468f26edd44688becde08c22c9d7a7"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "59bed5634c7d4d9e9190acf06b4cb361"
                 },
                 "m_SlotId": 0
@@ -1601,7 +1615,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Smoothness",
     "m_StageCapability": 2,
-    "m_Value": 0.5,
+    "m_Value": 0.10000000149011612,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }
