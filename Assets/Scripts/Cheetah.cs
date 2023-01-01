@@ -18,10 +18,9 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public List<Point> Animation8;
     [SerializeField] public List<Point> RunAnimation;
     List<List<Point>> allAnims = new List<List<Point>>();
-    List<List<Point>> LastPointsList = new List<List<Point>>();
+    List<Point> LastPointsList = new List<Point>();
 
     [Header("Start of race")]
-    [SerializeField] public Point StartRacePoint;
     [SerializeField] public Camera RunningCam;
 
     [Header("End of race")]
@@ -51,6 +50,14 @@ public class Cheetah : MonoBehaviour
 
     private void Awake() // add all "animations" to allAnim list
     {
+        InitListsOfPoints();
+
+        print("press space to try and catch the cheetah");
+        print("press v to simulate the players finishing the race");
+    }
+    
+    private void InitListsOfPoints()
+    {
         allAnims.Add(Animation1);
         allAnims.Add(Animation2);
         allAnims.Add(Animation3);
@@ -60,10 +67,12 @@ public class Cheetah : MonoBehaviour
         allAnims.Add(Animation7);
         allAnims.Add(Animation8);
 
-        print("press space to try and catch the cheetah");
-        print("press v to simulate the players finishing the race");
+        foreach (var item in allAnims)
+        {
+            LastPointsList.Add(item[item.Count - 1]);
+        }
     }
-
+    
     public void TryToCatchCat()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -80,6 +89,7 @@ public class Cheetah : MonoBehaviour
             }
         }
     }
+    
     private void SpawnCatInRunScreen()
     {
         print("cat was caught!");
@@ -91,10 +101,11 @@ public class Cheetah : MonoBehaviour
         transform.LookAt(NextPoint.PointPosition);
 
     }
+    
     private void Start()  // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
         InitCheetahLoc();
-        CheetahSpawn();
+        MoveCatToFirstPoint();
         CheetahMove();
 
         if (WorldSpeedTimes5)
@@ -103,7 +114,6 @@ public class Cheetah : MonoBehaviour
             Time.timeScale = 5f;
         }
     }
-
 
     private void Update()
     {
@@ -231,7 +241,7 @@ public class Cheetah : MonoBehaviour
         {
 
             NewCheetahLoc();
-            CheetahSpawn();
+            MoveCatToFirstPoint();
             NextPointNum = 1;
         }
         Speed = allAnims[CurrentHidingCam][NextPointNum].SpeedToMe;
@@ -242,17 +252,10 @@ public class Cheetah : MonoBehaviour
 
     }
 
-
-    public void ChangeNextPoint(Point point)
-    {
-        Speed = point.SpeedToMe;
-        MyAnimator.SetFloat("Speed", Speed);
-        //transform.LookAt(point.PointPosition);
-    }
     /// <summary>
     /// Set Cheetah spawn to the new currentHidingCam in point 0
     /// </summary>
-    public void CheetahSpawn()
+    public void MoveCatToFirstPoint()
     {
         transform.position = allAnims[CurrentHidingCam][0].PointPosition;
     }
@@ -278,11 +281,9 @@ public class Cheetah : MonoBehaviour
 
     }
 
-    public void MayMove()
+    public void MayMove() // invoked ontriggerenter
     {
         YouMayMove = true;
         MyAnimator.SetFloat("Speed", Speed);
-
-
     }
 }
