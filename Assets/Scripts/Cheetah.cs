@@ -121,7 +121,6 @@ public class Cheetah : MonoBehaviour
         {
             CatMovement(); // move to destenation
         }
-        PlayerWinCheck();
         
         if (NextPointNum < allAnims[CurrentHidingCam].Count && !HidePhaseEnded) // if in hide phase and not at the end of animation
         {
@@ -130,7 +129,7 @@ public class Cheetah : MonoBehaviour
             transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
 
         }
-        if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 1f) // if cat is at end of run animation
+        if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 2f) // if cat is at end of run animation
         {
             gameManger.CatWon();
             print("Cheetah finished race");
@@ -175,13 +174,7 @@ public class Cheetah : MonoBehaviour
         return destination;
     }
 
-    private void PlayerWinCheck() //???
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Time.timeScale = 0;
-        }
-    }
+  
 
     /// <summary>
     /// set CurrentHidingCam to random camera

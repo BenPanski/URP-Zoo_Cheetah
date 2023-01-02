@@ -8,38 +8,50 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject PlayerWon;
     [SerializeField] GameObject Cat;
     [SerializeField] bool CatFinishedRace;
+    [SerializeField] bool PlayerFinishedRace;
     [SerializeField] bool PlayersLost;
     [SerializeField] bool GameEnded;
+    [SerializeField] bool SomeoneWon;
     // Start is called before the first frame update
     public void CatWon()
     {
         CatFinishedRace = true;
+        StartCoroutine(WaitUntilPlayerWon());
     }
 
     private void Update()
     {
-        if (!GameEnded)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                if (CatFinishedRace)
-                {
-                    PlayersLost = true;
-                }
-            }
+            PlayerFinishedRace = true;
+            StartCoroutine(WaitUntilCatWon());
+        }
 
-            if (CatFinishedRace)
-            {
-                if (PlayersLost)
-                {
-                    catCoughtPlayer.SetActive(true);
-                }
-                else
-                {
-                    PlayerWon.SetActive(true);
-                }
-                GameEnded = true;
-            }
+        if (CatFinishedRace && PlayerFinishedRace)
+        {
+            GameEnded = true;
+        }
+
+
+    }
+
+    private IEnumerator WaitUntilPlayerWon()
+    {
+        if (!SomeoneWon)
+        {
+            SomeoneWon = true;
+            yield return new WaitUntil(() => GameEnded);
+            catCoughtPlayer.SetActive(true);
+        }
+    }
+
+    private IEnumerator WaitUntilCatWon()
+    {
+        if (!SomeoneWon)
+        {
+            SomeoneWon = true;
+            yield return new WaitUntil(() => GameEnded);
+            PlayerWon.SetActive(true);
         }
     }
 }
