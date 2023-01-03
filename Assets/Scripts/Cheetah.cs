@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
+using static UnityEngine.Random;
 
+enum CatState
+{
+    Hide,Hunt,RunScreen,
+}
 public class Cheetah : MonoBehaviour
 {
+    [Header("Refrences")]
     [SerializeField] GameManager gameManger;
 
     [Header("Hide cameras and hiding points")]
@@ -42,6 +49,7 @@ public class Cheetah : MonoBehaviour
 
     [Header("Tests")]
     [SerializeField] bool SpawnOnlyInCam1;
+    [SerializeField] CatState MyState;
     [SerializeField] bool OFIR_Y;
     [SerializeField] bool MoveThroughAnimsInOrder = false;
     [SerializeField] bool WorldSpeedTimes5 = false;
@@ -50,10 +58,11 @@ public class Cheetah : MonoBehaviour
 
     private void Awake() // add all "animations" to allAnim list
     {
+        MyState = CatState.Hide;
         InitListsOfPoints();
 
         print("press space to try and catch the cheetah");
-        print("press v to simulate the players finishing the race");
+        print("press f to simulate the players finishing the race");
     }
     
     private void InitListsOfPoints()
@@ -80,18 +89,20 @@ public class Cheetah : MonoBehaviour
             if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1) // if cat is visble 
             {
                 print("cat was visable!");
+                MyState = CatState.Hunt;
                 SpawnCatInRunScreen();
 
             }
             else
             {
-                print("missed the cat, you lost!");
+                print("missed the cat, you lost!  (no code for this yet)");
             }
         }
     }
     
     private void SpawnCatInRunScreen()
     {
+        MyState = CatState.RunScreen;
         print("cat was caught!");
         HidePhaseEnded = true;
         transform.position = RunAnimation[0].PointPosition;
@@ -122,7 +133,7 @@ public class Cheetah : MonoBehaviour
             CatMovement(); // move to destenation
         }
         
-        if (NextPointNum < allAnims[CurrentHidingCam].Count && !HidePhaseEnded) // if in hide phase and not at the end of animation
+        if (NextPointNum < allAnims[CurrentHidingCam].Count && MyState == CatState.Hide) // if in hide phase and not at the end of animation
         {
 
             NextPoint = allAnims[CurrentHidingCam][NextPointNum];
@@ -132,7 +143,7 @@ public class Cheetah : MonoBehaviour
         if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 2f) // if cat is at end of run animation
         {
             gameManger.CatWon();
-            print("Cheetah finished race");
+            print("Cheetah finished race, turning cheetah off");
             this.gameObject.SetActive(false);
         }
 
@@ -153,7 +164,7 @@ public class Cheetah : MonoBehaviour
     {
         Vector3 destination = Vector3.zero; // reset destination
 
-        if (!HidePhaseEnded)
+        if (MyState == CatState.Hide)
         {
             destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition; // set destination to next point
 
