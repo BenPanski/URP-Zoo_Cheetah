@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            print("players reached finish line");
             PlayerFinishedRace = true;
             StartCoroutine(WaitUntilCatWon());
         }
