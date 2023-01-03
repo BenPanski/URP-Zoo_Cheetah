@@ -2349,7 +2349,7 @@ PrefabInstance:
     - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
       propertyPath: found
       value: 
-      objectReference: {fileID: 1397053232}
+      objectReference: {fileID: 0}
     - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
       propertyPath: OFIR_Y
       value: 0
@@ -17309,7 +17309,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1397053231}
   - component: {fileID: 1397053230}
-  - component: {fileID: 1397053232}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -17333,8 +17332,10 @@ MonoBehaviour:
   PlayerWon: {fileID: 183912508}
   Cat: {fileID: 2109500172}
   CatFinishedRace: 0
+  PlayerFinishedRace: 0
   PlayersLost: 0
   GameEnded: 0
+  SomeoneWon: 0
 --- !u!4 &1397053231
 Transform:
   m_ObjectHideFlags: 0
@@ -17349,18 +17350,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1397053232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397053229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2167ca60f2f1d8e4391e354ffd2f887e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1398393731
 GameObject:
   m_ObjectHideFlags: 0
