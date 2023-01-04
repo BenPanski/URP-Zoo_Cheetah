@@ -22,10 +22,8 @@ public class Point : MonoBehaviour
         {
             if (other.GetComponent<Cheetah>() != null)
             {
-                
                 Invoke("DontStop", 1f);
                 Invoke("StopHere", waitHereForSec*2);
-
             }
         }
     }
