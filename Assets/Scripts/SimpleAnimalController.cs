@@ -23,15 +23,7 @@ public class SimpleAnimalController : MonoBehaviour
     List<List<Point>> AllAnims = new List<List<Point>>();
     int currentPointNum = 0;
     int currentAnimNum;
-    float Speed;
-
     List<Point> currentAnim;
-    [SerializeField] bool PrintStuff = true;
-    [SerializeField] bool YouMayMove = true;
-    [SerializeField] Animator MyAnimator;
-
-
-
 
 
 
@@ -69,67 +61,25 @@ public class SimpleAnimalController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Point>() != null && other.gameObject.transform.position == AllAnims[currentAnimNum][currentPointNum].PointPosition)
+        if (other.GetComponent<Point>() != null)
         {
             currentPointNum += 1;
-            if (currentPointNum < currentAnim.Count - 1) // if not last point in animation
+            if (currentPointNum < currentAnim.Count -1) // if not last point in animation
             {
-                if (PrintStuff)
-                {
-                    print(gameObject.name + " is at point " + currentPointNum + " of Animation" + currentAnimNum);
-                }
-                if (other.GetComponent<Point>().stopHere == true)
-                {
-                    YouMayMove = false;
-                    Invoke("MayMove", (other.GetComponent<Point>().waitHereForSec));
-                    UpdateAnimatorSpeed(0);
-
-                }
+                print(gameObject.name + " is at point " + currentPointNum + " of Animation" + currentAnimNum);
             }
             else // if last point in animation
             {
-                if (PrintStuff)
-                {
-                    print(gameObject.name + "finished his animation, at point " + currentPointNum + " of Animation" + currentAnimNum);
-                }
+                print(gameObject.name + "finished his animation, at point " + currentPointNum + " of Animation" + currentAnimNum);
                 MoveMeToFirstPoint(NewRandAnimNum());
             }
-        }
-    }
-    public void MayMove() // invoked ontriggerenter
-    {
-        YouMayMove = true;
-        UpdateAnimatorSpeed();
-    }
-    private void UpdateAnimatorSpeed()
-    {
-        if (MyAnimator)
-        {
-            MyAnimator.SetFloat("Speed", Speed);
-        }
-        else
-        {
-            print("no animator connected to " + gameObject.name);
-        }
-    }
-    private void UpdateAnimatorSpeed(int speed)
-    {
-        if (MyAnimator)
-        {
-            MyAnimator.SetFloat("Speed", speed);
-        }
-        else
-        {
-            print("no animator connected to " + gameObject.name);
         }
     }
 
     private void Update()
     {
-        if (currentAnim.Count > currentPointNum && YouMayMove)
+        if (currentAnim.Count > currentPointNum)
         {
-            Speed = currentAnim[currentPointNum+1].SpeedToMe;
-           // MyAnimator.SetFloat("Speed", Speed);
             transform.LookAt(currentAnim[currentPointNum + 1].PointPosition);
             transform.position = Vector3.MoveTowards(transform.position, currentAnim[currentPointNum + 1].PointPosition, currentAnim[currentPointNum].SpeedToMe * Time.deltaTime);
         }

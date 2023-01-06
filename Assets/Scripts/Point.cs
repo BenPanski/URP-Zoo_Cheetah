@@ -20,7 +20,7 @@ public class Point : MonoBehaviour
     {
         if (stopHere)
         {
-            if (other.GetComponent<Cheetah>() != null || other.GetComponent<SimpleAnimalController>() != null)
+            if (other.GetComponent<Cheetah>() != null)
             {
                 Invoke("DontStop", 1f);
                 Invoke("StopHere", waitHereForSec*2);
