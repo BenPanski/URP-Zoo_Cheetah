@@ -21,7 +21,7 @@ public class SimpleAnimalController : MonoBehaviour
     #endregion
 
     List<List<Point>> AllAnims = new List<List<Point>>();
-    int NextPointNum = 0;
+    int currentPointNum = 0;
     int currentAnimNum;
     List<Point> currentAnim;
 
@@ -63,14 +63,14 @@ public class SimpleAnimalController : MonoBehaviour
     {
         if (other.GetComponent<Point>() != null)
         {
-            NextPointNum++; 
-            if (NextPointNum < currentAnim.Count -1) // if not last point in animation
+            currentPointNum++; 
+            if (currentPointNum < currentAnim.Count -1) // if not last point in animation
             {
-                print(gameObject.name + " is at point " + NextPointNum + " of Animation" + (currentAnimNum + 1));
+                print(gameObject.name + " is at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
             }
             else // if last point in animation
             {
-                print(gameObject.name + " finished his animation, at point " + NextPointNum + " of Animation" + (currentAnimNum + 1));
+                print(gameObject.name + " finished his animation, at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
                 MoveMeToFirstPoint(NewRandAnimNum());
             }
         }
@@ -78,10 +78,10 @@ public class SimpleAnimalController : MonoBehaviour
 
     private void Update()
     {
-        if (currentAnim.Count > NextPointNum)
+        if (currentAnim.Count > currentPointNum)
         {
-            transform.LookAt(currentAnim[NextPointNum].PointPosition);
-            transform.position = Vector3.MoveTowards(transform.position, currentAnim[NextPointNum].PointPosition, currentAnim[NextPointNum].SpeedToMe * Time.deltaTime);
+            transform.LookAt(currentAnim[currentPointNum].PointPosition);
+            transform.position = Vector3.MoveTowards(transform.position, currentAnim[currentPointNum].PointPosition, currentAnim[currentPointNum].SpeedToMe * Time.deltaTime);
         }
     }
     int NewRandAnimNum()
@@ -94,9 +94,9 @@ public class SimpleAnimalController : MonoBehaviour
     void MoveMeToFirstPoint(int AnimationNumber)
     {
         currentAnimNum = AnimationNumber;
-        NextPointNum = 1;
+        currentPointNum = 0;
         currentAnim = AllAnims[currentAnimNum];
-        transform.position = AllAnims[currentAnimNum][0].PointPosition;
+        transform.position = AllAnims[currentAnimNum][currentPointNum].PointPosition;
     }
 
 }
