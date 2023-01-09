@@ -63,7 +63,7 @@ public class SimpleAnimalController : MonoBehaviour
     {
         if (other.GetComponent<Point>() != null)
         {
-            currentPointNum += 1;
+            currentPointNum++; 
             if (currentPointNum < currentAnim.Count -1) // if not last point in animation
             {
                 print(gameObject.name + " is at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
@@ -80,8 +80,8 @@ public class SimpleAnimalController : MonoBehaviour
     {
         if (currentAnim.Count > currentPointNum)
         {
-            transform.LookAt(currentAnim[currentPointNum + 1].PointPosition);
-            transform.position = Vector3.MoveTowards(transform.position, currentAnim[currentPointNum + 1].PointPosition, currentAnim[currentPointNum].SpeedToMe * Time.deltaTime);
+            transform.LookAt(currentAnim[currentPointNum].PointPosition);
+            transform.position = Vector3.MoveTowards(transform.position, currentAnim[currentPointNum].PointPosition, currentAnim[currentPointNum].SpeedToMe * Time.deltaTime);
         }
     }
     int NewRandAnimNum()
