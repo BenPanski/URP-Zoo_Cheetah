@@ -66,11 +66,11 @@ public class SimpleAnimalController : MonoBehaviour
             currentPointNum += 1;
             if (currentPointNum < currentAnim.Count -1) // if not last point in animation
             {
-                print(gameObject.name + " is at point " + currentPointNum + " of Animation" + currentAnimNum);
+                print(gameObject.name + " is at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
             }
             else // if last point in animation
             {
-                print(gameObject.name + "finished his animation, at point " + currentPointNum + " of Animation" + currentAnimNum);
+                print(gameObject.name + " finished his animation, at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
                 MoveMeToFirstPoint(NewRandAnimNum());
             }
         }
@@ -85,8 +85,10 @@ public class SimpleAnimalController : MonoBehaviour
         }
     }
     int NewRandAnimNum()
-    {
-        return UnityEngine.Random.Range(0, AllAnims.Count);
+    { 
+        var x = UnityEngine.Random.Range(0, AllAnims.Count);
+        print("next animation is: "+ x);
+        return x;
     }
 
     void MoveMeToFirstPoint(int AnimationNumber)
