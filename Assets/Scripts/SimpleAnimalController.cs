@@ -24,6 +24,7 @@ public class SimpleAnimalController : MonoBehaviour
     int currentPointNum = 0;
     int currentAnimNum;
     List<Point> currentAnim;
+    [SerializeField] bool printStuff;
 
 
 
@@ -64,13 +65,20 @@ public class SimpleAnimalController : MonoBehaviour
         if (other.GetComponent<Point>() != null)
         {
             currentPointNum += 1;
-            if (currentPointNum <= currentAnim.Count -1) // if not last point in animation
+            if (currentPointNum <= currentAnim.Count - 1) // if not last point in animation
             {
-                print(gameObject.name + " is at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
+                if (printStuff)
+                {
+                    print(gameObject.name + " is at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
+                }
+
             }
             else // if last point in animation
             {
-                print(gameObject.name + " finished his animation, at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
+                if (printStuff)
+                {
+                    print(gameObject.name + " finished his animation, at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
+                }
                 MoveMeToFirstPoint(NewRandAnimNum());
             }
         }
@@ -85,9 +93,12 @@ public class SimpleAnimalController : MonoBehaviour
         }
     }
     int NewRandAnimNum()
-    { 
+    {
         var x = UnityEngine.Random.Range(0, AllAnims.Count);
-        print("next animation is: "+ x);
+        if (printStuff)
+        {
+            print("next animation is: " + x);
+        }
         return x;
     }
 

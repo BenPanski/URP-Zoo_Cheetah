@@ -890,6 +890,7 @@ MonoBehaviour:
   Anim10: []
   Anim11: []
   Anim12: []
+  printStuff: 0
 --- !u!136 &33445716
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2460,6 +2461,10 @@ PrefabInstance:
       propertyPath: gameManger
       value: 
       objectReference: {fileID: 1397053230}
+    - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
+      propertyPath: NoHuntPhase
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
       propertyPath: PrintAnimNum
       value: 1
@@ -9014,6 +9019,7 @@ MonoBehaviour:
   Anim10: []
   Anim11: []
   Anim12: []
+  printStuff: 0
 --- !u!54 &698061728
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using static UnityEngine.Random;
 
 enum CatState
 {
-    Hide,Hunt,RunScreen,
+    Hide, Hunt, RunScreen,
 }
 public class Cheetah : MonoBehaviour
 {
@@ -48,6 +48,8 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool WorldSpeedTimes5 = false;
     [SerializeField] bool PrintAnimNum = true;
     [SerializeField] bool PrintPointNum = true;
+    [SerializeField] bool NoHuntPhase = false;
+
 
     private void Awake() // add all "animations" to allAnim list
     {
@@ -57,7 +59,7 @@ public class Cheetah : MonoBehaviour
         print("press space to try and catch the cheetah");
         print("press f to simulate the players finishing the race");
     }
-    
+
     private void InitListsOfPoints()
     {
         allAnims.Add(Animation1);
@@ -70,16 +72,24 @@ public class Cheetah : MonoBehaviour
         allAnims.Add(Animation8);
 
     }
-    
+
     public void TryToCatchCat()
     {
-        if (Input.GetKeyDown(KeyCode.Space)&& MyState == CatState.Hide)
+        if (Input.GetKeyDown(KeyCode.Space) && MyState == CatState.Hide)
         {
             if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1) // if cat is visble 
             {
                 print("cat was visable!");
                 MyState = CatState.Hunt;
-                SetRunScreenState();
+
+                if (NoHuntPhase)
+                {
+                    SetRunScreenState();
+                }
+                else
+                {
+                    SetHuntScreenState();
+                }
             }
             else
             {
@@ -87,7 +97,7 @@ public class Cheetah : MonoBehaviour
             }
         }
     }
-    
+
     private void SetRunScreenState()
     {
         MyState = CatState.RunScreen;
@@ -99,7 +109,19 @@ public class Cheetah : MonoBehaviour
         MyAnimator.SetFloat("Speed", Speed);
         transform.LookAt(NextPoint.PointPosition);
     }
-    
+    private void SetHuntScreenState()
+    {
+        MyState = CatState.Hunt;
+
+        print("cat is in hunt state");
+         // set transform
+         // set next point
+         // set speed
+         // set animator
+         //transform.lookAt
+       
+    }
+
     private void Start()  // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
         InitCheetahLoc();
@@ -119,7 +141,7 @@ public class Cheetah : MonoBehaviour
         {
             CatMovement(); // move to destenation
         }
-        
+
         if (NextPointNum < allAnims[CurrentHidingCam].Count && MyState == CatState.Hide) // if in hide phase and not at the end of animation
         {
 
@@ -134,10 +156,10 @@ public class Cheetah : MonoBehaviour
             this.gameObject.SetActive(false);
         }
 
-       
+
 
         TryToCatchCat();
-       
+
     }
 
     private void CatMovement()
@@ -172,7 +194,7 @@ public class Cheetah : MonoBehaviour
         return destination;
     }
 
-  
+
 
     /// <summary>
     /// set CurrentHidingCam to random camera
