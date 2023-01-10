@@ -10,9 +10,11 @@ enum CatState
 }
 public class Cheetah : MonoBehaviour
 {
+    #region REF
     [Header("Refrences")]
-    [SerializeField] GameManager gameManger;
-
+    [SerializeField] GameManager _GameManger;
+    #endregion
+    #region Hide Cams & Points
     [Header("Hide cameras and hiding points")]
     [SerializeField] public List<Camera> HidingCameras;
     [SerializeField] public List<Point> Animation1;
@@ -25,22 +27,24 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public List<Point> Animation8;
     [SerializeField] public List<Point> RunAnimation;
     List<List<Point>> allAnims = new List<List<Point>>();
-
+    #endregion
+    #region Cheetah attributes
     [Header("Cheetah attributes")]
     [SerializeField] public Animator MyAnimator;
     [SerializeField] public float Speed;
     [SerializeField] public bool RunToBeginingOfRace = false;
-
+    #endregion
+    #region private variables
     bool HidePhaseEnded;
     // bool NextPointIsEndOfRacePoint;
     Point NextPoint;
     int NextPointNum;
     int CurrentHidingCam;
     float temp;
-    [Header("Stop the cheetah")]
-    [SerializeField] bool YouMayMove = true;
-
+    #endregion
+    #region Tests
     [Header("Tests")]
+    [SerializeField] bool YouMayMove = true;
     [SerializeField] bool SpawnOnlyInCam1;
     [SerializeField] CatState MyState;
     [SerializeField] bool OFIR_Y;
@@ -49,17 +53,27 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool PrintAnimNum = true;
     [SerializeField] bool PrintPointNum = true;
     [SerializeField] bool NoHuntPhase = false;
+    #endregion
 
-
-    private void Awake() // add all "animations" to allAnim list
+    #region Init
+    private void Awake() // add all "animations" to allAnim list , // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
         MyState = CatState.Hide;
         InitListsOfPoints();
 
         print("press space to try and catch the cheetah");
         print("press f to simulate the players finishing the race");
-    }
+        InitCheetahLoc();
+        MoveCatToFirstPoint();
+        CheetahMove();
 
+        if (WorldSpeedTimes5)
+        {
+            print("WorldSpeedTimes5");
+            Time.timeScale = 5f;
+        }
+    }
+   
     private void InitListsOfPoints()
     {
         allAnims.Add(Animation1);
@@ -72,7 +86,7 @@ public class Cheetah : MonoBehaviour
         allAnims.Add(Animation8);
 
     }
-
+    #endregion
     public void TryToCatchCat()
     {
         if (Input.GetKeyDown(KeyCode.Space) && MyState == CatState.Hide)
@@ -122,44 +136,29 @@ public class Cheetah : MonoBehaviour
        
     }
 
-    private void Start()  // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
-    {
-        InitCheetahLoc();
-        MoveCatToFirstPoint();
-        CheetahMove();
-
-        if (WorldSpeedTimes5)
-        {
-            print("WorldSpeedTimes5");
-            Time.timeScale = 5f;
-        }
-    }
+   
 
     private void Update()
     {
         if (YouMayMove)
         {
-            CatMovement(); // move to destenation
+            CatMovement(); // move to destination
         }
 
         if (NextPointNum < allAnims[CurrentHidingCam].Count && MyState == CatState.Hide) // if in hide phase and not at the end of animation
         {
-
             NextPoint = allAnims[CurrentHidingCam][NextPointNum];
             transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
 
         }
-        if (Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 2f) // if cat is at end of run animation
+        if (MyState == CatState.RunScreen && Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 2f ) // if cat is at end of run animation
         {
-            gameManger.CatWon();
+            _GameManger.CatWon();
             print("Cheetah finished race, turning cheetah off");
             this.gameObject.SetActive(false);
         }
 
-
-
         TryToCatchCat();
-
     }
 
     private void CatMovement()
@@ -218,7 +217,6 @@ public class Cheetah : MonoBehaviour
         {
             RandomizeHideCam();
         }
-
     }
     private void InitCheetahLoc()
     {
