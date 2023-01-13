@@ -3865,6 +3865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3852403089529485230}
+  - component: {fileID: 1949587636692931829}
   m_Layer: 0
   m_Name: MO R Calf
   m_TagString: Untagged
@@ -3888,6 +3889,20 @@ Transform:
   m_Father: {fileID: 8381224278195540058}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1949587636692931829
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954092125596293527}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 0.7
+  m_Direction: 0
+  m_Center: {x: -0.31, y: 0, z: 0}
 --- !u!1 &1971260474773019840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3958,6 +3973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1773625198956227570}
+  - component: {fileID: 3234177681461857173}
   m_Layer: 0
   m_Name: MO L Toe1Nub
   m_TagString: Untagged
@@ -3979,6 +3995,20 @@ Transform:
   m_Father: {fileID: 7794603507169974165}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3234177681461857173
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068574404985891425}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.05
+  m_Height: 0.31
+  m_Direction: 0
+  m_Center: {x: 0.15, y: 0.05, z: 0}
 --- !u!1 &2082561589064701153
 GameObject:
   m_ObjectHideFlags: 0
@@ -4641,6 +4671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3099649993212645634}
+  - component: {fileID: 4200034092504597682}
   m_Layer: 0
   m_Name: MO L HorseLink
   m_TagString: Untagged
@@ -4663,6 +4694,20 @@ Transform:
   m_Father: {fileID: 716284359646337680}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &4200034092504597682
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398180745823675593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.03
+  m_Height: 0.6
+  m_Direction: 0
+  m_Center: {x: -0.27, y: 0, z: 0}
 --- !u!1 &2411235725129543764
 GameObject:
   m_ObjectHideFlags: 0
@@ -4672,6 +4717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8345241590455987039}
+  - component: {fileID: 6537511642856396351}
   m_Layer: 0
   m_Name: MO R HorseLink
   m_TagString: Untagged
@@ -4694,6 +4740,20 @@ Transform:
   m_Father: {fileID: 3852403089529485230}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6537511642856396351
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2411235725129543764}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.03
+  m_Height: 0.6
+  m_Direction: 0
+  m_Center: {x: -0.27, y: 0, z: 0}
 --- !u!1 &2457048538274065004
 GameObject:
   m_ObjectHideFlags: 0
@@ -10874,6 +10934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2540104410304403926}
+  - component: {fileID: 7077434210768044173}
   m_Layer: 0
   m_Name: MO L Toe0Nub
   m_TagString: Untagged
@@ -10895,6 +10956,20 @@ Transform:
   m_Father: {fileID: 7080961597848942078}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7077434210768044173
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113726869873259960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.04
+  m_Height: 0.2
+  m_Direction: 0
+  m_Center: {x: 0.08, y: 0.03, z: 0}
 --- !u!1 &6131722365176067161
 GameObject:
   m_ObjectHideFlags: 0
@@ -11026,6 +11101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8898655901310068069}
+  - component: {fileID: 3309020641850908214}
   m_Layer: 0
   m_Name: MO R Toe0Nub
   m_TagString: Untagged
@@ -11047,6 +11123,20 @@ Transform:
   m_Father: {fileID: 4275496628578754221}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3309020641850908214
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205102941345608718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.04
+  m_Height: 0.2
+  m_Direction: 0
+  m_Center: {x: 0.08, y: 0.03, z: 0}
 --- !u!1 &6206193449571511295
 GameObject:
   m_ObjectHideFlags: 0
@@ -11514,6 +11604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6436600984112113766}
+  - component: {fileID: 8194045244008387205}
   m_Layer: 0
   m_Name: MO Pelvis
   m_TagString: Untagged
@@ -11539,6 +11630,20 @@ Transform:
   m_Father: {fileID: 6872690652267755311}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8194045244008387205
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6599014105167230739}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.33
+  m_Height: 1.27
+  m_Direction: 1
+  m_Center: {x: 0.09, y: 0.12, z: 0}
 --- !u!1 &6611761265308379110
 GameObject:
   m_ObjectHideFlags: 0
@@ -12324,6 +12429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 716284359646337680}
+  - component: {fileID: 5135223465945797691}
   m_Layer: 0
   m_Name: MO L Calf
   m_TagString: Untagged
@@ -12347,6 +12453,20 @@ Transform:
   m_Father: {fileID: 8491418509405687365}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5135223465945797691
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7303897228772607856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 0.7
+  m_Direction: 0
+  m_Center: {x: -0.31, y: 0, z: 0}
 --- !u!1 &7319367983070912376
 GameObject:
   m_ObjectHideFlags: 0
@@ -13497,12 +13617,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2099985800440374772}
   - component: {fileID: 2054386656189831440}
+  - component: {fileID: 3608471977289431678}
   m_Layer: 0
   m_Name: MO_skin_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2099985800440374772
 Transform:
@@ -13637,6 +13758,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.27251253, y: 0.35413012, z: -0.0000017285347}
     m_Extent: {x: 1.1415229, y: 0.8373666, z: 0.68412787}
   m_DirtyAABB: 0
+--- !u!136 &3608471977289431678
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8125463118718748395}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.66425616
+  m_Height: 2.2776432
+  m_Direction: 2
+  m_Center: {x: 0.000000834465, y: -0.2583859, z: 1.090771}
 --- !u!1 &8147022860117667122
 GameObject:
   m_ObjectHideFlags: 0
@@ -14480,6 +14615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2518234670937179715}
+  - component: {fileID: 6710326814336621955}
   m_Layer: 0
   m_Name: MO R Toe1Nub
   m_TagString: Untagged
@@ -14501,6 +14637,20 @@ Transform:
   m_Father: {fileID: 5570939180378009799}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6710326814336621955
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8644724737699842073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.05
+  m_Height: 0.31
+  m_Direction: 0
+  m_Center: {x: 0.15, y: 0.05, z: 0}
 --- !u!1 &8645191195627277267
 GameObject:
   m_ObjectHideFlags: 0
