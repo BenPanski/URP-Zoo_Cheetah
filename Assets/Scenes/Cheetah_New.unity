@@ -2598,6 +2598,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
+      propertyPath: _GameManger
+      value: 
+      objectReference: {fileID: 1397053230}
+    - target: {fileID: 4413655836561233361, guid: c8e974c75c59bfa4da55f1c95cb62b03, type: 3}
       propertyPath: PrintAnimNum
       value: 1
       objectReference: {fileID: 0}
@@ -25405,7 +25409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1264402220442832061, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929756922157045255, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_RootOrder
