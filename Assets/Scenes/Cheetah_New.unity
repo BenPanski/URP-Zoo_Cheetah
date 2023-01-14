@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b018466e0ae8784ba41051e726d5b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedToMe: 4
+  SpeedToMe: 2
   stopHere: 0
   waitHereForSec: 0
 --- !u!1 &21882815
@@ -7515,7 +7515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b018466e0ae8784ba41051e726d5b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedToMe: 4
+  SpeedToMe: 2
   stopHere: 0
   waitHereForSec: 0
 --- !u!1 &550917166
@@ -20666,7 +20666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b018466e0ae8784ba41051e726d5b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedToMe: 4
+  SpeedToMe: 2
   stopHere: 0
   waitHereForSec: 0
 --- !u!1001 &1612234890
@@ -25409,7 +25409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1264402220442832061, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1929756922157045255, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_RootOrder
@@ -28503,7 +28503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b018466e0ae8784ba41051e726d5b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedToMe: 4
+  SpeedToMe: 2
   stopHere: 0
   waitHereForSec: 0
 --- !u!1 &6764004534341480246
