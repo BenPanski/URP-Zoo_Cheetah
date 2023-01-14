@@ -59,7 +59,7 @@ public class SimpleAnimalController : MonoBehaviour
         {
             if (item.SharesAnimations)
             {
-          AnimalsThatShareAnims.Add(item);
+                AnimalsThatShareAnims.Add(item);
             }
         }
     }
@@ -130,26 +130,26 @@ public class SimpleAnimalController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, currentAnim[currentPointNum].PointPosition, currentAnim[currentPointNum].SpeedToMe * Time.deltaTime);
         }
     }
-  /*  int NewRandAnimNum()
-    {
-        int x = UnityEngine.Random.Range(0, AllAnims.Count);
-        if (SharesAnimations) 
-        {
-            int q;
-            foreach (var item in AnimalsThatShareAnims)
-            {
-                if (item.currentAnimNum == x)
-                {
-                    q =UnityEngine.Random.Range(0, AnimalsThatShareAnims.Count);
-                }
-            }
-        }
-        if (printStuff)
-        {
-            print("next animation is: " + x);
-        }
-        return x;
-    }*/
+    /*  int NewRandAnimNum()
+      {
+          int x = UnityEngine.Random.Range(0, AllAnims.Count);
+          if (SharesAnimations) 
+          {
+              int q;
+              foreach (var item in AnimalsThatShareAnims)
+              {
+                  if (item.currentAnimNum == x)
+                  {
+                      q =UnityEngine.Random.Range(0, AnimalsThatShareAnims.Count);
+                  }
+              }
+          }
+          if (printStuff)
+          {
+              print("next animation is: " + x);
+          }
+          return x;
+      }*/
     public int GenerateUniqueRandomAnimNum()
     {
         List<int> NumbersList = GetAllAnimalsAnimNums();
@@ -180,10 +180,23 @@ public class SimpleAnimalController : MonoBehaviour
 
     void MoveMeToFirstPoint(int AnimationNumber)
     {
+        if (RandomBoolean())
+        {
+            AllAnims[AnimationNumber].Reverse();
+        }
+
         currentAnimNum = AnimationNumber;
         currentPointNum = 0;
         currentAnim = AllAnims[currentAnimNum];
         transform.position = AllAnims[currentAnimNum][currentPointNum].PointPosition;
+    }
+    bool RandomBoolean()
+    {
+        if (UnityEngine.Random.Range(0, 2) == 0)
+        {
+            return true;
+        }
+        return false;
     }
 
 }
