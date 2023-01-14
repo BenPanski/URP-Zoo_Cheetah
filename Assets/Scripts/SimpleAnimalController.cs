@@ -18,6 +18,16 @@ public class SimpleAnimalController : MonoBehaviour
     [SerializeField] List<Point> Anim10 = new List<Point>();
     [SerializeField] List<Point> Anim11 = new List<Point>();
     [SerializeField] List<Point> Anim12 = new List<Point>();
+    [SerializeField] List<Point> Anim13 = new List<Point>();
+    [SerializeField] List<Point> Anim14 = new List<Point>();
+    [SerializeField] List<Point> Anim15 = new List<Point>();
+    [SerializeField] List<Point> Anim16 = new List<Point>();
+    [SerializeField] List<Point> Anim17 = new List<Point>();
+    [SerializeField] List<Point> Anim18 = new List<Point>();
+    [SerializeField] List<Point> Anim19 = new List<Point>();
+    [SerializeField] List<Point> Anim20 = new List<Point>();
+    [SerializeField] List<Point> Anim21 = new List<Point>();
+
     #endregion
 
     List<List<Point>> AllAnims = new List<List<Point>>();
@@ -49,6 +59,16 @@ public class SimpleAnimalController : MonoBehaviour
         AddAnimation(Anim10);
         AddAnimation(Anim11);
         AddAnimation(Anim12);
+        AddAnimation(Anim13);
+        AddAnimation(Anim14);
+        AddAnimation(Anim15);
+        AddAnimation(Anim16);
+        AddAnimation(Anim17);
+        AddAnimation(Anim18);
+        AddAnimation(Anim19);
+        AddAnimation(Anim20);
+        AddAnimation(Anim21);
+
     }
 
     private void AddAnimation(List<Point> animation)
@@ -62,7 +82,7 @@ public class SimpleAnimalController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Point>() != null)
+        if (other.GetComponent<Point>() != null && other.transform.position == currentAnim[currentPointNum].transform.position)
         {
             currentPointNum += 1;
             if (currentPointNum <= currentAnim.Count - 1) // if not last point in animation
@@ -71,7 +91,6 @@ public class SimpleAnimalController : MonoBehaviour
                 {
                     print(gameObject.name + " is at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
                 }
-
             }
             else // if last point in animation
             {

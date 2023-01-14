@@ -4755,6 +4755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b18cbd062d9c148ab9829271c3a918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _GameManger: {fileID: 0}
   HidingCameras:
   - {fileID: 0}
   - {fileID: 0}
@@ -4779,14 +4780,19 @@ MonoBehaviour:
   Animation6: []
   Animation7: []
   Animation8: []
-  StartRacePoint: {fileID: 0}
-  RunningCam: {fileID: 0}
-  EndOfRacePoint: {fileID: 0}
+  RunAnimation: []
   MyAnimator: {fileID: 6595777294968910327}
   Speed: 5
   RunToBeginingOfRace: 0
+  YouMayMove: 1
   SpawnOnlyInCam1: 1
+  MyState: 0
   OFIR_Y: 0
+  MoveThroughAnimsInOrder: 0
+  WorldSpeedTimes5: 0
+  PrintAnimNum: 1
+  PrintPointNum: 1
+  NoHuntPhase: 0
 --- !u!65 &1459892277814557999
 BoxCollider:
   m_ObjectHideFlags: 0

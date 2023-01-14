@@ -928,9 +928,24 @@ MonoBehaviour:
   - {fileID: 6764004534341480240}
   - {fileID: 6764004533484580762}
   - {fileID: 964719980}
-  Anim2: []
-  Anim3: []
-  Anim4: []
+  Anim2:
+  - {fileID: 6764004533460467669}
+  - {fileID: 6764004534155639214}
+  - {fileID: 6764004534341480240}
+  - {fileID: 6764004533484580762}
+  - {fileID: 964719980}
+  Anim3:
+  - {fileID: 6764004533460467669}
+  - {fileID: 6764004534155639214}
+  - {fileID: 6764004534341480240}
+  - {fileID: 6764004533484580762}
+  - {fileID: 964719980}
+  Anim4:
+  - {fileID: 6764004533460467669}
+  - {fileID: 6764004534155639214}
+  - {fileID: 6764004534341480240}
+  - {fileID: 6764004533484580762}
+  - {fileID: 964719980}
   Anim5:
   - {fileID: 6764004532942292126}
   - {fileID: 6764004534529828135}
@@ -951,7 +966,16 @@ MonoBehaviour:
   Anim10: []
   Anim11: []
   Anim12: []
-  printStuff: 0
+  Anim13: []
+  Anim14: []
+  Anim15: []
+  Anim16: []
+  Anim17: []
+  Anim18: []
+  Anim19: []
+  Anim20: []
+  Anim21: []
+  printStuff: 1
 --- !u!54 &33445717
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9033,6 +9057,15 @@ MonoBehaviour:
   Anim10: []
   Anim11: []
   Anim12: []
+  Anim13: []
+  Anim14: []
+  Anim15: []
+  Anim16: []
+  Anim17: []
+  Anim18: []
+  Anim19: []
+  Anim20: []
+  Anim21: []
   printStuff: 0
 --- !u!54 &698061728
 Rigidbody:
@@ -24659,6 +24692,10 @@ PrefabInstance:
     - target: {fileID: 1929756922157045255, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608471977289431678, guid: 393df303c59f07343923e29cbbff3117, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8125463118718748395, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_StaticEditorFlags
