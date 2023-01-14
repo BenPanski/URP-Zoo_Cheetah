@@ -976,6 +976,7 @@ MonoBehaviour:
   Anim20: []
   Anim21: []
   printStuff: 1
+  SharesAnimations: 1
 --- !u!54 &33445717
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9067,6 +9068,7 @@ MonoBehaviour:
   Anim20: []
   Anim21: []
   printStuff: 0
+  SharesAnimations: 1
 --- !u!54 &698061728
 Rigidbody:
   m_ObjectHideFlags: 0

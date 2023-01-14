@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SearchService;
 using UnityEngine;
 public class SimpleAnimalController : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class SimpleAnimalController : MonoBehaviour
     int currentAnimNum;
     List<Point> currentAnim;
     [SerializeField] bool printStuff;
+    [SerializeField] bool SharesAnimations = true;
+    List<SimpleAnimalController> AnimalsThatShareAnims = new List<SimpleAnimalController>();
 
 
 
@@ -42,7 +45,23 @@ public class SimpleAnimalController : MonoBehaviour
     void Start()
     {
         AddAllAnims();
-        MoveMeToFirstPoint(NewRandAnimNum());
+        MoveMeToFirstPoint(GenerateUniqueRandomAnimNum());
+        print(AnimalsThatShareAnims.Count);
+    }
+    private void Awake()
+    {
+        AddMeToAllAnimals();
+    }
+
+    private void AddMeToAllAnimals()
+    {
+        foreach (var item in FindObjectsOfType<SimpleAnimalController>())
+        {
+            if (item.SharesAnimations)
+            {
+          AnimalsThatShareAnims.Add(item);
+            }
+        }
     }
     #region AddAllAnims
     private void AddAllAnims()
@@ -98,7 +117,7 @@ public class SimpleAnimalController : MonoBehaviour
                 {
                     print(gameObject.name + " finished his animation, at point " + currentPointNum + " of Animation" + (currentAnimNum + 1));
                 }
-                MoveMeToFirstPoint(NewRandAnimNum());
+                MoveMeToFirstPoint(GenerateUniqueRandomAnimNum());
             }
         }
     }
@@ -111,14 +130,52 @@ public class SimpleAnimalController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, currentAnim[currentPointNum].PointPosition, currentAnim[currentPointNum].SpeedToMe * Time.deltaTime);
         }
     }
-    int NewRandAnimNum()
+  /*  int NewRandAnimNum()
     {
-        var x = UnityEngine.Random.Range(0, AllAnims.Count);
+        int x = UnityEngine.Random.Range(0, AllAnims.Count);
+        if (SharesAnimations) 
+        {
+            int q;
+            foreach (var item in AnimalsThatShareAnims)
+            {
+                if (item.currentAnimNum == x)
+                {
+                    q =UnityEngine.Random.Range(0, AnimalsThatShareAnims.Count);
+                }
+            }
+        }
         if (printStuff)
         {
             print("next animation is: " + x);
         }
         return x;
+    }*/
+    public int GenerateUniqueRandomAnimNum()
+    {
+        List<int> NumbersList = GetAllAnimalsAnimNums();
+
+        int randomNum = UnityEngine.Random.Range(0, AllAnims.Count);
+        while (NumbersList.Contains(randomNum))
+        {
+            randomNum = UnityEngine.Random.Range(0, AllAnims.Count);
+        }
+        NumbersList.Add(randomNum);
+        if (printStuff)
+        {
+            print("next animation is: " + randomNum);
+        }
+        return randomNum;
+    }
+
+    private List<int> GetAllAnimalsAnimNums()
+    {
+        var NumbersList = new List<int>();
+        foreach (var item in AnimalsThatShareAnims)
+        {
+            NumbersList.Add(item.currentAnimNum);
+        }
+
+        return NumbersList;
     }
 
     void MoveMeToFirstPoint(int AnimationNumber)
