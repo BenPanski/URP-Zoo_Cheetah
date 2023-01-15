@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditorInternal;
 using UnityEngine;
 using static UnityEngine.Random;
@@ -12,7 +13,7 @@ public class Cheetah : MonoBehaviour
 {
     #region REF
     [Header("Refrences")]
-    [SerializeField] GameManager _GameManger;
+    [SerializeField] GameManager _GameManager;
     #endregion
     #region Hide Cams & Points
     [Header("Hide cameras and hiding points")]
@@ -27,8 +28,8 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public List<Point> Animation8;
     List<List<Point>> allAnims = new List<List<Point>>();
     [SerializeField] public List<Point> RunAnimation;
-    List<List<Point>> dd= new List<List<Point>>();
-
+    List<Point> HuntAnimation = new List<Point>();
+    
     #endregion
     #region Cheetah attributes
     [Header("Cheetah attributes")]
@@ -60,6 +61,11 @@ public class Cheetah : MonoBehaviour
     #region Init
     private void Awake() // add all "animations" to allAnim list , // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
+        if (!_GameManager)
+        {
+            _GameManager = FindObjectOfType<GameManager>();
+        }
+
         MyState = CatState.Hide;
         InitListsOfPoints();
 
@@ -68,14 +74,31 @@ public class Cheetah : MonoBehaviour
         InitCheetahLoc();
         MoveCatToFirstHidePoint();
         CheetahMove();
+        WorldSpeedChange();
+        InitHuntAnim();
+    }
 
+    private void InitHuntAnim()
+    {
+        List<List<Point>> ReversedHuntAnim = allAnims.ConvertAll(anim => anim.AsEnumerable().Reverse().ToList());
+
+        foreach (var item in ReversedHuntAnim)
+        {
+            HuntAnimation.Add(item[0]);
+            HuntAnimation.Add(item[item.Count-1]);
+
+        }
+    }
+
+    private void WorldSpeedChange()
+    {
         if (WorldSpeedTimes5)
         {
             print("WorldSpeedTimes5");
             Time.timeScale = 5f;
         }
     }
-   
+
     private void InitListsOfPoints()
     {
         allAnims.Add(Animation1);
@@ -156,7 +179,7 @@ public class Cheetah : MonoBehaviour
         }
         if (MyState == CatState.RunScreen && Vector3.Distance(transform.position, RunAnimation[1].transform.position) < 2f ) // if cat is at end of run animation
         {
-            _GameManger.CatWon();
+            _GameManager.CatWon();
             print("Cheetah finished race, turning cheetah off");
             this.gameObject.SetActive(false);
         }
