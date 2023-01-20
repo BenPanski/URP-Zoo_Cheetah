@@ -29,7 +29,7 @@ public class Cheetah : MonoBehaviour
     List<List<Point>> allAnims = new List<List<Point>>();
     [SerializeField] public List<Point> RunAnimation;
     List<Point> HuntAnimation = new List<Point>();
-    [SerializeField] int HuntSpeed;
+    [SerializeField] float HuntSpeed;
     #endregion
     #region Cheetah attributes
     [Header("Cheetah attributes")]
@@ -151,6 +151,8 @@ public class Cheetah : MonoBehaviour
     }
     private void SetHuntScreenState()
     {
+
+        print("hunt phase has + " + HuntAnimation.Count + " points");
         MyState = CatState.Hunt;
 
         print("cat is in hunt state");
@@ -158,6 +160,7 @@ public class Cheetah : MonoBehaviour
         transform.position = HuntAnimation[0].PointPosition;
         NextPoint = HuntAnimation[1];
         MyAnimator.SetFloat("Speed", HuntSpeed);
+        HuntSpeed = Speed;
         transform.LookAt(NextPoint.PointPosition);
 
         // set transform
@@ -193,8 +196,9 @@ public class Cheetah : MonoBehaviour
                     NextPoint = HuntAnimation[NextPointNum];
                     transform.LookAt(HuntAnimation[NextPointNum].PointPosition);
                 }
-                else
+                else if(Vector3.Distance(transform.position, HuntAnimation[HuntAnimation.Count-1].transform.position) < 2f)
                 {
+                    print("finished hunt phase");
                     SetRunScreenState();
                 }
                 break;
@@ -327,10 +331,12 @@ public class Cheetah : MonoBehaviour
         if (MyState == CatState.Hide)
         {
             Speed = allAnims[CurrentHidingCam][NextPointNum].SpeedToMe;
-            if (PrintAnimNum) { print("current animation is " + (CurrentHidingCam + 1)); }
+            if (PrintAnimNum) { print("current animation is " + (CurrentHidingCam + 1));
+                MyAnimator.SetFloat("Speed", Speed);
+            }
         }
        
-        MyAnimator.SetFloat("Speed", Speed);
+      
         if (PrintPointNum) { print("next point is " + NextPointNum); }
 
     }
@@ -349,6 +355,11 @@ public class Cheetah : MonoBehaviour
         {
             if (other.gameObject.transform.position == HuntAnimation[NextPointNum].PointPosition)
             {
+                if (NextPointNum%2==0 && NextPointNum!= 0)
+                {
+                    transform.position = HuntAnimation[NextPointNum + 1].PointPosition;
+                    NextPointNum += 2;
+                }
                 CheetahMove();
             }
         }
