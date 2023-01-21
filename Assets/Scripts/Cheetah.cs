@@ -68,7 +68,7 @@ public class Cheetah : MonoBehaviour
         }
 
         MyState = CatState.Hide;
-        InitListsOfPoints();
+        InitListsOfHidePoints();
 
         print("press space to try and catch the cheetah");
         print("press f to simulate the players finishing the race");
@@ -90,16 +90,28 @@ public class Cheetah : MonoBehaviour
 
     private void InitHuntAnim()
     {
-        List<List<Point>> ReversedHuntAnim = allAnims.GetRange(0, allAnims.Count-1);
-        foreach (var item in ReversedHuntAnim)
+        List<List<Point>> HuntPList = allAnims.GetRange(0, allAnims.Count-1);
+        foreach (var item in HuntPList)
         {
             HuntAnimation.Add(item[0]);
             HuntAnimation.Add(item[item.Count - 1]);
         }
-        HuntAnimation.RemoveRange((CurrentHidingCam * 2 +1), HuntAnimation.Count- (CurrentHidingCam * 2 +1));
-       
+        HuntAnimation.RemoveRange((CurrentHidingCam * 2), HuntAnimation.Count- (CurrentHidingCam * 2));
+/*
+        var temp = HuntAnimation.GetRange(0, HuntAnimation.Count - 1);
+        for (int i = 0; i < HuntAnimation.Count - 1; i+=2)
+        {
+            if (i+2 < HuntAnimation.Count)
+            {
+            temp[i] = HuntAnimation[HuntAnimation.Count - (i+2)];
+            }
+            else if (i + 1 < HuntAnimation.Count)
+            {
+            temp[i+1] = HuntAnimation[HuntAnimation.Count - (i+1)];
+            }
+        }
+        HuntAnimation = temp.GetRange(0, HuntAnimation.Count - 1);*/
 
-         HuntAnimation.Reverse(); // todo reverse the order so that screen 8 is first and screen 1 is last 
     }
 
     private void WorldSpeedChange()
@@ -111,7 +123,7 @@ public class Cheetah : MonoBehaviour
         }
     }
 
-    private void InitListsOfPoints()
+    private void InitListsOfHidePoints()
     {
         allAnims.Add(Animation1);
         allAnims.Add(Animation2);
@@ -379,11 +391,11 @@ public class Cheetah : MonoBehaviour
             }
             else if (other.gameObject.transform.position == HuntAnimation[NextPointNum].PointPosition)
             {
-                if (NextPointNum % 2 == 0 && NextPointNum != 0)
+                /*if (NextPointNum % 2 == 0 && NextPointNum != 0)
                 {
                     transform.position = HuntAnimation[NextPointNum + 1].PointPosition;
                     NextPointNum += 2;
-                }
+                }*/
                 CheetahMove();
             }
         }
