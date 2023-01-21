@@ -20,6 +20,6 @@ public class Countdown : MonoBehaviour
             Cat.SetActive(true);
             Destroy(gameObject);
         }
-        
+
     }
 }

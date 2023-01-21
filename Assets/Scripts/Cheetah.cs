@@ -92,7 +92,7 @@ public class Cheetah : MonoBehaviour
     private void InitHuntAnim()
     {
         List<List<Point>> ReversedHuntAnim = allAnims.GetRange(0, allAnims.Count-1);
-        ReversedHuntAnim.RemoveRange(CurrentHidingCam * 2 -1, ReversedHuntAnim.Count- CurrentHidingCam * 2 - 1);
+        ReversedHuntAnim.RemoveRange(CurrentHidingCam * 2 -1, ReversedHuntAnim.Count- (CurrentHidingCam * 2 - 1));
         foreach (var item in ReversedHuntAnim)
         {
             HuntAnimation.Add(item[0]);
@@ -379,11 +379,11 @@ public class Cheetah : MonoBehaviour
             }
             else if (other.gameObject.transform.position == HuntAnimation[NextPointNum].PointPosition)
             {
-                /*if (NextPointNum%2==0 && NextPointNum!= 0)
+                if (NextPointNum % 2 == 0 && NextPointNum != 0)
                 {
                     transform.position = HuntAnimation[NextPointNum + 1].PointPosition;
                     NextPointNum += 2;
-                }*/
+                }
                 CheetahMove();
             }
         }
