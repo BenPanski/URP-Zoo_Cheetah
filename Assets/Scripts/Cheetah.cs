@@ -90,8 +90,8 @@ public class Cheetah : MonoBehaviour
 
     private void InitHuntAnim()
     {
-        List<List<Point>> HuntPList = allAnims.GetRange(0, allAnims.Count-1);
-        
+        List<List<Point>> HuntPList = allAnims.GetRange(0, allAnims.Count);
+        print("HuntPList.Count " + HuntPList.Count);
         HuntAnimation = new List<Point>();
         for (int i = CurrentHidingCam; i >= 0; i--)
         {
@@ -379,12 +379,13 @@ public class Cheetah : MonoBehaviour
             }
             else if (other.gameObject.transform.position == HuntAnimation[NextPointNum].PointPosition)
             {
-               /* if (NextPointNum % 2 != 0 && NextPointNum != 0)
-                {
-                    transform.position = HuntAnimation[NextPointNum + 1].PointPosition;
-                    NextPointNum += 2;
-                }*/
                 CheetahMove();
+                if (NextPointNum % 2 != 0 )
+                {
+                    print("teleport cat");
+                    transform.position = HuntAnimation[NextPointNum].PointPosition;
+                }
+                
             }
         }
         else if(MyState == CatState.Hide)
