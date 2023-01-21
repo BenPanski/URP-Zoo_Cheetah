@@ -15,7 +15,7 @@ public class Countdown : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (countdownanim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f )
+        if (countdownanim.GetCurrentAnimatorStateInfo(0).IsName("end"))
         {
             Cat.SetActive(true);
             Destroy(gameObject);

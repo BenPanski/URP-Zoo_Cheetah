@@ -36,6 +36,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public Animator MyAnimator;
     [SerializeField] public float Speed;
     [SerializeField] public bool RunToBeginingOfRace = false;
+    Point pointOnCat;
     #endregion
     #region private variables
     bool HidePhaseEnded;
@@ -76,18 +77,28 @@ public class Cheetah : MonoBehaviour
         CheetahMove();
         WorldSpeedChange();
         InitHuntAnim();
+        try
+        {
+            pointOnCat = GetComponent<Point>();
+        }
+        catch (System.Exception)
+        {
+            print("cheetah is doesnt have a point on it");
+            throw;
+        }
+        
     }
 
     private void InitHuntAnim()
     {
-        List<List<Point>> ReversedHuntAnim = allAnims.ConvertAll(anim => anim.AsEnumerable().Reverse().ToList());
-
+        List<List<Point>> ReversedHuntAnim = allAnims.GetRange(0, allAnims.Count-1);
+        ReversedHuntAnim.RemoveRange(CurrentHidingCam * 2 -1, ReversedHuntAnim.Count- CurrentHidingCam * 2 - 1);
         foreach (var item in ReversedHuntAnim)
         {
             HuntAnimation.Add(item[0]);
             HuntAnimation.Add(item[item.Count - 1]);
-
         }
+        HuntAnimation.Reverse();
     }
 
     private void WorldSpeedChange()
@@ -230,7 +241,16 @@ public class Cheetah : MonoBehaviour
         switch (MyState)
         {
             case CatState.Hide:
-                destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition; // set destination to next point
+                try
+                {
+                    destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
+                }
+                catch (System.Exception)
+                {
+                    print("error in set cat destination cam " + CurrentHidingCam + " point " + NextPointNum + "");
+                    throw;
+                }
+                ; // set destination to next point
                 break;
             case CatState.Hunt:
                 destination = HuntAnimation[NextPointNum].PointPosition;
