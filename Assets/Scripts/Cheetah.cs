@@ -76,7 +76,6 @@ public class Cheetah : MonoBehaviour
         MoveCatToFirstHidePoint();
         CheetahMove();
         WorldSpeedChange();
-        InitHuntAnim();
         try
         {
             pointOnCat = GetComponent<Point>();
@@ -92,13 +91,13 @@ public class Cheetah : MonoBehaviour
     private void InitHuntAnim()
     {
         List<List<Point>> ReversedHuntAnim = allAnims.GetRange(0, allAnims.Count-1);
-        ReversedHuntAnim.RemoveRange(CurrentHidingCam * 2 -1, ReversedHuntAnim.Count- (CurrentHidingCam * 2 - 1));
         foreach (var item in ReversedHuntAnim)
         {
             HuntAnimation.Add(item[0]);
             HuntAnimation.Add(item[item.Count - 1]);
         }
-        HuntAnimation.Reverse();
+        HuntAnimation.RemoveRange((CurrentHidingCam * 2 +1), HuntAnimation.Count- (CurrentHidingCam * 2 +1));
+       // HuntAnimation.Reverse(); // todo reverse the order so that screen 8 is first and screen 1 is last 
     }
 
     private void WorldSpeedChange()
@@ -162,16 +161,15 @@ public class Cheetah : MonoBehaviour
     }
     private void SetHuntScreenState()
     {
-
+        InitHuntAnim();
         print("hunt phase has + " + HuntAnimation.Count + " points");
         MyState = CatState.Hunt;
 
         print("cat is in hunt state");
         NextPointNum = 0;
-        transform.position = HuntAnimation[0].PointPosition;
-        NextPoint = HuntAnimation[1];
-        MyAnimator.SetFloat("Speed", HuntSpeed);
+        NextPoint = HuntAnimation[0];
         Speed = HuntSpeed;
+        MyAnimator.SetFloat("Speed", HuntSpeed);
         transform.LookAt(NextPoint.PointPosition);
 
         // set transform
