@@ -91,27 +91,21 @@ public class Cheetah : MonoBehaviour
     private void InitHuntAnim()
     {
         List<List<Point>> HuntPList = allAnims.GetRange(0, allAnims.Count-1);
-
+        
+        HuntAnimation = new List<Point>();
         for (int i = CurrentHidingCam; i >= 0; i--)
         {
             var item = HuntPList[i];
             HuntAnimation.Add(item[0]);
             HuntAnimation.Add(item[item.Count - 1]);
         }
-/*
-        var temp = HuntAnimation.GetRange(0, HuntAnimation.Count - 1);
-        for (int i = 0; i < HuntAnimation.Count - 1; i+=2)
+        HuntAnimation.RemoveAt(0);
+
+
+        foreach (var item in HuntAnimation)
         {
-            if (i+2 < HuntAnimation.Count)
-            {
-            temp[i] = HuntAnimation[HuntAnimation.Count - (i+2)];
-            }
-            else if (i + 1 < HuntAnimation.Count)
-            {
-            temp[i+1] = HuntAnimation[HuntAnimation.Count - (i+1)];
-            }
+            print(item.name);
         }
-        HuntAnimation = temp.GetRange(0, HuntAnimation.Count - 1);*/
 
     }
 
@@ -186,13 +180,6 @@ public class Cheetah : MonoBehaviour
         Speed = HuntSpeed;
         MyAnimator.SetFloat("Speed", HuntSpeed);
         transform.LookAt(NextPoint.PointPosition);
-
-        // set transform
-        // set next point
-        // set speed
-        // set animator
-        //transform.lookAt
-
     }
     #endregion
 
