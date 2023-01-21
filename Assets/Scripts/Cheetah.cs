@@ -97,7 +97,9 @@ public class Cheetah : MonoBehaviour
             HuntAnimation.Add(item[item.Count - 1]);
         }
         HuntAnimation.RemoveRange((CurrentHidingCam * 2 +1), HuntAnimation.Count- (CurrentHidingCam * 2 +1));
-       // HuntAnimation.Reverse(); // todo reverse the order so that screen 8 is first and screen 1 is last 
+       
+
+         HuntAnimation.Reverse(); // todo reverse the order so that screen 8 is first and screen 1 is last 
     }
 
     private void WorldSpeedChange()
