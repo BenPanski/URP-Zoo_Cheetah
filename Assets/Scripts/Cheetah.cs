@@ -160,7 +160,7 @@ public class Cheetah : MonoBehaviour
         transform.position = HuntAnimation[0].PointPosition;
         NextPoint = HuntAnimation[1];
         MyAnimator.SetFloat("Speed", HuntSpeed);
-        HuntSpeed = Speed;
+        Speed = HuntSpeed;
         transform.LookAt(NextPoint.PointPosition);
 
         // set transform
@@ -196,7 +196,7 @@ public class Cheetah : MonoBehaviour
                     NextPoint = HuntAnimation[NextPointNum];
                     transform.LookAt(HuntAnimation[NextPointNum].PointPosition);
                 }
-                else if(Vector3.Distance(transform.position, HuntAnimation[HuntAnimation.Count-1].transform.position) < 2f)
+                else if(Vector3.Distance(transform.position, HuntAnimation[HuntAnimation.Count-1].transform.position) < 3f)
                 {
                     print("finished hunt phase");
                     SetRunScreenState();
@@ -318,7 +318,7 @@ public class Cheetah : MonoBehaviour
         }
 
         NextPointNum++;
-        if (NextPointNum >= allAnims[CurrentHidingCam].Count) // if at the end of hiding animation
+        if (MyState == CatState.Hide && NextPointNum >= allAnims[CurrentHidingCam].Count) // if at the end of hiding animation
         {
             SetHideCam();
             MoveCatToFirstHidePoint();
@@ -353,17 +353,21 @@ public class Cheetah : MonoBehaviour
     {
         if (MyState == CatState.Hunt)  // if in hunt phase
         {
-            if (other.gameObject.transform.position == HuntAnimation[NextPointNum].PointPosition)
+            if (other.gameObject.transform.position == HuntAnimation[HuntAnimation.Count-1].PointPosition)
             {
-                if (NextPointNum%2==0 && NextPointNum!= 0)
+                SetRunScreenState();
+            }
+            else if (other.gameObject.transform.position == HuntAnimation[NextPointNum].PointPosition)
+            {
+                /*if (NextPointNum%2==0 && NextPointNum!= 0)
                 {
                     transform.position = HuntAnimation[NextPointNum + 1].PointPosition;
                     NextPointNum += 2;
-                }
+                }*/
                 CheetahMove();
             }
         }
-        else
+        else if(MyState == CatState.Hide)
         {
             if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
             {
