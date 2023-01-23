@@ -127,7 +127,8 @@ public class SimpleAnimalController : MonoBehaviour
         if (currentAnim.Count > currentPointNum)
         {
             transform.LookAt(currentAnim[currentPointNum].PointPosition);
-            transform.position = Vector3.MoveTowards(transform.position, currentAnim[currentPointNum].PointPosition, currentAnim[currentPointNum].SpeedToMe * Time.deltaTime);
+            var dir = new Vector3(currentAnim[currentPointNum].PointPosition.x, transform.position.y, currentAnim[currentPointNum].PointPosition.z);
+            transform.position = Vector3.MoveTowards(transform.position, dir, currentAnim[currentPointNum].SpeedToMe * Time.deltaTime);
         }
     }
     /*  int NewRandAnimNum()
