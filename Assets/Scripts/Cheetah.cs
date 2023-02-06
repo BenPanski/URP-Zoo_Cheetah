@@ -56,6 +56,8 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool PrintAnimNum = true;
     [SerializeField] bool PrintPointNum = true;
     [SerializeField] bool NoHuntPhase = false;
+    [SerializeField] bool NewBehavior = false;
+
     #endregion
 
     #region Init
@@ -296,7 +298,29 @@ public class Cheetah : MonoBehaviour
         }
         else
         {
-            RandomizeHideCam();
+            if (NewBehavior)
+            {
+                if (CurrentHidingCam >= 3 )
+                {
+                    RandomizeHideCam(CurrentHidingCam - 2, CurrentHidingCam);
+                }
+                else if (CurrentHidingCam > 1)
+                {
+                    CurrentHidingCam--;
+                }
+                else
+                {
+                    InitCheetahLoc();
+                }
+                
+               
+
+            }
+            else
+            {
+                RandomizeHideCam();
+            }
+            
         }
     }
     private void InitCheetahLoc()
@@ -311,6 +335,10 @@ public class Cheetah : MonoBehaviour
             print("MoveThroughAnimsInOrder");
             CurrentHidingCam = 0;
         }
+        else if (NewBehavior)
+        {
+            RandomizeHideCam(6,8);
+        }
         else
         {
             RandomizeHideCam();
@@ -323,6 +351,15 @@ public class Cheetah : MonoBehaviour
         while (x == CurrentHidingCam)
         {
             x = Random.Range(0, HidingCameras.Count);
+        }
+        CurrentHidingCam = x;
+    }
+    public void RandomizeHideCam(int min,int max)
+    {
+        int x = CurrentHidingCam;  // set x to current hiding cam
+        while (x == CurrentHidingCam)
+        {
+            x = Random.Range(min, max+1);
         }
         CurrentHidingCam = x;
     }
