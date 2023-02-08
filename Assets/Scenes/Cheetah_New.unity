@@ -26407,7 +26407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfae0a3ee170a1f4b8aca311b8e21818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FpsCounters:
+  fpsTexts:
   - {fileID: 129031294}
   - {fileID: 590207597}
   - {fileID: 1649865724}
