@@ -1117,11 +1117,11 @@ RectTransform:
   m_Father: {fileID: 1647283389}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -733.0002, y: 430}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1024, y: 0}
   m_SizeDelta: {x: 512, y: 256}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &35484265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,7 +1364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
       propertyPath: m_RootOrder
@@ -1429,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1264402220442832061, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929756922157045255, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_RootOrder
@@ -2186,7 +2186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS  ;123
+  m_Text: 'FPS : 123'
 --- !u!222 &129031295
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4876,11 +4876,11 @@ RectTransform:
   m_Father: {fileID: 1647283389}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -78}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512, y: -512}
   m_SizeDelta: {x: 512, y: 256}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &261423452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5083,11 +5083,11 @@ RectTransform:
   m_Father: {fileID: 1647283389}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 289.99982, y: 431}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 512, y: 256}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &276057195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6374,11 +6374,11 @@ RectTransform:
   m_Father: {fileID: 1647283389}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1022.9999, y: 175}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -256}
   m_SizeDelta: {x: 512, y: 256}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &353682723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6749,7 +6749,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS  ;123
+  m_Text: 'FPS : 123'
 --- !u!222 &374852046
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6931,11 +6931,11 @@ RectTransform:
   m_Father: {fileID: 1647283389}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -221, y: 175}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512, y: -256}
   m_SizeDelta: {x: 512, y: 256}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &386522684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9103,7 +9103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3840681812845045440, guid: 341795ae0c902804aa7d2cc892df136f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4469549324608404602, guid: 341795ae0c902804aa7d2cc892df136f, type: 3}
       propertyPath: m_RootOrder
@@ -9819,7 +9819,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS  ;123
+  m_Text: 'FPS : 123'
 --- !u!222 &589224308
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9958,7 +9958,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS  ;123
+  m_Text: 'FPS : 123'
 --- !u!222 &590207598
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10182,9 +10182,10 @@ MonoBehaviour:
   RunToBeginingOfRace: 0
   YouMayMove: 1
   SpawnOnlyInCam1: 0
+  Spawn6to8AndGoDown: 1
   MyState: 0
   OFIR_Y: 0
-  MoveThroughAnimsInOrder: 1
+  MoveThroughAnimsInOrder: 0
   WorldSpeedTimes5: 0
   PrintAnimNum: 1
   PrintPointNum: 1
@@ -10725,7 +10726,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS  ;123
+  m_Text: 'FPS : 123'
 --- !u!222 &654743024
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13386,7 +13387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3840681812845045440, guid: 341795ae0c902804aa7d2cc892df136f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4469549324608404602, guid: 341795ae0c902804aa7d2cc892df136f, type: 3}
       propertyPath: m_RootOrder
@@ -13621,11 +13622,11 @@ RectTransform:
   m_Father: {fileID: 1647283389}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 94.70999}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -768}
   m_SizeDelta: {x: 1024, y: 256}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &807206782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14583,7 +14584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
       propertyPath: m_RootOrder
@@ -14863,7 +14864,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS  ;123
+  m_Text: 'FPS : 123'
 --- !u!222 &870666847
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15128,7 +15129,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 511, y: -507}
+  m_AnchoredPosition: {x: 0, y: -512}
   m_SizeDelta: {x: 512, y: 256}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &876591241
@@ -17975,11 +17976,11 @@ RectTransform:
   m_Father: {fileID: 1647283389}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -733.0001, y: 175}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1024, y: -256}
   m_SizeDelta: {x: 512, y: 256}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1088507585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18266,7 +18267,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS  ;123
+  m_Text: 'FPS : 123'
 --- !u!222 &1120469191
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19932,7 +19933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
       propertyPath: m_RootOrder
@@ -20653,7 +20654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
       propertyPath: m_RootOrder
@@ -21795,7 +21796,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS  ;123
+  m_Text: 'FPS : 123'
 --- !u!222 &1340047749
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25243,11 +25244,11 @@ RectTransform:
   m_Father: {fileID: 1647283389}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -221, y: 431}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 512, y: 0}
   m_SizeDelta: {x: 512, y: 256}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1628376226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25617,7 +25618,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FPS  ;123
+  m_Text: 'FPS : 123'
 --- !u!222 &1649865725
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30953,7 +30954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1264402220442832061, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929756922157045255, guid: 393df303c59f07343923e29cbbff3117, type: 3}
       propertyPath: m_RootOrder

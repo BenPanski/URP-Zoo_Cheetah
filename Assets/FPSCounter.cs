@@ -19,7 +19,7 @@ public class FPSCounter : MonoBehaviour
 
         foreach (Text fpsText in fpsTexts)
         {
-            fpsText.text = fps.ToString();
+            fpsText.text = "FPS: "+fps.ToString();
         }
     }
 }

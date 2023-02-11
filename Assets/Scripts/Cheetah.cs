@@ -49,6 +49,7 @@ public class Cheetah : MonoBehaviour
     [Header("Tests")]
     [SerializeField] bool YouMayMove = true;
     [SerializeField] bool SpawnOnlyInCam1;
+    [SerializeField] bool Spawn6to8AndGoDown;
     [SerializeField] CatState MyState;
     [SerializeField] bool OFIR_Y;
     [SerializeField] bool MoveThroughAnimsInOrder = false;
@@ -294,6 +295,21 @@ public class Cheetah : MonoBehaviour
                 SetRunScreenState();
             }
         }
+        else if (Spawn6to8AndGoDown)
+        {
+            if (CurrentHidingCam >= 2)
+            {
+                CurrentHidingCam -= Random.Range(1,3);
+            }
+            else if (CurrentHidingCam == 1)
+            {
+                CurrentHidingCam -= 1;
+            }
+            else
+            {
+                SetHuntScreenState();
+            }
+        }
         else
         {
             RandomizeHideCam();
@@ -310,6 +326,10 @@ public class Cheetah : MonoBehaviour
         {
             print("MoveThroughAnimsInOrder");
             CurrentHidingCam = 0;
+        }
+        else if (Spawn6to8AndGoDown)
+        {
+            CurrentHidingCam = Random.Range(6, 9);
         }
         else
         {
