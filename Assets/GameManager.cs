@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject catCoughtPlayer;
     [SerializeField] GameObject PlayerWon;
     [SerializeField] GameObject Cat;
+    [SerializeField] GameObject FPSC;
     [SerializeField] bool CatFinishedRace;
     [SerializeField] bool PlayerFinishedRace;
     [SerializeField] bool PlayersLost;
     [SerializeField] bool GameEnded;
     [SerializeField] bool SomeoneWon;
+
+    
     // Start is called before the first frame update
     public void CatWon()
     {
@@ -33,7 +37,15 @@ public class GameManager : MonoBehaviour
             GameEnded = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            FPSC.SetActive(!FPSC.activeSelf);
+        }
     }
 
     private IEnumerator WaitUntilPlayerWon()
@@ -55,4 +67,6 @@ public class GameManager : MonoBehaviour
             PlayerWon.SetActive(true);
         }
     }
+
+    
 }

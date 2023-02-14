@@ -7,19 +7,27 @@ public class Countdown : MonoBehaviour
     [SerializeReference] GameObject Cat;
     [SerializeReference] Animator countdownanim;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (!Cat)
+        {
+            Cat = FindObjectOfType<Cheetah>().gameObject;
+        }
+    }
+
+
     void Start()
     {
-
+        print("countdown started");
+        Invoke("SetCatActive", 5f);
     }
 
     // Update is called once per frame
-    private void Update()
-    {
-        if (countdownanim.GetCurrentAnimatorStateInfo(0).IsName("end"))
-        {
-            Cat.SetActive(true);
-            Destroy(gameObject);
-        }
+  
 
+    public void SetCatActive()
+    {
+        Cat.SetActive(true);
+        Destroy(gameObject);
     }
 }

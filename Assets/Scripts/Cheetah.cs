@@ -385,6 +385,16 @@ public class Cheetah : MonoBehaviour
     /// </summary>
     public void MoveCatToFirstHidePoint()
     {
+        try
+        {
+            var x = allAnims[CurrentHidingCam][0].PointPosition;
+        }
+        catch (System.Exception)
+        {
+            CurrentHidingCam--;
+            
+        }
+       
         transform.position = allAnims[CurrentHidingCam][0].PointPosition;
     }
 
