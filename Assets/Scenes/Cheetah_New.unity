@@ -17895,7 +17895,10 @@ MonoBehaviour:
 
     P - Show FPS
 
-    R - Restart'
+    R - Restart
+
+    z,x,c,v
+    for quality change'
 --- !u!222 &993556539
 CanvasRenderer:
   m_ObjectHideFlags: 0
