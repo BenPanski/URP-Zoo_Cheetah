@@ -28,7 +28,7 @@ public class Cheetah : MonoBehaviour
     List<List<Point>> allAnims = new List<List<Point>>();
     [SerializeField] public List<Point> RunAnimation;
     List<Point> HuntAnimation = new List<Point>();
-    [SerializeField] float HuntSpeed;
+   [Range(0,10)] [SerializeField] float HuntSpeed; // more then 10 causes problems
     #endregion
     #region Cheetah attributes
     [Header("Cheetah attributes")]

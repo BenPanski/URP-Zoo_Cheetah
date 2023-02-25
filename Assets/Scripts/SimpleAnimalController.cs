@@ -45,7 +45,6 @@ public class SimpleAnimalController : MonoBehaviour
     {
         AddAllAnims();
         MoveMeToFirstPoint(GenerateUniqueRandomAnimNum());
-        print(AnimalsThatShareAnims.Count);
     }
     private void Awake()
     {
