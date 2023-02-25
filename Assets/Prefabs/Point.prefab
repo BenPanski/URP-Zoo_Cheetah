@@ -49,7 +49,7 @@ MonoBehaviour:
   waitHereForSec: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
 --- !u!65 &5033622572038698740
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61,5 +61,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 5, z: 1}
+  m_Size: {x: 1.2, y: 10, z: 1.2}
   m_Center: {x: 0, y: 0, z: 0}

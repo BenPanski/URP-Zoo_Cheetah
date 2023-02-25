@@ -20,7 +20,11 @@ public class Point : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, layerMask))
         {
             // Change the Y position of this object's transform to be 7 units above the hit point
-            transform.position = new Vector3(hit.point.x, hit.point.y , hit.point.z);//+ 6.936f
+            transform.position = new Vector3(hit.point.x, hit.point.y+0.6f , hit.point.z);//+ 6.936f
+        }
+        else
+        {
+            print(this.transform.name + " is not on the ground at: " + transform.position);
         }
         PointPosition = gameObject.transform.position;
     }
