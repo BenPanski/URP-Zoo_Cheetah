@@ -47,6 +47,9 @@ MonoBehaviour:
   SpeedToMe: 4
   stopHere: 0
   waitHereForSec: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &5033622572038698740
 BoxCollider:
   m_ObjectHideFlags: 0
