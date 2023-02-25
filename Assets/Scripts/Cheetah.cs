@@ -28,7 +28,7 @@ public class Cheetah : MonoBehaviour
     List<List<Point>> allAnims = new List<List<Point>>();
     [SerializeField] public List<Point> RunAnimation;
     List<Point> HuntAnimation = new List<Point>();
-   [Range(0,10)] [SerializeField] float HuntSpeed; // more then 10 causes problems
+    [Range(0, 10)][SerializeField] float HuntSpeed; // more then 10 causes problems
     #endregion
     #region Cheetah attributes
     [Header("Cheetah attributes")]
@@ -44,6 +44,8 @@ public class Cheetah : MonoBehaviour
     int NextPointNum;
     int CurrentHidingCam;
     float temp;
+    float LastTeleportTime = 0f;
+    float TeleportInterval = 0.2f;
     #endregion
     #region Tests
     [Header("Tests")]
@@ -85,13 +87,12 @@ public class Cheetah : MonoBehaviour
             print("cheetah is doesnt have a point on it");
             throw;
         }
-        
+
     }
 
     private void InitHuntAnim()
     {
         List<List<Point>> HuntPList = allAnims.GetRange(0, allAnims.Count);
-        print("HuntPList.Count " + HuntPList.Count);
         HuntAnimation = new List<Point>();
         for (int i = CurrentHidingCam; i >= 0; i--)
         {
@@ -102,10 +103,6 @@ public class Cheetah : MonoBehaviour
         HuntAnimation.RemoveAt(0);
 
 
-        foreach (var item in HuntAnimation)
-        {
-            print(item.name);
-        }
 
     }
 
@@ -171,7 +168,6 @@ public class Cheetah : MonoBehaviour
     private void SetHuntScreenState()
     {
         InitHuntAnim();
-        print("hunt phase has + " + HuntAnimation.Count + " points");
         MyState = CatState.Hunt;
 
         print("cat is in hunt state");
@@ -191,7 +187,7 @@ public class Cheetah : MonoBehaviour
             CatMovement(); // move to destination
         }
 
-      
+
         switch (MyState)
         {
             case CatState.Hide:
@@ -207,7 +203,7 @@ public class Cheetah : MonoBehaviour
                     NextPoint = HuntAnimation[NextPointNum];
                     transform.LookAt(HuntAnimation[NextPointNum].PointPosition);
                 }
-                else if(Vector3.Distance(transform.position, HuntAnimation[HuntAnimation.Count-1].transform.position) < 3f)
+                else if (Vector3.Distance(transform.position, HuntAnimation[HuntAnimation.Count - 1].transform.position) < 3f)
                 {
                     print("finished hunt phase");
                     SetRunScreenState();
@@ -243,14 +239,14 @@ public class Cheetah : MonoBehaviour
             case CatState.Hide:
                 try
                 {
-                    destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition;
+                    destination = allAnims[CurrentHidingCam][NextPointNum].PointPosition; // set destination to next point
                 }
                 catch (System.Exception)
                 {
                     print("error in set cat destination cam " + CurrentHidingCam + " point " + NextPointNum + "");
                     throw;
                 }
-                ; // set destination to next point
+                ;
                 break;
             case CatState.Hunt:
                 destination = HuntAnimation[NextPointNum].PointPosition;
@@ -299,7 +295,7 @@ public class Cheetah : MonoBehaviour
         {
             if (CurrentHidingCam >= 2)
             {
-                CurrentHidingCam -= Random.Range(1,3);
+                CurrentHidingCam -= Random.Range(1, 3);
             }
             else if (CurrentHidingCam == 1)
             {
@@ -329,6 +325,7 @@ public class Cheetah : MonoBehaviour
         }
         else if (Spawn6to8AndGoDown)
         {
+
             CurrentHidingCam = Random.Range(6, 9);
         }
         else
@@ -370,12 +367,14 @@ public class Cheetah : MonoBehaviour
         if (MyState == CatState.Hide)
         {
             Speed = allAnims[CurrentHidingCam][NextPointNum].SpeedToMe;
-            if (PrintAnimNum) { print("current animation is " + (CurrentHidingCam + 1));
+            if (PrintAnimNum)
+            {
+                print("current animation is " + (CurrentHidingCam + 1));
                 MyAnimator.SetFloat("Speed", Speed);
             }
         }
-       
-      
+
+
         if (PrintPointNum) { print("next point is " + NextPointNum); }
 
     }
@@ -392,9 +391,9 @@ public class Cheetah : MonoBehaviour
         catch (System.Exception)
         {
             CurrentHidingCam--;
-            
+
         }
-       
+
         transform.position = allAnims[CurrentHidingCam][0].PointPosition;
     }
 
@@ -402,22 +401,28 @@ public class Cheetah : MonoBehaviour
     {
         if (MyState == CatState.Hunt)  // if in hunt phase
         {
-            if (other.gameObject.transform.position == HuntAnimation[HuntAnimation.Count-1].PointPosition)
+
+            if (other.gameObject.transform.position == HuntAnimation[HuntAnimation.Count - 1].PointPosition)
             {
                 SetRunScreenState();
             }
             else if (other.gameObject.transform.position == HuntAnimation[NextPointNum].PointPosition)
             {
-                CheetahMove();
-                if (NextPointNum % 2 != 0 )
-                {
-                    print("teleport cat");
-                    transform.position = HuntAnimation[NextPointNum].PointPosition;
-                }
-                
+
+                float currentTime = Time.time;
+               /* if (currentTime - LastTeleportTime >= TeleportInterval)
+                {*/
+                    CheetahMove();
+                    if (NextPointNum % 2 != 0)
+                    {
+                        print("teleport cat");
+                        transform.position = HuntAnimation[NextPointNum].PointPosition;
+                    }
+                    LastTeleportTime = currentTime;
+              //  }
             }
         }
-        else if(MyState == CatState.Hide)
+        else if (MyState == CatState.Hide)
         {
             if (other.gameObject.transform.position == allAnims[CurrentHidingCam][NextPointNum].PointPosition)
             {
