@@ -27,6 +27,7 @@ public class SimpleAnimalController : MonoBehaviour
     [SerializeField] List<Point> Anim19 = new List<Point>();
     [SerializeField] List<Point> Anim20 = new List<Point>();
     [SerializeField] List<Point> Anim21 = new List<Point>();
+    [SerializeField] LineRenderer AnimalsLineDrawer;
 
     #endregion
 
@@ -45,6 +46,8 @@ public class SimpleAnimalController : MonoBehaviour
     {
         AddAllAnims();
         MoveMeToFirstPoint(GenerateUniqueRandomAnimNum());
+        InitLineDrawer();
+
     }
     private void Awake()
     {
@@ -197,5 +200,26 @@ public class SimpleAnimalController : MonoBehaviour
         }
         return false;
     }
+    private void InitLineDrawer()
+    {
 
+        int x = 0;
+        foreach (var item in AllAnims)
+        {
+            x += item.Count;
+        }
+        AnimalsLineDrawer.positionCount = x;
+
+        int y = 0;
+        foreach (var anim in AllAnims)
+        {
+            foreach (var point in anim)
+            {
+                AnimalsLineDrawer.SetPosition(y, point.PointPosition);
+                y++;
+            }
+        }
+        print("DRAWING IS FUN !! : " + x);
+
+    }
 }

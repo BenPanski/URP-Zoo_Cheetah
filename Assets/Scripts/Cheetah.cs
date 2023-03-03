@@ -13,6 +13,8 @@ public class Cheetah : MonoBehaviour
     #region REF
     [Header("Refrences")]
     [SerializeField] GameManager _GameManager;
+    [SerializeField] LineRenderer CatLineDrawer;
+    
     #endregion
     #region Hide Cams & Points
     [Header("Hide cameras and hiding points")]
@@ -64,10 +66,7 @@ public class Cheetah : MonoBehaviour
     #region Init
     private void Awake() // add all "animations" to allAnim list , // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
-        if (!_GameManager)
-        {
-            _GameManager = FindObjectOfType<GameManager>();
-        }
+        NullRefCheck();
 
         MyState = CatState.Hide;
         InitListsOfHidePoints();
@@ -78,6 +77,7 @@ public class Cheetah : MonoBehaviour
         MoveCatToFirstHidePoint();
         CheetahMove();
         WorldSpeedChange();
+        InitLineDrawer();
         try
         {
             pointOnCat = GetComponent<Point>();
@@ -90,6 +90,37 @@ public class Cheetah : MonoBehaviour
 
     }
 
+    private void NullRefCheck()
+    {
+        if (!_GameManager)
+        {
+            _GameManager = FindObjectOfType<GameManager>();
+        }
+        if (!CatLineDrawer)
+        {
+            CatLineDrawer = FindObjectOfType<LineRenderer>();
+        }
+    }
+
+    private void InitLineDrawer() 
+    {
+        int x = 0;
+        foreach (var item in allAnims)
+        {
+            x += item.Count;
+        }
+        CatLineDrawer.positionCount = x;
+
+        int y = 0;
+        foreach (var anim in allAnims)
+        {
+            foreach (var point in anim)
+            {
+                CatLineDrawer.SetPosition(y, point.PointPosition);
+                y++;
+            }
+        }
+    }
     private void InitHuntAnim()
     {
         List<List<Point>> HuntPList = allAnims.GetRange(0, allAnims.Count);
