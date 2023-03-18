@@ -14,7 +14,7 @@ public class Cheetah : MonoBehaviour
     [Header("Refrences")]
     [SerializeField] GameManager _GameManager;
     [SerializeField] LineRenderer CatLineDrawer;
-    
+    [SerializeField] BGController _BGController;
     #endregion
     #region Hide Cams & Points
     [Header("Hide cameras and hiding points")]
@@ -88,8 +88,10 @@ public class Cheetah : MonoBehaviour
             throw;
         }
 
-    }
+        
 
+    }
+    
     private void NullRefCheck()
     {
         if (!_GameManager)
@@ -213,6 +215,8 @@ public class Cheetah : MonoBehaviour
     #region Movement & destination
     private void Update()
     {
+        DebugTest();
+
         if (YouMayMove)
         {
             CatMovement(); // move to destination
@@ -253,6 +257,15 @@ public class Cheetah : MonoBehaviour
         }
 
         TryToCatchCat();
+    }
+
+    private void DebugTest()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            print("cat debug test");
+            _BGController.AddPoints(Animation1);
+        }
     }
 
     private void CatMovement()
@@ -380,6 +393,8 @@ public class Cheetah : MonoBehaviour
     /// </summary>
     public void CheetahMove()
     {
+        
+        
         if (MyState == CatState.RunScreen)
         {
             return;

@@ -11,7 +11,10 @@ public class Point : MonoBehaviour
     [SerializeField] public float waitHereForSec;
     public LayerMask layerMask;
     internal Vector3 PointPosition;
-     float raycastDistance = 40f;
+    internal Vector3 PointRotation;
+    internal Vector3 PointScale;
+
+    float raycastDistance = 40f;
     private void Awake()
     {
 
@@ -27,6 +30,8 @@ public class Point : MonoBehaviour
             print(this.transform.name + " is not on the ground at: " + transform.position);
         }
         PointPosition = gameObject.transform.position;
+        PointRotation = gameObject.transform.rotation.eulerAngles;
+        PointScale = gameObject.transform.localScale;
     }
 
     private void OnTriggerEnter(Collider other)

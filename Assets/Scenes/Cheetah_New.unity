@@ -10737,6 +10737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _GameManager: {fileID: 1397053230}
   CatLineDrawer: {fileID: 1640726165}
+  _BGController: {fileID: 2129962354}
   HidingCameras:
   - {fileID: 280265001}
   - {fileID: 1577424422}
@@ -24564,12 +24565,12 @@ GameObject:
   - component: {fileID: 1428779263}
   - component: {fileID: 1428779262}
   m_Layer: 0
-  m_Name: BGCURVE STUFF
+  m_Name: test cat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1428779262
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -24659,7 +24660,7 @@ MonoBehaviour:
     tangentsSize: 0.7
     tangentsColor: {r: 1, g: 1, b: 1, a: 1}
     tangentsPerSection: 1
-    controlType: 0
+    controlType: 1
     vRay: 0
     lineColor: {r: 1, g: 0, b: 0, a: 1}
     restrictGizmoz: 
@@ -24705,14 +24706,7 @@ MonoBehaviour:
     existing: 1
   mode2D: 0
   closed: 0
-  points:
-  - controlType: 0
-    positionLocal: {x: 0, y: 0, z: 0}
-    controlFirstLocal: {x: 1, y: 0, z: 0}
-    controlSecondLocal: {x: -1, y: 0, z: 0}
-    pointTransform: {fileID: 0}
-    curve: {fileID: 1428779264}
-    fieldsValues: []
+  points: []
   pointsComponents: []
   pointsGameObjects: []
   fields: []
@@ -24725,7 +24719,7 @@ MonoBehaviour:
   snapTriggerInteraction: 0
   snapToBackFaces: 0
   snapMonitoring: 0
-  eventMode: 0
+  eventMode: 2
   pointsMode: 0
   forceChangedEventMode: 0
 --- !u!65 &1428779265
@@ -24798,7 +24792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428779261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 660.2, y: 8.02, z: 216.80571}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -34322,13 +34316,14 @@ GameObject:
   - component: {fileID: 2129962349}
   - component: {fileID: 2129962348}
   - component: {fileID: 2129962347}
+  - component: {fileID: 2129962354}
   m_Layer: 0
   m_Name: BGCURVE STUFF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2129962347
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -34355,8 +34350,8 @@ MonoBehaviour:
   useFixedUpdate: 0
   overflowControl: 0
   moveObject: 1
-  rotateObject: 0
-  rotationInterpolation: 0
+  rotateObject: 1
+  rotationInterpolation: 1
   lerpSpeed: 5
   slerpSpeed: 5
   offsetAngle: {x: 0, y: 0, z: 0}
@@ -34380,7 +34375,7 @@ MonoBehaviour:
   hidden: 0
   parent: {fileID: 0}
   ccName: 
-  fields: 1
+  fields: 3
   mathType: 0
   sectionParts: 30
   optimizeStraightLines: 0
@@ -34418,7 +34413,7 @@ MonoBehaviour:
     tangentsSize: 0.7
     tangentsColor: {r: 1, g: 1, b: 1, a: 1}
     tangentsPerSection: 1
-    controlType: 0
+    controlType: 1
     vRay: 0
     lineColor: {r: 1, g: 0, b: 0, a: 1}
     restrictGizmoz: 
@@ -34464,14 +34459,7 @@ MonoBehaviour:
     existing: 1
   mode2D: 0
   closed: 0
-  points:
-  - controlType: 0
-    positionLocal: {x: 0, y: 0, z: 0}
-    controlFirstLocal: {x: 1, y: 0, z: 0}
-    controlSecondLocal: {x: -1, y: 0, z: 0}
-    pointTransform: {fileID: 0}
-    curve: {fileID: 2129962349}
-    fieldsValues: []
+  points: []
   pointsComponents: []
   pointsGameObjects: []
   fields: []
@@ -34557,12 +34545,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129962346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 660.2, y: 8.02, z: 216.80571}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2129962354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129962346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc76b9bdee549e4498783c141659c2ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _BGCurve: {fileID: 2129962349}
 --- !u!1 &2130273074
 GameObject:
   m_ObjectHideFlags: 0
