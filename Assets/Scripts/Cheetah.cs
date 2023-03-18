@@ -260,6 +260,7 @@ public class Cheetah : MonoBehaviour
         Vector3 destination = SetCatDestination();
         Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetPos - transform.position), 0.5f);
     }
 
     private Vector3 SetCatDestination()
