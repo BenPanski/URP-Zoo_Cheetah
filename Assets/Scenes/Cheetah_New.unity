@@ -560,7 +560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &11783297
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10922,7 +10922,7 @@ MonoBehaviour:
   PrintAnimNum: 1
   PrintPointNum: 0
   NoHuntPhase: 0
-  BGCurveMode: 0
+  BGCurveMode: 1
 --- !u!4 &606359513
 Transform:
   m_ObjectHideFlags: 0
@@ -10931,7 +10931,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606359508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 480, y: 6.969, z: 103}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2061063956}
@@ -34191,7 +34191,7 @@ MonoBehaviour:
   distance: 0
   handlesScale: 1
   handlesColor: {r: 1, g: 1, b: 1, a: 1}
-  objectToManipulate: {fileID: 11783300}
+  objectToManipulate: {fileID: 606359513}
   cursorChangeMode: 0
   speed: 5
   speedField: {fileID: 0}

@@ -21,11 +21,19 @@ public class Countdown : MonoBehaviour
         Invoke("SetCatActive", 5f);
     }
 
-  
+
 
     public void SetCatActive()
     {
+        if (!Cat)
+        {
+            Cat = FindObjectOfType<Cheetah>().gameObject;
+        }
         Cat.SetActive(true);
+        Invoke("DestroySelf", 0.1f);
+    }
+    public void DestroySelf()
+    {
         Destroy(gameObject);
     }
 }

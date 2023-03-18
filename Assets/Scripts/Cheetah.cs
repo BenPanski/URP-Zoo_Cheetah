@@ -205,6 +205,7 @@ public class Cheetah : MonoBehaviour
         Speed = NextPoint.SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
         transform.LookAt(NextPoint.PointPosition);
+        UpdateBGC();
     }
     private void SetHuntScreenState()
     {
@@ -217,6 +218,7 @@ public class Cheetah : MonoBehaviour
         Speed = HuntSpeed;
         MyAnimator.SetFloat("Speed", HuntSpeed);
         transform.LookAt(NextPoint.PointPosition);
+        UpdateBGC();
     }
     #endregion
 
@@ -237,14 +239,14 @@ public class Cheetah : MonoBehaviour
                 if (NextPointNum < allAnims[CurrentHidingCam].Count)                     // if there is a next point
                 {
                     NextPoint = allAnims[CurrentHidingCam][NextPointNum];
-                    transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
+                  //  transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
                 }
                 break;
             case CatState.Hunt:
                 if (NextPointNum < HuntAnimation.Count)
                 {
                     NextPoint = HuntAnimation[NextPointNum];
-                    transform.LookAt(HuntAnimation[NextPointNum].PointPosition);
+                    //transform.LookAt(HuntAnimation[NextPointNum].PointPosition);
                 }
                 else if (Vector3.Distance(transform.position, HuntAnimation[HuntAnimation.Count - 1].transform.position) < 3f)
                 {
@@ -267,11 +269,11 @@ public class Cheetah : MonoBehaviour
         TryToCatchCat();
     }
 
-    private void UpdateBGC(List<Point> NewAnimation)
+    private void UpdateBGC()
     {
 
         print("cat debug test");
-        _BGController.ChangeAnimation(NewAnimation);
+        _BGController.ChangeAnimation(allAnims[CurrentHidingCam]);
         TRS.Speed = Speed;
     }
     
@@ -281,9 +283,9 @@ public class Cheetah : MonoBehaviour
         Vector3 destination = SetCatDestination();
         Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetPos - transform.position), 0.5f);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetPos - transform.position), 0.5f);;
 
-
+        UpdateBGC();
     }
 
     private Vector3 SetCatDestination()
@@ -367,7 +369,7 @@ public class Cheetah : MonoBehaviour
             RandomizeHideCam();
         }
 
-        UpdateBGC(allAnims[CurrentHidingCam]);
+        UpdateBGC();
     }
     private void InitCheetahLoc()
     {
@@ -391,7 +393,7 @@ public class Cheetah : MonoBehaviour
             RandomizeHideCam();
         }
 
-        UpdateBGC(allAnims[CurrentHidingCam]);
+        UpdateBGC();
     }
 
     public void RandomizeHideCam()
@@ -438,7 +440,7 @@ public class Cheetah : MonoBehaviour
 
 
         if (PrintPointNum) { print("next point is " + NextPointNum); }
-
+        UpdateBGC();
     }
 
     /// <summary>
