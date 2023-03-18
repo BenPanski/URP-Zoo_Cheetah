@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
         {
             FPSC.SetActive(!FPSC.activeSelf);
         }
+
+
     }
 
     private IEnumerator WaitUntilPlayerWon()

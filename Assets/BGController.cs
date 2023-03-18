@@ -6,7 +6,11 @@ using UnityEngine.UIElements;
 
 public class BGController : MonoBehaviour
 {
+
+
+    #region Refrences
     [SerializeField] BGCurve _BGCurve;
+    #endregion
     // Start is called before the first frame update
     void Awake()
     {
@@ -14,13 +18,12 @@ public class BGController : MonoBehaviour
         {
             _BGCurve = GetComponent<BGCurve>();
         }
-
-        
     }
 
 
-  public void AddPoints(List<Point> points) 
+  public void ChangeAnimation(List<Point> points) 
     {
+        _BGCurve.Clear();
         int PointNumber = 0;
         foreach (var item in points)
         {
@@ -32,5 +35,7 @@ public class BGController : MonoBehaviour
             PointNumber++;
         }
     }
+
+   
   
 }

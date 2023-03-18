@@ -15,14 +15,12 @@ public class Countdown : MonoBehaviour
         }
     }
 
-
     void Start()
     {
         print("countdown started");
         Invoke("SetCatActive", 5f);
     }
 
-    // Update is called once per frame
   
 
     public void SetCatActive()
