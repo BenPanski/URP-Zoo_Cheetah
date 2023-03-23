@@ -14,7 +14,8 @@ public class Cheetah : MonoBehaviour
     [Header("Refrences")]
     [SerializeField] GameManager _GameManager;
     [SerializeField] LineRenderer CatLineDrawer;
-    
+    [SerializeField] LerpCalculations _LerpCalculations;
+
     #endregion
     #region Hide Cams & Points
     [Header("Hide cameras and hiding points")]
@@ -194,7 +195,7 @@ public class Cheetah : MonoBehaviour
         NextPoint = RunAnimation[1];
         Speed = NextPoint.SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
-        transform.LookAt(NextPoint.PointPosition);
+       // transform.LookAt(NextPoint.PointPosition);
     }
     private void SetHuntScreenState()
     {
@@ -251,7 +252,6 @@ public class Cheetah : MonoBehaviour
             default:
                 break;
         }
-
         TryToCatchCat();
     }
 
