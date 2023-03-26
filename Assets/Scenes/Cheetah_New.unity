@@ -1012,7 +1012,14 @@ MonoBehaviour:
   Anim21: []
   AnimalsLineDrawer: {fileID: 458845007}
   printStuff: 0
+  LerpInitFlag: 0
   SharesAnimations: 1
+  _LerpCalculations: {fileID: 33445718}
+--- !u!4 &33445716 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1929756922157045255, guid: 393df303c59f07343923e29cbbff3117, type: 3}
+  m_PrefabInstance: {fileID: 2075803444}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &33445717
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1029,6 +1036,76 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &33445718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33445712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e605100adf8d99748b1934bdcfa0d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animal: {fileID: 33445716}
+  AnimalForwardAngle: 20
+  Point1test: {x: 0, y: 0, z: 0}
+  QuickTurn:
+    LerpDistance: 4
+    LerpDuration: 0.5
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  SlowTurn:
+    LerpDistance: 8
+    LerpDuration: 1
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  currentTime: 0.0780708
 --- !u!1 &34060313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,7 +1755,9 @@ MonoBehaviour:
   Anim21: []
   AnimalsLineDrawer: {fileID: 458845007}
   printStuff: 0
+  LerpInitFlag: 0
   SharesAnimations: 1
+  _LerpCalculations: {fileID: 61125574}
 --- !u!65 &61125570
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1708,6 +1787,81 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!4 &61125573 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
+  m_PrefabInstance: {fileID: 55061330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &61125574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61125568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e605100adf8d99748b1934bdcfa0d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animal: {fileID: 61125573}
+  AnimalForwardAngle: 20
+  Point1test: {x: 0, y: 0, z: 0}
+  QuickTurn:
+    LerpDistance: 4
+    LerpDuration: 0.5
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  SlowTurn:
+    LerpDistance: 8
+    LerpDuration: 1
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  currentTime: 0.0780708
 --- !u!1 &62025445
 GameObject:
   m_ObjectHideFlags: 0
@@ -7686,7 +7840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!120 &458845007
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -8047,7 +8201,9 @@ MonoBehaviour:
   Anim21: []
   AnimalsLineDrawer: {fileID: 458845007}
   printStuff: 0
+  LerpInitFlag: 0
   SharesAnimations: 1
+  _LerpCalculations: {fileID: 476757334}
 --- !u!65 &476757330
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8077,6 +8233,81 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!4 &476757333 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
+  m_PrefabInstance: {fileID: 846561643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &476757334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476757328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e605100adf8d99748b1934bdcfa0d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animal: {fileID: 476757333}
+  AnimalForwardAngle: 20
+  Point1test: {x: 0, y: 0, z: 0}
+  QuickTurn:
+    LerpDistance: 4
+    LerpDuration: 0.5
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  SlowTurn:
+    LerpDistance: 8
+    LerpDuration: 1
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  currentTime: 0.0780708
 --- !u!114 &483848841 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6764004533733901143, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
@@ -10674,6 +10905,7 @@ GameObject:
   - component: {fileID: 606359511}
   - component: {fileID: 606359510}
   - component: {fileID: 606359509}
+  - component: {fileID: 606359514}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -10696,7 +10928,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &606359510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10737,6 +10969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _GameManager: {fileID: 1397053230}
   CatLineDrawer: {fileID: 1640726165}
+  _LerpCalculations: {fileID: 606359514}
   HidingCameras:
   - {fileID: 280265001}
   - {fileID: 1577424422}
@@ -10840,6 +11073,76 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &606359514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606359508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e605100adf8d99748b1934bdcfa0d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animal: {fileID: 606359513}
+  AnimalForwardAngle: 20
+  Point1test: {x: 0, y: 0, z: 0}
+  QuickTurn:
+    LerpDistance: 4
+    LerpDuration: 0.5
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  SlowTurn:
+    LerpDistance: 8
+    LerpDuration: 1
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  currentTime: 0.0780708
 --- !u!1 &607479030
 GameObject:
   m_ObjectHideFlags: 0
@@ -12064,7 +12367,9 @@ MonoBehaviour:
   Anim21: []
   AnimalsLineDrawer: {fileID: 458845007}
   printStuff: 0
+  LerpInitFlag: 0
   SharesAnimations: 1
+  _LerpCalculations: {fileID: 686373806}
 --- !u!95 &686373802
 Animator:
   serializedVersion: 3
@@ -12113,6 +12418,81 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!4 &686373805 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4469549324608404602, guid: 341795ae0c902804aa7d2cc892df136f, type: 3}
+  m_PrefabInstance: {fileID: 557710970}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &686373806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686373800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e605100adf8d99748b1934bdcfa0d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animal: {fileID: 686373805}
+  AnimalForwardAngle: 20
+  Point1test: {x: 0, y: 0, z: 0}
+  QuickTurn:
+    LerpDistance: 4
+    LerpDuration: 0.5
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  SlowTurn:
+    LerpDistance: 8
+    LerpDuration: 1
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  currentTime: 0.0780708
 --- !u!1 &698061726 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
@@ -12217,7 +12597,9 @@ MonoBehaviour:
   Anim21: []
   AnimalsLineDrawer: {fileID: 458845007}
   printStuff: 0
+  LerpInitFlag: 0
   SharesAnimations: 1
+  _LerpCalculations: {fileID: 698061732}
 --- !u!54 &698061728
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12247,6 +12629,81 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 2.079001, z: 1.9253235}
   m_Center: {x: 0, y: 1.0472696, z: 0.13233948}
+--- !u!4 &698061731 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
+  m_PrefabInstance: {fileID: 1277458566}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &698061732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698061726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e605100adf8d99748b1934bdcfa0d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animal: {fileID: 698061731}
+  AnimalForwardAngle: 20
+  Point1test: {x: 0, y: 0, z: 0}
+  QuickTurn:
+    LerpDistance: 4
+    LerpDuration: 0.5
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  SlowTurn:
+    LerpDistance: 8
+    LerpDuration: 1
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  currentTime: 0.0780708
 --- !u!1001 &701423275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18263,6 +18720,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3840681812845045440, guid: 341795ae0c902804aa7d2cc892df136f, type: 3}
   m_PrefabInstance: {fileID: 800547043}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1003482040 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4469549324608404602, guid: 341795ae0c902804aa7d2cc892df136f, type: 3}
+  m_PrefabInstance: {fileID: 800547043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1003482041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18362,7 +18824,9 @@ MonoBehaviour:
   Anim21: []
   AnimalsLineDrawer: {fileID: 458845007}
   printStuff: 0
+  LerpInitFlag: 0
   SharesAnimations: 1
+  _LerpCalculations: {fileID: 1003482045}
 --- !u!95 &1003482042
 Animator:
   serializedVersion: 3
@@ -18411,6 +18875,76 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1003482045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003482039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e605100adf8d99748b1934bdcfa0d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animal: {fileID: 1003482040}
+  AnimalForwardAngle: 20
+  Point1test: {x: 0, y: 0, z: 0}
+  QuickTurn:
+    LerpDistance: 4
+    LerpDuration: 0.5
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  SlowTurn:
+    LerpDistance: 8
+    LerpDuration: 1
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  currentTime: 0.0780708
 --- !u!1 &1007975253
 GameObject:
   m_ObjectHideFlags: 0
@@ -21139,7 +21673,9 @@ MonoBehaviour:
   Anim21: []
   AnimalsLineDrawer: {fileID: 458845007}
   printStuff: 0
+  LerpInitFlag: 0
   SharesAnimations: 1
+  _LerpCalculations: {fileID: 1212495336}
 --- !u!65 &1212495332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21169,6 +21705,81 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!4 &1212495335 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 074eac115ab7cbe40bff1b8b7d2663bf, type: 3}
+  m_PrefabInstance: {fileID: 1237604641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1212495336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212495330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e605100adf8d99748b1934bdcfa0d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animal: {fileID: 1212495335}
+  AnimalForwardAngle: 20
+  Point1test: {x: 0, y: 0, z: 0}
+  QuickTurn:
+    LerpDistance: 4
+    LerpDuration: 0.5
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  SlowTurn:
+    LerpDistance: 8
+    LerpDuration: 1
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  currentTime: 0.0780708
 --- !u!4 &1216438576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
@@ -27344,7 +27955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!120 &1640726165
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -29057,7 +29668,9 @@ MonoBehaviour:
   Anim21: []
   AnimalsLineDrawer: {fileID: 458845007}
   printStuff: 0
+  LerpInitFlag: 0
   SharesAnimations: 1
+  _LerpCalculations: {fileID: 1797665193}
 --- !u!95 &1797665189
 Animator:
   serializedVersion: 3
@@ -29093,6 +29706,81 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!4 &1797665192 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1929756922157045255, guid: 393df303c59f07343923e29cbbff3117, type: 3}
+  m_PrefabInstance: {fileID: 56772214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1797665193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797665187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e605100adf8d99748b1934bdcfa0d437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animal: {fileID: 1797665192}
+  AnimalForwardAngle: 20
+  Point1test: {x: 0, y: 0, z: 0}
+  QuickTurn:
+    LerpDistance: 4
+    LerpDuration: 0.5
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  SlowTurn:
+    LerpDistance: 8
+    LerpDuration: 1
+    LerpCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  currentTime: 0.0780708
 --- !u!1001 &1808235214
 PrefabInstance:
   m_ObjectHideFlags: 0

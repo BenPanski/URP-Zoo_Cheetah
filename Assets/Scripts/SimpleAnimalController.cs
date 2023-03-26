@@ -36,7 +36,10 @@ public class SimpleAnimalController : MonoBehaviour
     int currentAnimNum;
     List<Point> currentAnim;
     [SerializeField] bool printStuff;
+    [SerializeField] bool LerpInitFlag;
+
     [SerializeField] bool SharesAnimations = true;
+    [SerializeField] LerpCalculations _LerpCalculations;
     List<SimpleAnimalController> AnimalsThatShareAnims = new List<SimpleAnimalController>();
 
 
@@ -127,31 +130,64 @@ public class SimpleAnimalController : MonoBehaviour
     {
         if (currentAnim.Count > currentPointNum)
         {
-            transform.LookAt(currentAnim[currentPointNum].PointPosition);
+            RotateAnimal();
             var dir = new Vector3(currentAnim[currentPointNum].PointPosition.x, transform.position.y, currentAnim[currentPointNum].PointPosition.z);
             transform.position = Vector3.MoveTowards(transform.position, dir, currentAnim[currentPointNum].SpeedToMe * Time.deltaTime);
         }
     }
+
+    private void RotateAnimal()
+    {
+        if (currentPointNum >= currentAnim.Count - 2)
+        {
+            if (currentPointNum == currentAnim.Count - 2)
+            {
+                transform.LookAt(currentAnim[currentPointNum + 1].PointPosition);
+            }
+        }
+        else
+        {
+            var NextPointNum = currentPointNum + 1;
+            if (_LerpCalculations.ShouldStartLerp(currentAnim[NextPointNum].PointPosition, currentAnim[NextPointNum + 1].PointPosition))
+            {
+                if (!LerpInitFlag)
+                {
+                    _LerpCalculations.ResetCurrentTime();
+                    LerpInitFlag = true;
+                }
+
+                _LerpCalculations.LerpAnimal(currentAnim[NextPointNum].PointPosition, currentAnim[NextPointNum+1].PointPosition);
+
+            }
+            else
+            {
+                LerpInitFlag = false;
+                _LerpCalculations.ResetCurrentTime();
+                //transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
+            }
+        }
+    }
+
     /*  int NewRandAnimNum()
-      {
-          int x = UnityEngine.Random.Range(0, AllAnims.Count);
-          if (SharesAnimations) 
-          {
-              int q;
-              foreach (var item in AnimalsThatShareAnims)
-              {
-                  if (item.currentAnimNum == x)
-                  {
-                      q =UnityEngine.Random.Range(0, AnimalsThatShareAnims.Count);
-                  }
-              }
-          }
-          if (printStuff)
-          {
-              print("next animation is: " + x);
-          }
-          return x;
-      }*/
+ {
+     int x = UnityEngine.Random.Range(0, AllAnims.Count);
+     if (SharesAnimations) 
+     {
+         int q;
+         foreach (var item in AnimalsThatShareAnims)
+         {
+             if (item.currentAnimNum == x)
+             {
+                 q =UnityEngine.Random.Range(0, AnimalsThatShareAnims.Count);
+             }
+         }
+     }
+     if (printStuff)
+     {
+         print("next animation is: " + x);
+     }
+     return x;
+ }*/
     public int GenerateUniqueRandomAnimNum()
     {
         List<int> NumbersList = GetAllAnimalsAnimNums();
@@ -191,6 +227,11 @@ public class SimpleAnimalController : MonoBehaviour
         currentPointNum = 0;
         currentAnim = AllAnims[currentAnimNum];
         transform.position = AllAnims[currentAnimNum][currentPointNum].PointPosition;
+
+        if (currentPointNum < currentAnim.Count-1)
+        {
+            transform.LookAt(currentAnim[currentPointNum + 1].PointPosition);
+        }
     }
     bool RandomBoolean()
     {

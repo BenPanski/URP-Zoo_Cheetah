@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -5,20 +6,13 @@ using UnityEngine;
 
 public class LerpCalculations : MonoBehaviour
 {
-    [SerializeField] Transform cat;
-    [SerializeField] float lerpDuration = 0.1f;
-    [SerializeField] float distanceToStartLerp = 0.1f;
-    float currentTime;
-
-
-    [SerializeField] float CatForwardAngle = 20;
-
-
+    [SerializeField] Transform Animal;
+    [SerializeField] float AnimalForwardAngle = 20;
     [SerializeField] Vector3 Point1test;
-    [SerializeField] Vector3 Point2test;
     [SerializeField] LerpData QuickTurn;
     [SerializeField] LerpData SlowTurn;
-
+    
+    public float currentTime;
 
     void Update()
     {
@@ -28,8 +22,8 @@ public class LerpCalculations : MonoBehaviour
     public bool ShouldStartLerp(Vector3 NextPointPos, Vector3 PointAfterPos)
     {
         var x = AngleToLerpData(GetAngle(NextPointPos, PointAfterPos));
-
-        if (Vector3.Distance(cat.position, NextPointPos) > x.LerpDistance)
+        float distance = Vector3.Distance(Animal.position, NextPointPos);
+        if (distance <= x.LerpDistance)
         {
             return true;
         }
@@ -40,7 +34,10 @@ public class LerpCalculations : MonoBehaviour
 
     }
 
-    
+    public void ResetCurrentTime()
+    {
+        currentTime = 0;
+    }
 
     public float GetAngle(Vector3 point1, Vector3 point2)
     {
@@ -52,18 +49,17 @@ public class LerpCalculations : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Vector3 rotatedVector = Quaternion.AngleAxis(270 + CatForwardAngle, Vector3.up) * cat.transform.right;
-        Gizmos.DrawLine(cat.transform.position, cat.transform.position + rotatedVector);
+        Vector3 rotatedVector = Quaternion.AngleAxis(270 + AnimalForwardAngle, Vector3.up) * Animal.transform.right;
+        Gizmos.DrawLine(Animal.transform.position, Animal.transform.position + rotatedVector);
 
-        rotatedVector = Quaternion.AngleAxis(270 - CatForwardAngle, Vector3.up) * cat.transform.right;
-        Gizmos.DrawLine(cat.transform.position, cat.transform.position + rotatedVector);
+        rotatedVector = Quaternion.AngleAxis(270 - AnimalForwardAngle, Vector3.up) * Animal.transform.right;
+        Gizmos.DrawLine(Animal.transform.position, Animal.transform.position + rotatedVector);
 
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(Point1test, 1);
 
-        var x = GetAngle(cat.transform.position, Point1test);
-        print(x);
+        var x = GetAngle(Animal.transform.position, Point1test);
 
         if (AngleToLerpData(x) == QuickTurn)
         {
@@ -74,15 +70,15 @@ public class LerpCalculations : MonoBehaviour
             Gizmos.color = Color.magenta;
 
         }
-        rotatedVector = Quaternion.AngleAxis(x, Vector3.up) * cat.transform.right;
-        Gizmos.DrawLine(cat.transform.position, cat.transform.position + rotatedVector);
+        rotatedVector = Quaternion.AngleAxis(x, Vector3.up) * Animal.transform.right;
+        Gizmos.DrawLine(Animal.transform.position, Animal.transform.position + rotatedVector);
 
 
     }
     public LerpData AngleToLerpData(float Angle)
     {
-        float leftToCat = -90 - CatForwardAngle;
-        float rightToCat = -90 + CatForwardAngle;
+        float leftToCat = -90 - AnimalForwardAngle;
+        float rightToCat = -90 + AnimalForwardAngle;
 
         if (Angle <= rightToCat && Angle >= leftToCat)
         {
@@ -95,10 +91,24 @@ public class LerpCalculations : MonoBehaviour
 
     }
 
+    internal void LerpAnimal(Vector3 pointPosition1, Vector3 pointPosition2)
+    {
+
+        LerpData lerpData = AngleToLerpData(GetAngle(pointPosition1, pointPosition2));
+
+        float  NextRotationAngle = GetAngle(Animal.transform.position,pointPosition2)+90;
+
+
+        float CatAngle = Animal.transform.eulerAngles.y;
+
+        Animal.transform.rotation = Quaternion.Lerp(Animal.transform.rotation, Quaternion.Euler(0, NextRotationAngle, 0), lerpData.LerpCurve.Evaluate(currentTime / lerpData.LerpDuration));
+    }
+
     [System.Serializable] public class LerpData 
     {
         public float LerpDistance;
-        public float LerpTime;
+        public float LerpDuration;
+        public AnimationCurve LerpCurve;
     }
         
 }

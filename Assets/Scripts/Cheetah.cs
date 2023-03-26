@@ -62,6 +62,8 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool PrintAnimNum = true;
     [SerializeField] bool PrintPointNum = true;
     [SerializeField] bool NoHuntPhase = false;
+    bool LerpInitFlag = false;
+
     #endregion
 
     #region Init
@@ -88,9 +90,14 @@ public class Cheetah : MonoBehaviour
             print("cheetah is doesnt have a point on it");
             throw;
         }
-
+        
+       
     }
-
+   /* private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere((allAnims[CurrentHidingCam][1].PointPosition),1);
+    }*/
     private void NullRefCheck()
     {
         if (!_GameManager)
@@ -193,6 +200,7 @@ public class Cheetah : MonoBehaviour
         print("cat is in run screen state");
         transform.position = RunAnimation[0].PointPosition;
         NextPoint = RunAnimation[1];
+        NextPointNum = 1;
         Speed = NextPoint.SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
        // transform.LookAt(NextPoint.PointPosition);
@@ -207,7 +215,7 @@ public class Cheetah : MonoBehaviour
         NextPoint = HuntAnimation[0];
         Speed = HuntSpeed;
         MyAnimator.SetFloat("Speed", HuntSpeed);
-        transform.LookAt(NextPoint.PointPosition);
+       // transform.LookAt(NextPoint.PointPosition);
     }
     #endregion
 
@@ -217,6 +225,7 @@ public class Cheetah : MonoBehaviour
         if (YouMayMove)
         {
             CatMovement(); // move to destination
+            CatRotation();// rotates to destination
         }
 
 
@@ -226,14 +235,14 @@ public class Cheetah : MonoBehaviour
                 if (NextPointNum < allAnims[CurrentHidingCam].Count)
                 {
                     NextPoint = allAnims[CurrentHidingCam][NextPointNum];
-                    transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
+                   //transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
                 }
                 break;
             case CatState.Hunt:
                 if (NextPointNum < HuntAnimation.Count)
                 {
                     NextPoint = HuntAnimation[NextPointNum];
-                    transform.LookAt(HuntAnimation[NextPointNum].PointPosition);
+                   // transform.LookAt(HuntAnimation[NextPointNum].PointPosition);
                 }
                 else if (Vector3.Distance(transform.position, HuntAnimation[HuntAnimation.Count - 1].transform.position) < 3f)
                 {
@@ -261,7 +270,60 @@ public class Cheetah : MonoBehaviour
         Vector3 targetPos = new Vector3(destination.x, temp, destination.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
     }
+    private void CatRotation()
+    {
+        List<Point> TempPointList = null; 
+        
+        switch (MyState)
+        {
+            case CatState.Hide:
+                if (NextPointNum >= allAnims[CurrentHidingCam].Count - 1)
+                {
+                    return;
+                }
+                TempPointList = allAnims[CurrentHidingCam];
+                break;
+            case CatState.Hunt:
+               
+                TempPointList = HuntAnimation;
+                transform.LookAt(TempPointList[NextPointNum].PointPosition);
+                return;
+               
 
+
+            case CatState.RunScreen:
+
+                transform.LookAt(RunAnimation[1].transform.position);
+               return;
+            default:
+                print("error in cat rotation");
+                break;
+        }
+       
+       
+       
+
+        
+        if (_LerpCalculations.ShouldStartLerp(TempPointList[NextPointNum].PointPosition, TempPointList[NextPointNum+1].PointPosition))
+        {
+            if (!LerpInitFlag)
+            {
+                _LerpCalculations.ResetCurrentTime();
+                LerpInitFlag = true;
+            }
+            
+            _LerpCalculations.LerpAnimal(TempPointList[NextPointNum].PointPosition, TempPointList[NextPointNum + 1].PointPosition);
+
+        }
+        else
+        {
+            LerpInitFlag = false;
+            _LerpCalculations.ResetCurrentTime();
+            //transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
+        }
+
+        
+    }
     private Vector3 SetCatDestination()
     {
         Vector3 destination = Vector3.zero; // reset destination
@@ -324,6 +386,8 @@ public class Cheetah : MonoBehaviour
         }
         else if (Spawn6to8AndGoDown)
         {
+            
+            
             if (CurrentHidingCam >= 2)
             {
                 CurrentHidingCam -= Random.Range(1, 3);
@@ -341,6 +405,8 @@ public class Cheetah : MonoBehaviour
         {
             RandomizeHideCam();
         }
+
+       
     }
     private void InitCheetahLoc()
     {
@@ -379,12 +445,15 @@ public class Cheetah : MonoBehaviour
     /// </summary>
     public void CheetahMove()
     {
+
         if (MyState == CatState.RunScreen)
         {
             return;
         }
-
+        
+        _LerpCalculations.ResetCurrentTime();
         NextPointNum++;
+        
         if (MyState == CatState.Hide && NextPointNum >= allAnims[CurrentHidingCam].Count) // if at the end of hiding animation
         {
             SetHideCam();
@@ -426,6 +495,7 @@ public class Cheetah : MonoBehaviour
         }
 
         transform.position = allAnims[CurrentHidingCam][0].PointPosition;
+        this.transform.LookAt(allAnims[CurrentHidingCam][1].PointPosition);  // look at first point in animation
     }
 
     private void OnTriggerEnter(Collider other) // when cheetha collides with point call CheetahMove()
