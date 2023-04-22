@@ -58,6 +58,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] CatState MyState;
     [SerializeField] bool OFIR_Y;
     [SerializeField] bool MoveThroughAnimsInOrder = false;
+    [SerializeField] bool MoveThroughAnimsInReverseOrder = false;
     [SerializeField] bool WorldSpeedTimes5 = false;
     [SerializeField] bool PrintAnimNum = true;
     [SerializeField] bool PrintPointNum = true;
@@ -384,6 +385,14 @@ public class Cheetah : MonoBehaviour
                 SetRunScreenState();
             }
         }
+        else if (MoveThroughAnimsInReverseOrder)
+        {
+            CurrentHidingCam--;
+            if (CurrentHidingCam >= allAnims.Count)
+            {
+                SetRunScreenState();
+            }
+        }
         else if (Spawn6to8AndGoDown)
         {
             
@@ -419,6 +428,11 @@ public class Cheetah : MonoBehaviour
         {
             print("MoveThroughAnimsInOrder");
             CurrentHidingCam = 0;
+        }
+        else if (MoveThroughAnimsInReverseOrder)
+        {
+            print("MoveThroughAnimsInOrder");
+            CurrentHidingCam = 8;
         }
         else if (Spawn6to8AndGoDown)
         {

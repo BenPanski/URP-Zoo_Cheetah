@@ -11621,6 +11621,7 @@ MonoBehaviour:
   MyState: 0
   OFIR_Y: 0
   MoveThroughAnimsInOrder: 0
+  MoveThroughAnimsInReverseOrder: 1
   WorldSpeedTimes5: 0
   PrintAnimNum: 1
   PrintPointNum: 0
