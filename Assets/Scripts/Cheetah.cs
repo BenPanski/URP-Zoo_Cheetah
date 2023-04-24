@@ -168,7 +168,7 @@ public class Cheetah : MonoBehaviour
 
     }
     #endregion
-    public void TryToCatchCat()
+    public void TryToCatchCat()    // Itay - this method is called when the first sensor is triggered
     {
         if (Input.GetKeyDown(KeyCode.Space) && MyState == CatState.Hide)
         {
