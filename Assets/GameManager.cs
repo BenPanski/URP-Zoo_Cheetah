@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool GameEnded;
     [SerializeField] bool SomeoneWon;
 
-    
+
     // Start is called before the first frame update
     public void CatWon()
     {
@@ -27,10 +27,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            print("players reached finish line");
-            PlayerFinishedRace = true;
-            StartCoroutine(WaitUntilCatWon());
+            PlayersFinishedRace();
         }
+
+
 
         if (CatFinishedRace && PlayerFinishedRace)
         {
@@ -46,6 +46,14 @@ public class GameManager : MonoBehaviour
         {
             FPSC.SetActive(!FPSC.activeSelf);
         }
+    }
+
+    private void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
+    {
+        print("players reached finish line");
+        PlayerFinishedRace = true;
+        StartCoroutine(WaitUntilCatWon());
+
     }
 
     private IEnumerator WaitUntilPlayerWon()
@@ -68,5 +76,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+
 }
