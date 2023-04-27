@@ -170,8 +170,7 @@ public class Cheetah : MonoBehaviour
     #endregion
     public void TryToCatchCat()    // Itay - this method is called when the first sensor is triggered
     {
-        if (Input.GetKeyDown(KeyCode.Space) && MyState == CatState.Hide)
-        {
+        if (MyState == CatState.Hide) {
             if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1) // if cat is visble 
             {
                 print("cat was visable!");
@@ -262,7 +261,10 @@ public class Cheetah : MonoBehaviour
             default:
                 break;
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
         TryToCatchCat();
+        }
     }
 
     private void CatMovement()

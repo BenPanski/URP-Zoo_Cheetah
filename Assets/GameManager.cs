@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
+    public void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
     {
         print("players reached finish line");
         PlayerFinishedRace = true;
