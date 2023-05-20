@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject PlayerWon;
     [SerializeField] GameObject Cat;
     [SerializeField] GameObject FPSC;
+    [SerializeField] GameObject StartingTimer;
     [SerializeField] bool CatFinishedRace;
     [SerializeField] bool PlayerFinishedRace;
     [SerializeField] bool PlayersLost;
     [SerializeField] bool GameEnded;
     [SerializeField] bool SomeoneWon;
+
+    bool GameStarted = false;
 
 
     // Start is called before the first frame update
@@ -25,6 +28,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
+        StartGame();
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             PlayersFinishedRace();
@@ -75,6 +81,29 @@ public class GameManager : MonoBehaviour
             PlayerWon.SetActive(true);
         }
     }
+  
 
+    private void StartGame()
+    {
+        if (GameStarted)
+        {
+            StartingTimer.SetActive(true);
+            Invoke("SetCatActive", 5f);
+            print("countdown started");
+            GameStarted = false;
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            GameStarted = true;
+        }
+    }
+
+
+
+    public void SetCatActive()
+    {
+        Cat.SetActive(true);
+        StartingTimer.SetActive(false);
+    }
 
 }
