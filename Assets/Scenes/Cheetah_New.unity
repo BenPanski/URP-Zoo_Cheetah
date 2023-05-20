@@ -5453,12 +5453,12 @@ GameObject:
   - component: {fileID: 268771496}
   - component: {fileID: 268771497}
   m_Layer: 0
-  m_Name: Hide Video Canvas
+  m_Name: start counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &268771496
 Transform:
   m_ObjectHideFlags: 0
@@ -19408,16 +19408,20 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Space - Cheetah Hunt
+  m_Text: 'G - Start Game
+
+    Space - Cheetah Hunt Mode
 
     F - Players Won
 
-    P - Show FPS
+    P
+    - Show FPS
 
     R - Restart
 
-    z,x,c,v
-    for quality change'
+    z,x,c,v for quality change
+
+'
 --- !u!222 &993556539
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25904,6 +25908,7 @@ MonoBehaviour:
   PlayerWon: {fileID: 183912508}
   Cat: {fileID: 606359508}
   FPSC: {fileID: 1755599356}
+  StartingTimer: {fileID: 268771495}
   CatFinishedRace: 0
   PlayerFinishedRace: 0
   PlayersLost: 0
