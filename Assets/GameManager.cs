@@ -22,8 +22,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public void CatWon()
     {
-        CatFinishedRace = true;
-        StartCoroutine(WaitUntilPlayerWon());
+        if (!SomeoneWon)
+        {
+            CatFinishedRace = true;
+            //  StartCoroutine(WaitUntilPlayerWon());
+            catCoughtPlayer.SetActive(true);
+            SomeoneWon = true;
+        }
+      
     }
 
     private void Update()
@@ -56,13 +62,19 @@ public class GameManager : MonoBehaviour
 
     public void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
     {
-        print("players reached finish line");
-        PlayerFinishedRace = true;
-        StartCoroutine(WaitUntilCatWon());
+        if (!SomeoneWon)
+        {
+            print("players reached finish line");
+            PlayerFinishedRace = true;
+            // StartCoroutine(WaitUntilCatWon());
+            Cat.SetActive(false);
+            PlayerWon.SetActive(true);
+            SomeoneWon = true;
+        }
 
     }
 
-    private IEnumerator WaitUntilPlayerWon()
+    /*private IEnumerator WaitUntilPlayerWon()
     {
         if (!SomeoneWon)
         {
@@ -70,9 +82,9 @@ public class GameManager : MonoBehaviour
             yield return new WaitUntil(() => GameEnded);
             catCoughtPlayer.SetActive(true);
         }
-    }
+    }*/
 
-    private IEnumerator WaitUntilCatWon()
+  /*  private IEnumerator WaitUntilCatWon()
     {
         if (!SomeoneWon)
         {
@@ -80,7 +92,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitUntil(() => GameEnded);
             PlayerWon.SetActive(true);
         }
-    }
+    }*/
   
 
     private void StartGame()
