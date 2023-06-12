@@ -97,16 +97,13 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (GameStarted)
+        
+        if (Input.GetKeyDown(KeyCode.G)&& GameStarted == false)
         {
+            GameStarted = true;
             StartingTimer.SetActive(true);
             Invoke("SetCatActive", 5f);
             print("countdown started");
-            GameStarted = false;
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            GameStarted = true;
         }
     }
 
