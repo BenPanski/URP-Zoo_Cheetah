@@ -70,6 +70,8 @@ public class Cheetah : MonoBehaviour
     #region Init
     private void Awake() // add all "animations" to allAnim list , // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
+      
+       
         NullRefCheck();
 
         MyState = CatState.Hide;
@@ -88,7 +90,7 @@ public class Cheetah : MonoBehaviour
         }
         catch (System.Exception)
         {
-            print("cheetah is doesnt have a point on it");
+            print("cheetah doesnt have a point on it");
             throw;
         }
         
@@ -438,8 +440,7 @@ public class Cheetah : MonoBehaviour
         }
         else if (Spawn6to8AndGoDown)
         {
-
-            CurrentHidingCam = Random.Range(6, 9);
+            CurrentHidingCam = Random.Range(5, 9);
         }
         else
         {
