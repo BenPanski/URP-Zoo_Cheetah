@@ -25456,11 +25456,11 @@ PrefabInstance:
     - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: eventDispatch.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 606359512}
+      objectReference: {fileID: 1397053230}
     - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: eventDispatch.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1397053230}
+      objectReference: {fileID: 606359512}
     - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: eventDispatch.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -25479,23 +25479,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: eventDispatch.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryToCatchCat
-      objectReference: {fileID: 0}
-    - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
-      propertyPath: eventDispatch.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayersFinishedRace
-      objectReference: {fileID: 0}
-    - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
-      propertyPath: eventDispatch.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartGame
       objectReference: {fileID: 0}
     - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
+      propertyPath: eventDispatch.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryToCatchCat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
+      propertyPath: eventDispatch.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayersFinishedRace
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: eventDispatch.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Cheetah, Assembly-CSharp
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: eventDispatch.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
+      value: Cheetah, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: eventDispatch.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -25519,7 +25519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304537122465170762, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: portName
-      value: /dev/ttyACM0
+      value: COM3
       objectReference: {fileID: 0}
     - target: {fileID: 2304537122465170762, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: maxUnreadMessages

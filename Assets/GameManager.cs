@@ -34,8 +34,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
-        StartGame();
+        if (Input.GetKeyDown(KeyCode.G)){
+            StartGame();
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         
-        if (Input.GetKeyDown(KeyCode.G)&& GameStarted == false)
+        if (GameStarted == false)
         {
             GameStarted = true;
             StartingTimer.SetActive(true);
