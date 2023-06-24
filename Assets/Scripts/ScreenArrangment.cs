@@ -6,6 +6,7 @@ using System.IO;
 
 public class ScreenArrangment : MonoBehaviour
 {
+    [SerializeField] List<Texture2D> textures;
     [SerializeField] List<RawImage> rawImages;
     List<int> ScreenOrder = new List<int>();
 
@@ -15,7 +16,7 @@ public class ScreenArrangment : MonoBehaviour
         EnableMultiScreen();
 
         LoadScreenOrder();
-      //  ArrangeScreens();
+        ArrangeScreens();
     }
 
     private static void EnableMultiScreen()
@@ -43,6 +44,12 @@ public class ScreenArrangment : MonoBehaviour
             }
         }
     }
-    void ArrangeScreens() { }
+    void ArrangeScreens()
+    {
+        for (int i = 0; i < ScreenOrder.Count; i++)
+        {
+            rawImages[i].texture = textures[ScreenOrder[i]];
+        }
+    }
 
 }
