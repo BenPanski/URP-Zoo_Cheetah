@@ -6,7 +6,7 @@ using System.IO;
 
 public class ScreenArrangment : MonoBehaviour
 {
-    [SerializeField] List<Texture2D> textures;
+    [SerializeField] List<RenderTexture> textures;
     [SerializeField] List<RawImage> rawImages;
     List<int> ScreenOrder = new List<int>();
 
