@@ -11,7 +11,7 @@ public class ScreenArrangment : MonoBehaviour
     List<int> ScreenOrder = new List<int>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         EnableMultiScreen();
 
@@ -46,8 +46,11 @@ public class ScreenArrangment : MonoBehaviour
     }
     void ArrangeScreens()
     {
+        print("amount of numbers in screenorder "+ScreenOrder.Count);
         for (int i = 0; i < ScreenOrder.Count; i++)
         {
+            print("raw image num "+i+" "+rawImages[i].texture.name);
+            print("texture num " + i + " " + textures[ScreenOrder[i]]);
             rawImages[i].texture = textures[ScreenOrder[i]];
         }
     }
