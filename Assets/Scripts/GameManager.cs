@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
         {
             PlayersFinishedRace();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 
 
 
