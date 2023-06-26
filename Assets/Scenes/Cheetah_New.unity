@@ -1181,7 +1181,7 @@ GameObject:
   - component: {fileID: 35484266}
   - component: {fileID: 35484265}
   m_Layer: 0
-  m_Name: RawImage.8
+  m_Name: RawImage.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,7 +1200,7 @@ RectTransform:
   m_Children:
   - {fileID: 590913891}
   m_Father: {fileID: 1647283389}
-  m_RootOrder: 8
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -5799,7 +5799,7 @@ GameObject:
   - component: {fileID: 261423453}
   - component: {fileID: 261423452}
   m_Layer: 0
-  m_Name: RawImage.2
+  m_Name: RawImage.8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5818,7 +5818,7 @@ RectTransform:
   m_Children:
   - {fileID: 181113183}
   m_Father: {fileID: 1647283389}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -6112,7 +6112,7 @@ GameObject:
   - component: {fileID: 276057196}
   - component: {fileID: 276057195}
   m_Layer: 0
-  m_Name: RawImage.6
+  m_Name: RawImage.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6131,7 +6131,7 @@ RectTransform:
   m_Children:
   - {fileID: 1565991965}
   m_Father: {fileID: 1647283389}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7534,7 +7534,7 @@ GameObject:
   - component: {fileID: 353682724}
   - component: {fileID: 353682723}
   m_Layer: 0
-  m_Name: RawImage.3
+  m_Name: RawImage.6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7553,7 +7553,7 @@ RectTransform:
   m_Children:
   - {fileID: 1942106156}
   m_Father: {fileID: 1647283389}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -8192,7 +8192,7 @@ GameObject:
   - component: {fileID: 386522685}
   - component: {fileID: 386522684}
   m_Layer: 0
-  m_Name: RawImage.4
+  m_Name: RawImage.5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8211,7 +8211,7 @@ RectTransform:
   m_Children:
   - {fileID: 422691031}
   m_Father: {fileID: 1647283389}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -18824,7 +18824,7 @@ GameObject:
   - component: {fileID: 876591242}
   - component: {fileID: 876591241}
   m_Layer: 0
-  m_Name: RawImage.1
+  m_Name: RawImage.7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18843,7 +18843,7 @@ RectTransform:
   m_Children:
   - {fileID: 42071912}
   m_Father: {fileID: 1647283389}
-  m_RootOrder: 1
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -21999,7 +21999,7 @@ GameObject:
   - component: {fileID: 1088507586}
   - component: {fileID: 1088507585}
   m_Layer: 0
-  m_Name: RawImage.5
+  m_Name: RawImage.4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22018,7 +22018,7 @@ RectTransform:
   m_Children:
   - {fileID: 1401135293}
   m_Father: {fileID: 1647283389}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -23074,14 +23074,14 @@ MonoBehaviour:
   - {fileID: 8400000, guid: e6c869a3fa0ff4543835390fa221e7a5, type: 2}
   - {fileID: 8400000, guid: 2ce88680d90ba814d8f2df75bbf91591, type: 2}
   rawImages:
-  - {fileID: 876591241}
-  - {fileID: 261423452}
-  - {fileID: 353682723}
-  - {fileID: 386522684}
-  - {fileID: 1088507585}
   - {fileID: 276057195}
   - {fileID: 1628376226}
   - {fileID: 35484265}
+  - {fileID: 1088507585}
+  - {fileID: 386522684}
+  - {fileID: 353682723}
+  - {fileID: 876591241}
+  - {fileID: 261423452}
 --- !u!1001 &1170417283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31076,7 +31076,7 @@ GameObject:
   - component: {fileID: 1628376227}
   - component: {fileID: 1628376226}
   m_Layer: 0
-  m_Name: RawImage.7
+  m_Name: RawImage.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31095,7 +31095,7 @@ RectTransform:
   m_Children:
   - {fileID: 1906487032}
   m_Father: {fileID: 1647283389}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -31487,14 +31487,14 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 136566770}
-  - {fileID: 876591240}
-  - {fileID: 261423451}
-  - {fileID: 353682722}
-  - {fileID: 386522683}
-  - {fileID: 1088507584}
   - {fileID: 276057194}
   - {fileID: 1628376225}
   - {fileID: 35484264}
+  - {fileID: 1088507584}
+  - {fileID: 386522683}
+  - {fileID: 353682722}
+  - {fileID: 876591240}
+  - {fileID: 261423451}
   - {fileID: 807206781}
   - {fileID: 1755599357}
   - {fileID: 1217361789}
