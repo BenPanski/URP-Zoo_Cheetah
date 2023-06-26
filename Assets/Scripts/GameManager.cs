@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
             //  StartCoroutine(WaitUntilPlayerWon());
             catCoughtPlayer.SetActive(true);
             SomeoneWon = true;
+            Invoke("RestartGame", 20);
         }
       
     }
@@ -75,10 +76,15 @@ public class GameManager : MonoBehaviour
             Cat.SetActive(false);
             PlayerWon.SetActive(true);
             SomeoneWon = true;
+            Invoke("RestartGame", 20);
         }
 
     }
-
+    
+    public void RestartGame() 
+    {
+        SceneManager.LoadScene(0);
+    }
     /*private IEnumerator WaitUntilPlayerWon()
     {
         if (!SomeoneWon)
