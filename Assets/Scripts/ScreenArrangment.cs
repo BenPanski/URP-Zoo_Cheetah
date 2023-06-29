@@ -15,8 +15,8 @@ public class ScreenArrangment : MonoBehaviour
     {
         EnableMultiScreen();
 
-        LoadScreenOrder();
-        ArrangeScreens();
+        //LoadScreenOrder();
+        //ArrangeScreens();
     }
 
     private static void EnableMultiScreen()
@@ -52,12 +52,18 @@ public class ScreenArrangment : MonoBehaviour
         {
             positions.Add(rawImages[i].transform.position);
         }
+        List<Vector2> positions2d = new List<Vector2>();
+        for (int i = 0; i < rawImages.Count; i++)
+        {
+            positions2d.Add(rawImages[i].rectTransform.anchoredPosition);
+        }
         for (int i = 0; i < rawImages.Count; i++)
         {
             //print("raw image num "+i+" "+rawImages[i].texture.name);
             //print("texture num " + i + " " + textures[ScreenOrder[i]]);
             //rawImages[i].texture = textures[ScreenOrder[i] - 1];
-            rawImages[i].transform.position = positions[ScreenOrder[i] - 1];
+            //rawImages[i].transform.position = positions[ScreenOrder[i] - 1];
+            rawImages[i].rectTransform.anchoredPosition = Vector3.zero;//positions2d[ScreenOrder[i] - 1];
         }
     }
 
