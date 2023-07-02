@@ -547,8 +547,10 @@ public class Cheetah : MonoBehaviour
                 if (other.GetComponent<Point>().stopHere == true)
                 {
                     YouMayMove = false;
-                    Invoke("MayMove", (other.GetComponent<Point>().waitHereForSec));
+                    // Invoke("MayMove", (other.GetComponent<Point>().waitHereForSec));
                     MyAnimator.SetFloat("Speed", 0);
+                    StartCoroutine(MayMoveRator(other.GetComponent<Point>().waitHereForSec));
+                    
                 }
                 else
                 {
@@ -564,4 +566,12 @@ public class Cheetah : MonoBehaviour
         YouMayMove = true;
         MyAnimator.SetFloat("Speed", Speed);
     }
+    public IEnumerator MayMoveRator(float waitForSeconds)
+    {
+        yield return new WaitForSeconds(waitForSeconds);
+        MyAnimator.SetFloat("Speed", Speed);
+        YouMayMove = true;
+       
+    }
+
 }

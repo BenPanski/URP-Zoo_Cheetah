@@ -13,6 +13,22 @@ public class ChangeRezOnInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            print("normal rez");
+            foreach (var item in Images)
+            {
+                RenderTexture renderTexture = item.texture as RenderTexture;
+                renderTexture.Release(); // Release the current Render Texture
+                renderTexture.width = 1024/2;
+                renderTexture.height = 512/2;
+                renderTexture.Create();
+
+
+            }
+        }
+# endif
         if (Input.GetKeyDown(KeyCode.Z))
         {
             print("normal rez");
