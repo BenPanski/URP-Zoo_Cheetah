@@ -12422,10 +12422,10 @@ MonoBehaviour:
   RunToBeginingOfRace: 0
   YouMayMove: 1
   SpawnOnlyInCam1: 0
-  Spawn6to8AndGoDown: 1
+  Spawn6to8AndGoDown: 0
   MyState: 0
   OFIR_Y: 0
-  MoveThroughAnimsInOrder: 0
+  MoveThroughAnimsInOrder: 1
   MoveThroughAnimsInReverseOrder: 0
   WorldSpeedTimes5: 0
   PrintAnimNum: 1
@@ -14644,7 +14644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 613.6
+      value: 613.052
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22077,15 +22077,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 612.38
+      value: 611.458
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.25
+      value: 6.9999995
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 299.85
+      value: 299.85004
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalRotation.w
