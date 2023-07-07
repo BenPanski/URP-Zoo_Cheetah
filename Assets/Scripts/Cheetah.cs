@@ -574,7 +574,8 @@ public class Cheetah : MonoBehaviour
         yield return new WaitForSeconds(waitForSeconds);
         MyAnimator.SetFloat("Speed", Speed);
         YouMayMove = true;
-       
+        CheetahMove();
+
     }
 
 }

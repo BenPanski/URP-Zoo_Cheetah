@@ -11,7 +11,7 @@ public class Point : MonoBehaviour
     [SerializeField] public float waitHereForSec;
     public LayerMask layerMask;
     internal Vector3 PointPosition;
-     float raycastDistance = 40f;
+    float raycastDistance = 40f;
     private void Awake()
     {
 
@@ -20,7 +20,7 @@ public class Point : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, layerMask))
         {
             // Change the Y position of this object's transform to be 7 units above the hit point
-            transform.position = new Vector3(hit.point.x, hit.point.y+0.6f , hit.point.z);//+ 6.936f
+            transform.position = new Vector3(hit.point.x, hit.point.y + 0.6f, hit.point.z);//+ 6.936f
         }
         else
         {
@@ -35,28 +35,27 @@ public class Point : MonoBehaviour
         {
             if (other.GetComponent<Cheetah>() != null)
             {
-                Invoke("DontStop", 1f);
-                Invoke("StopHere", waitHereForSec*2);
+                StartCoroutine(StopHereCor(waitHereForSec));
+               // Invoke("DontStop", 1f);s
+               // Invoke("StopHere", waitHereForSec * 2);
             }
         }
     }
 
-    public void DontStop()
-    {
-        
-            stopHere = false;
-           
-        
+    /* public void DontStop()
+     {
+         stopHere = false;
+     }*/
+    /* public void StopHere()
+     {
+         stopHere = true;
+     }*/
 
-    }
-    public void StopHere()
+    public IEnumerator StopHereCor(float seconds)
     {
-
         stopHere = true;
-
-
-
+       yield return new WaitForSeconds(seconds);
+        stopHere = false;
     }
+
 }
-
-
