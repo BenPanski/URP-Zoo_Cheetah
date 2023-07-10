@@ -399,7 +399,6 @@ public class Cheetah : MonoBehaviour
         }
         else if (Spawn6to8AndGoDown)
         {
-
             if (CurrentHidingCam == 1 || CurrentHidingCam == 2)
             {
                 CurrentHidingCam -= 1;

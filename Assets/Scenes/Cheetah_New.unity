@@ -12423,10 +12423,10 @@ MonoBehaviour:
   RunToBeginingOfRace: 0
   YouMayMove: 1
   SpawnOnlyInCam1: 0
-  Spawn6to8AndGoDown: 0
+  Spawn6to8AndGoDown: 1
   MyState: 0
   OFIR_Y: 0
-  MoveThroughAnimsInOrder: 1
+  MoveThroughAnimsInOrder: 0
   MoveThroughAnimsInReverseOrder: 0
   WorldSpeedTimes5: 0
   PrintAnimNum: 1
