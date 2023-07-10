@@ -177,15 +177,15 @@ public class Cheetah : MonoBehaviour
             {
                 print("cat was visable!");
                 MyState = CatState.Hunt;
-
-                if (NoHuntPhase)
+                SetHuntScreenState();
+                /*if (NoHuntPhase)
                 {
-                    SetRunScreenState();
+                    SetHuntScreenState();
                 }
                 else
                 {
                     SetHuntScreenState();
-                }
+                }*/
             }
             else
             {
