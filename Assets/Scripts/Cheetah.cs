@@ -282,8 +282,14 @@ public class Cheetah : MonoBehaviour
         {
             return;
         }
-        if (HuntAnimation[1] || Vector3.Distance(transform.position, HuntAnimation[0].PointPosition) < 3) //if after the first screen hunt animation , or if close enough to the end of the current screen (3 placeholder)
+        if (NextPoint == HuntAnimation[1]) //if after the first screen hunt animation , or if close enough to the end of the current screen (3 placeholder)
         {
+            print("1");
+            SetRunScreenState();
+        }
+        if (Vector3.Distance(transform.position, HuntAnimation[0].PointPosition) < 3)
+        {
+            print("2");
             SetRunScreenState();
         }
 
