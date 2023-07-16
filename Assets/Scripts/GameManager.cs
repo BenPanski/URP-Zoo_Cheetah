@@ -15,9 +15,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool PlayersLost;
     [SerializeField] bool GameEnded;
     [SerializeField] bool SomeoneWon;
+    [SerializeField] AudioClip PreCat;
+    [SerializeField] AudioClip HideMusic;
+    [SerializeField] AudioClip RunMusic;
+
 
     bool GameStarted = false;
+    private void Start()
+    {
+        if (PreCat)
+        {
+            AudioSource.PlayClipAtPoint(PreCat, transform.position);
+        }
 
+    }
 
     // Start is called before the first frame update
     public void CatWon()
@@ -30,12 +41,13 @@ public class GameManager : MonoBehaviour
             SomeoneWon = true;
             Invoke("RestartGame", 20);
         }
-      
+
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G)){
+        if (Input.GetKeyDown(KeyCode.G))
+        {
             StartGame();
         }
 
@@ -80,8 +92,8 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    
-    public void RestartGame() 
+
+    public void RestartGame()
     {
         SceneManager.LoadScene(0);
     }
@@ -95,20 +107,20 @@ public class GameManager : MonoBehaviour
         }
     }*/
 
-  /*  private IEnumerator WaitUntilCatWon()
-    {
-        if (!SomeoneWon)
-        {
-            SomeoneWon = true;
-            yield return new WaitUntil(() => GameEnded);
-            PlayerWon.SetActive(true);
-        }
-    }*/
-  
+    /*  private IEnumerator WaitUntilCatWon()
+      {
+          if (!SomeoneWon)
+          {
+              SomeoneWon = true;
+              yield return new WaitUntil(() => GameEnded);
+              PlayerWon.SetActive(true);
+          }
+      }*/
+
 
     public void StartGame()
     {
-        
+
         if (GameStarted == false)
         {
             GameStarted = true;
@@ -118,10 +130,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    public void SetRunMusic()
+    {
+        if (RunMusic)
+        {
+            AudioSource.PlayClipAtPoint(RunMusic, transform.position);
+        }
+    }
 
     public void SetCatActive()
     {
+
+        if (HideMusic)
+        {
+            AudioSource.PlayClipAtPoint(HideMusic, transform.position);
+        }
         Cat.SetActive(true);
         StartingTimer.SetActive(false);
     }

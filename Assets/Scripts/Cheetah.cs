@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using static UnityEngine.Random;
 
 enum CatState
@@ -48,7 +49,7 @@ public class Cheetah : MonoBehaviour
     int CurrentHidingCam;
     float temp;
     float LastTeleportTime = 0f;
-    float TeleportInterval = 0.2f;
+    float TeleportInterval = 0.05f;
     #endregion
     #region Tests
     [Header("Tests")]
@@ -63,6 +64,8 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool PrintAnimNum = true;
     [SerializeField] bool PrintPointNum = true;
     [SerializeField] bool NoHuntPhase = false;
+    [SerializeField] bool ShortRun = false;
+
     bool LerpInitFlag = false;
 
     #endregion
@@ -70,8 +73,8 @@ public class Cheetah : MonoBehaviour
     #region Init
     private void Awake() // add all "animations" to allAnim list , // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
-      
-       
+
+
         NullRefCheck();
 
         MyState = CatState.Hide;
@@ -93,14 +96,14 @@ public class Cheetah : MonoBehaviour
             print("cheetah doesnt have a point on it");
             throw;
         }
-        
-       
+
+
     }
-   /* private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere((allAnims[CurrentHidingCam][1].PointPosition),1);
-    }*/
+    /* private void OnDrawGizmosSelected()
+     {
+         Gizmos.color = Color.red;
+         Gizmos.DrawSphere((allAnims[CurrentHidingCam][1].PointPosition),1);
+     }*/
     private void NullRefCheck()
     {
         if (!_GameManager)
@@ -113,7 +116,7 @@ public class Cheetah : MonoBehaviour
         }
     }
 
-    private void InitLineDrawer() 
+    private void InitLineDrawer()
     {
         int x = 0;
         foreach (var item in allAnims)
@@ -172,7 +175,8 @@ public class Cheetah : MonoBehaviour
     #endregion
     public void TryToCatchCat()    // Itay - this method is called when the first sensor is triggered
     {
-        if (MyState == CatState.Hide) {
+        if (MyState == CatState.Hide)
+        {
             if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1) // if cat is visble 
             {
                 print("cat was visable!");
@@ -205,7 +209,7 @@ public class Cheetah : MonoBehaviour
         NextPointNum = 1;
         Speed = NextPoint.SpeedToMe;
         MyAnimator.SetFloat("Speed", Speed);
-       // transform.LookAt(NextPoint.PointPosition);
+        // transform.LookAt(NextPoint.PointPosition);
     }
     private void SetHuntScreenState()
     {
@@ -217,14 +221,16 @@ public class Cheetah : MonoBehaviour
         NextPoint = HuntAnimation[0];
         Speed = HuntSpeed;
         MyAnimator.SetFloat("Speed", HuntSpeed);
-       // transform.LookAt(NextPoint.PointPosition);
+        // transform.LookAt(NextPoint.PointPosition);
     }
     #endregion
 
     #region Movement & destination
     private void Update()
     {
-        if (YouMayMove)
+        ShortHunt();  // if short hunt is on make sure the hunt phase runs through only one screen
+
+        if (YouMayMove || MyState != CatState.Hide) // if you arnt in a stopping point and you arnt in hide state. move!
         {
             CatMovement(); // move to destination
             CatRotation();// rotates to destination
@@ -237,14 +243,14 @@ public class Cheetah : MonoBehaviour
                 if (NextPointNum < allAnims[CurrentHidingCam].Count)
                 {
                     NextPoint = allAnims[CurrentHidingCam][NextPointNum];
-                   //transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
+                    //transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
                 }
                 break;
             case CatState.Hunt:
                 if (NextPointNum < HuntAnimation.Count)
                 {
                     NextPoint = HuntAnimation[NextPointNum];
-                   // transform.LookAt(HuntAnimation[NextPointNum].PointPosition);
+                    // transform.LookAt(HuntAnimation[NextPointNum].PointPosition);
                 }
                 else if (Vector3.Distance(transform.position, HuntAnimation[HuntAnimation.Count - 1].transform.position) < 3f)
                 {
@@ -265,9 +271,38 @@ public class Cheetah : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-        TryToCatchCat();
+            TryToCatchCat();
         }
     }
+
+
+    private void ShortHunt()  // if short hunt is on make sure the hunt phase runs through only one screen
+    {
+        if (!ShortRun || MyState != CatState.Hunt)
+        {
+            return;
+        }
+        if (HuntAnimation[1] || Vector3.Distance(transform.position, HuntAnimation[0].PointPosition) < 3) //if after the first screen hunt animation , or if close enough to the end of the current screen (3 placeholder)
+        {
+            SetRunScreenState();
+        }
+
+    }
+
+    /*  if (!ShortRun || MyState != CatState.Hunt)
+      {
+          return;
+      }
+      if (HuntAnimation[1])
+      {
+          SetRunScreenState();
+}
+      else if (Vector3.Distance(transform.position, HuntAnimation[0].PointPosition) < 3)
+{
+  SetRunScreenState();
+}
+  }*/
+
 
     private void CatMovement()
     {
@@ -277,8 +312,8 @@ public class Cheetah : MonoBehaviour
     }
     private void CatRotation()
     {
-        List<Point> TempPointList = null; 
-        
+        List<Point> TempPointList = null;
+
         switch (MyState)
         {
             case CatState.Hide:
@@ -289,34 +324,34 @@ public class Cheetah : MonoBehaviour
                 TempPointList = allAnims[CurrentHidingCam];
                 break;
             case CatState.Hunt:
-               
+
                 TempPointList = HuntAnimation;
                 transform.LookAt(TempPointList[NextPointNum].PointPosition);
                 return;
-               
+
 
 
             case CatState.RunScreen:
 
                 transform.LookAt(RunAnimation[1].transform.position);
-               return;
+                return;
             default:
                 print("error in cat rotation");
                 break;
         }
-       
-       
-       
 
-        
-        if (_LerpCalculations.ShouldStartLerp(TempPointList[NextPointNum].PointPosition, TempPointList[NextPointNum+1].PointPosition))
+
+
+
+
+        if (_LerpCalculations.ShouldStartLerp(TempPointList[NextPointNum].PointPosition, TempPointList[NextPointNum + 1].PointPosition))
         {
             if (!LerpInitFlag)
             {
                 _LerpCalculations.ResetCurrentTime();
                 LerpInitFlag = true;
             }
-            
+
             _LerpCalculations.LerpAnimal(TempPointList[NextPointNum].PointPosition, TempPointList[NextPointNum + 1].PointPosition);
 
         }
@@ -327,7 +362,7 @@ public class Cheetah : MonoBehaviour
             //transform.LookAt(allAnims[CurrentHidingCam][NextPointNum].PointPosition);
         }
 
-        
+
     }
     private Vector3 SetCatDestination()
     {
@@ -421,7 +456,7 @@ public class Cheetah : MonoBehaviour
             RandomizeHideCam();
         }
 
-       
+
     }
     private void InitCheetahLoc()
     {
@@ -469,10 +504,10 @@ public class Cheetah : MonoBehaviour
         {
             return;
         }
-        
+
         _LerpCalculations.ResetCurrentTime();
         NextPointNum++;
-        
+
         if (MyState == CatState.Hide && NextPointNum >= allAnims[CurrentHidingCam].Count) // if at the end of hiding animation
         {
             SetHideCam();
@@ -530,16 +565,16 @@ public class Cheetah : MonoBehaviour
             {
 
                 float currentTime = Time.time;
-               /* if (currentTime - LastTeleportTime >= TeleportInterval)
-                {*/
-                    CheetahMove();
-                    if (NextPointNum % 2 != 0)
-                    {
-                        print("teleport cat");
-                        transform.position = HuntAnimation[NextPointNum].PointPosition;
-                    }
-                    LastTeleportTime = currentTime;
-              //  }
+                /* if (currentTime - LastTeleportTime >= TeleportInterval)
+                 {*/
+                CheetahMove();
+                if (NextPointNum % 2 != 0)
+                {
+                    print("teleport cat");
+                    transform.position = HuntAnimation[NextPointNum].PointPosition;
+                }
+                LastTeleportTime = currentTime;
+                //  }
             }
         }
         else if (MyState == CatState.Hide)
@@ -552,7 +587,7 @@ public class Cheetah : MonoBehaviour
                     // Invoke("MayMove", (other.GetComponent<Point>().waitHereForSec));
                     MyAnimator.SetFloat("Speed", 0);
                     StartCoroutine(MayMoveRator(other.GetComponent<Point>().waitHereForSec));
-                    
+
                 }
                 else
                 {
