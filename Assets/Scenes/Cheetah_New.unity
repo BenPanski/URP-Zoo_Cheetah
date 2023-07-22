@@ -8870,7 +8870,7 @@ GameObject:
   - component: {fileID: 458845008}
   - component: {fileID: 458845007}
   m_Layer: 0
-  m_Name: Animals Line Drawer
+  m_Name: Animals Line Drawer (set active to see)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12125,7 +12125,7 @@ MonoBehaviour:
   _GameManager: {fileID: 1397053230}
   CatLineDrawer: {fileID: 1640726165}
   _LerpCalculations: {fileID: 606359514}
-  _SoundManager: {fileID: 0}
+  _SoundManager: {fileID: 1509960803}
   HidingCameras:
   - {fileID: 280265001}
   - {fileID: 1577424422}
@@ -27449,6 +27449,7 @@ MonoBehaviour:
   FPSC: {fileID: 1755599356}
   StartingTimer: {fileID: 268771495}
   CatFinishedRace: 0
+  CatWasCought: 0
   PlayerFinishedRace: 0
   PlayersLost: 0
   GameEnded: 0
@@ -31490,7 +31491,7 @@ GameObject:
   - component: {fileID: 1640726166}
   - component: {fileID: 1640726165}
   m_Layer: 0
-  m_Name: Cat Line Drawer
+  m_Name: Cat Line Drawer (set active to see)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
