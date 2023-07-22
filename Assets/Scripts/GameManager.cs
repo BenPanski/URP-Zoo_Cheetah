@@ -10,13 +10,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject Cat;
     [SerializeField] GameObject FPSC;
     [SerializeField] GameObject StartingTimer;
+    [SerializeField] GameObject End_Players_Won;
     [SerializeField] GameObject End_Players_Lost;
     [SerializeField] GameObject End_Players_Were_Wrong;
-    [SerializeField] GameObject End_Out_Of_Power;
+    [SerializeField] GameObject End_Out_Of_Power; // not implemented
+
 
     [SerializeField] bool CatFinishedRace;
     [SerializeField] bool CatWasCought;
-
+    [SerializeField] bool PlayersWereWrongBool;
     [SerializeField] bool PlayerFinishedRace;
     [SerializeField] bool PlayersLost;
     [SerializeField] bool GameEnded;
@@ -35,14 +37,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public void CatWon()
     {
-        if (!SomeoneWon)
+        if (!SomeoneWon & !PlayersWereWrongBool)
         {
             soundManager.PlayCatWon();
             CatFinishedRace = true;
             //  StartCoroutine(WaitUntilPlayerWon());
             catCoughtPlayer.SetActive(true);
             SomeoneWon = true;
-            Invoke("RestartGame", 20);
+            StartCoroutine(ShowEndUI(End_Players_Lost, 20)); //hardcoded 20 seconds timer
+            StartCoroutine(RestartGame()); // hardcoded 60 seconds timer
         }
 
     }
@@ -79,11 +82,24 @@ public class GameManager : MonoBehaviour
         {
             FPSC.SetActive(!FPSC.activeSelf);
         }
+        if ( Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayerAreWrongAndNoCat();
+        }
+    }
+
+    public void PlayerAreWrongAndNoCat()
+    {
+        if (!Cat.activeSelf)
+        {
+            PlayersWereWrong();
+        }
+      
     }
 
     public void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
     {
-        if (!SomeoneWon && CatWasCought)
+        if (!SomeoneWon && CatWasCought & !PlayersWereWrongBool)
         {
             soundManager.PlayPlayersWon();
             print("players reached finish line");
@@ -92,23 +108,26 @@ public class GameManager : MonoBehaviour
             Cat.SetActive(false);
             PlayerWon.SetActive(true);
             SomeoneWon = true;
-            StartCoroutine(RestartGame()); // hardcoded 20 seconds timer
+            StartCoroutine(ShowEndUI(End_Players_Won, 20)); //hardcoded 20 seconds timer
+            StartCoroutine(RestartGame()); // hardcoded 60 seconds timer
         }
 
     }
     public void PlayersWereWrong()
     {
+        PlayersWereWrongBool = true;
         soundManager.PlayCatWasntFound();
         print("players are wrong");
         Cat.SetActive(false);
         // SET ACTIVE releveant ui
-        StartCoroutine(RestartGame()); // hardcoded 20 seconds timer
+        StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 1)); // hardcoded 20 seconds timer
+        StartCoroutine(RestartGame()); // hardcoded 60 seconds timer
     }
 
 
-    public IEnumerator RestartGame()// hardcoded 20 seconds
+    public IEnumerator RestartGame()// hardcoded 60 seconds
     {
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(60);
         SceneManager.LoadScene(0);
     }
     /*private IEnumerator WaitUntilPlayerWon()
@@ -151,10 +170,22 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator SetCatActive() // called from start game 
     {
-        yield return new WaitForSeconds(5); // hardcoded 5 seconds
-        soundManager.PlayTimer();
-        Cat.SetActive(true);
-        StartingTimer.SetActive(false);
+        if (!PlayersWereWrongBool)
+        {
+            yield return new WaitForSeconds(5); // hardcoded 5 seconds
+            soundManager.PlayTimer();
+            Cat.SetActive(true);
+            StartingTimer.SetActive(false);
+        }
+
     }
 
+    public IEnumerator ShowEndUI(GameObject EndUI, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        PlayerWon.SetActive(false);
+        catCoughtPlayer.SetActive(false);
+
+        EndUI.SetActive(true);
+    }
 }

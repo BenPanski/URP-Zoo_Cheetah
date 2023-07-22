@@ -189,7 +189,7 @@ public class Cheetah : MonoBehaviour
             }
             else
             {
-                _SoundManager.PlayCatWasntFound();
+                _GameManager.PlayersWereWrong();
                 print("missed the cat, you lost!  (no code for this yet)");
             }
         }
