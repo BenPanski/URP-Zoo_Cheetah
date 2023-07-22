@@ -16,6 +16,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] GameManager _GameManager;
     [SerializeField] LineRenderer CatLineDrawer;
     [SerializeField] LerpCalculations _LerpCalculations;
+    [SerializeField] SoundManager _SoundManager;
 
     #endregion
     #region Hide Cams & Points
@@ -181,18 +182,13 @@ public class Cheetah : MonoBehaviour
             {
                 print("cat was visable!");
                 MyState = CatState.Hunt;
+              //  _SoundManager.PlayCatFound();
                 SetHuntScreenState();
-                /*if (NoHuntPhase)
-                {
-                    SetHuntScreenState();
-                }
-                else
-                {
-                    SetHuntScreenState();
-                }*/
+              
             }
             else
             {
+                _SoundManager.PlayCatWasntFound();
                 print("missed the cat, you lost!  (no code for this yet)");
             }
         }

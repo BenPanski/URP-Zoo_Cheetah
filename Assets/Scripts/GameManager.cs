@@ -15,32 +15,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool PlayersLost;
     [SerializeField] bool GameEnded;
     [SerializeField] bool SomeoneWon;
-    [SerializeField] AudioClip PreCat;
-    [SerializeField] AudioClip HideMusic;
-    [SerializeField] AudioClip RunMusic;
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] SoundManager soundManager;
 
 
     bool GameStarted = false;
     private void Start()
     {
-        if (PreCat)
-        {
-            swapPlayAudio(PreCat);
-        }
+        soundManager.PlayBeforeCat();
     }
 
 
-    public void swapPlayAudio(AudioClip clip) 
-    {
-        audioSource.clip = clip;
-        audioSource.Play();
-    }
+  
     // Start is called before the first frame update
     public void CatWon()
     {
         if (!SomeoneWon)
         {
+            soundManager.PlayCatWon();
             CatFinishedRace = true;
             //  StartCoroutine(WaitUntilPlayerWon());
             catCoughtPlayer.SetActive(true);
@@ -88,6 +79,7 @@ public class GameManager : MonoBehaviour
     {
         if (!SomeoneWon)
         {
+            soundManager.PlayPlayersWon();
             print("players reached finish line");
             PlayerFinishedRace = true;
             // StartCoroutine(WaitUntilCatWon());
@@ -132,25 +124,20 @@ public class GameManager : MonoBehaviour
             GameStarted = true;
             StartingTimer.SetActive(true);
             Invoke("SetCatActive", 5f);
+            soundManager.PlayCatHunt();
             print("countdown started");
         }
     }
 
     public void SetRunMusic() 
     {
-        if (RunMusic)
-        {
-            swapPlayAudio(RunMusic);
-        }
+        soundManager.PlayRunScreen();
     }
 
     public void SetCatActive() // called from start game 
     {
 
-        if (HideMusic)
-        {
-            swapPlayAudio(HideMusic);
-        }
+        soundManager.PlayTimer();
         Cat.SetActive(true);
         StartingTimer.SetActive(false);
     }
