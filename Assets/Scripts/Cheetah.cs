@@ -182,7 +182,8 @@ public class Cheetah : MonoBehaviour
             {
                 print("cat was visable!");
                 MyState = CatState.Hunt;
-              //  _SoundManager.PlayCatFound();
+                // _SoundManager.PlayCatFound();
+                _GameManager.UpdateManagerCatWasCought();
                 SetHuntScreenState();
               
             }
@@ -197,6 +198,7 @@ public class Cheetah : MonoBehaviour
     #region SetState
     private void SetRunScreenState()
     {
+        _SoundManager.PlayRunScreen();
         MyState = CatState.RunScreen;
 
         print("cat is in run screen state");
@@ -211,7 +213,7 @@ public class Cheetah : MonoBehaviour
     {
         InitHuntAnim();
         MyState = CatState.Hunt;
-
+       _SoundManager.PlayCatFound();
         print("cat is in hunt state");
         NextPointNum = 0;
         NextPoint = HuntAnimation[0];

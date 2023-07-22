@@ -14,7 +14,7 @@ public class ChangeRezOnInput : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.F10))
+       /* if (Input.GetKeyDown(KeyCode.F10))
         {
             print("normal rez");
             foreach (var item in Images)
@@ -27,7 +27,7 @@ public class ChangeRezOnInput : MonoBehaviour
 
 
             }
-        }
+        }*/
 # endif
         if (Input.GetKeyDown(KeyCode.Z))
         {

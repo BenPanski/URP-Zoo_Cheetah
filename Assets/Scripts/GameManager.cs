@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject FPSC;
     [SerializeField] GameObject StartingTimer;
     [SerializeField] bool CatFinishedRace;
+    [SerializeField] bool CatWasCought;
+
     [SerializeField] bool PlayerFinishedRace;
     [SerializeField] bool PlayersLost;
     [SerializeField] bool GameEnded;
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-  
+
     // Start is called before the first frame update
     public void CatWon()
     {
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
     {
-        if (!SomeoneWon)
+        if (!SomeoneWon && CatWasCought)
         {
             soundManager.PlayPlayersWon();
             print("players reached finish line");
@@ -129,11 +131,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetRunMusic() 
+    public void UpdateManagerCatWasCought()
     {
-        soundManager.PlayRunScreen();
+        CatWasCought = true;
     }
-
     public void SetCatActive() // called from start game 
     {
 
