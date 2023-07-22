@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject Cat;
     [SerializeField] GameObject FPSC;
     [SerializeField] GameObject StartingTimer;
+    [SerializeField] GameObject End_Players_Lost;
+    [SerializeField] GameObject End_Players_Were_Wrong;
+    [SerializeField] GameObject End_Out_Of_Power;
+
     [SerializeField] bool CatFinishedRace;
     [SerializeField] bool CatWasCought;
 
@@ -88,13 +92,23 @@ public class GameManager : MonoBehaviour
             Cat.SetActive(false);
             PlayerWon.SetActive(true);
             SomeoneWon = true;
-            Invoke("RestartGame", 20);
+            StartCoroutine(RestartGame()); // hardcoded 20 seconds timer
         }
 
     }
-
-    public void RestartGame()
+    public void PlayersWereWrong()
     {
+        soundManager.PlayCatWasntFound();
+        print("players are wrong");
+        Cat.SetActive(false);
+        // SET ACTIVE releveant ui
+        StartCoroutine(RestartGame()); // hardcoded 20 seconds timer
+    }
+
+
+    public IEnumerator RestartGame()// hardcoded 20 seconds
+    {
+        yield return new WaitForSeconds(20);
         SceneManager.LoadScene(0);
     }
     /*private IEnumerator WaitUntilPlayerWon()
@@ -125,7 +139,7 @@ public class GameManager : MonoBehaviour
         {
             GameStarted = true;
             StartingTimer.SetActive(true);
-            Invoke("SetCatActive", 5f);
+            StartCoroutine(SetCatActive()); // hardcoded 5 seconds
             soundManager.PlayCatHunt();
             print("countdown started");
         }
@@ -135,9 +149,9 @@ public class GameManager : MonoBehaviour
     {
         CatWasCought = true;
     }
-    public void SetCatActive() // called from start game 
+    public IEnumerator SetCatActive() // called from start game 
     {
-
+        yield return new WaitForSeconds(5); // hardcoded 5 seconds
         soundManager.PlayTimer();
         Cat.SetActive(true);
         StartingTimer.SetActive(false);
