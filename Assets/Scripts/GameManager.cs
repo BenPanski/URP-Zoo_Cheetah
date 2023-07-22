@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip PreCat;
     [SerializeField] AudioClip HideMusic;
     [SerializeField] AudioClip RunMusic;
+    [SerializeField] AudioSource audioSource;
 
 
     bool GameStarted = false;
@@ -25,11 +26,16 @@ public class GameManager : MonoBehaviour
     {
         if (PreCat)
         {
-            AudioSource.PlayClipAtPoint(PreCat, transform.position);
+            swapPlayAudio(PreCat);
         }
-
     }
 
+
+    public void swapPlayAudio(AudioClip clip) 
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
     // Start is called before the first frame update
     public void CatWon()
     {
@@ -130,20 +136,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetRunMusic()
+    public void SetRunMusic() 
     {
         if (RunMusic)
         {
-            AudioSource.PlayClipAtPoint(RunMusic, transform.position);
+            swapPlayAudio(RunMusic);
         }
     }
 
-    public void SetCatActive()
+    public void SetCatActive() // called from start game 
     {
 
         if (HideMusic)
         {
-            AudioSource.PlayClipAtPoint(HideMusic, transform.position);
+            swapPlayAudio(HideMusic);
         }
         Cat.SetActive(true);
         StartingTimer.SetActive(false);
