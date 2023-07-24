@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerAreWrongAndNoCat()
     {
-        if (!Cat.activeSelf)
+        if (Cat.activeSelf == false)
         {
             PlayersWereWrong();
         }
