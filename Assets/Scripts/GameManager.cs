@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
             GameStarted = true;
             StartingTimer.SetActive(true);
             StartCoroutine(SetCatActive()); // hardcoded 5 seconds
-            soundManager.PlayCatHunt();
+            //soundManager.PlayCatHunt();
             print("countdown started");
         }
     }
