@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
 using static UnityEngine.Random;
+using System.IO;
 
 enum CatState
 {
@@ -33,7 +34,7 @@ public class Cheetah : MonoBehaviour
     List<List<Point>> allAnims = new List<List<Point>>();
     [SerializeField] public List<Point> RunAnimation;
     List<Point> HuntAnimation = new List<Point>();
-    [Range(0, 10)][SerializeField] float HuntSpeed; // more then 10 causes problems
+    [SerializeField] float HuntSpeed; // more then 10 causes problems
     #endregion
     #region Cheetah attributes
     [Header("Cheetah attributes")]
@@ -50,7 +51,7 @@ public class Cheetah : MonoBehaviour
     int CurrentHidingCam;
     float temp;
     float LastTeleportTime = 0f;
-    float TeleportInterval = 0.05f;
+    public float TeleportInterval = 0.05f;
     #endregion
     #region Tests
     [Header("Tests")]
@@ -66,12 +67,37 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool PrintPointNum = true;
     [SerializeField] bool NoHuntPhase = false;
     [SerializeField] bool ShortRun = false;
+    [SerializeField] bool TeleportFlag = false;
 
+    [SerializeField] float LastScreenTeleportDelay = 0.1f;
     bool LerpInitFlag = false;
 
     #endregion
 
     #region Init
+    private void Start()
+    {
+        LoadCheetahConfig();
+    }
+
+    private void LoadCheetahConfig()
+    {
+        string[] configLines = File.ReadAllLines(Application.streamingAssetsPath + "/cheetah.ini");
+        if (configLines!= null && configLines.Length > 0)
+        {
+            foreach (string line in configLines)
+            {
+                if (line != null && line.Length > 0 && line.Contains("="))
+                {
+                    if (line.Split('=')[0].StartsWith("teleportTime"))
+                    {
+                        LastScreenTeleportDelay = float.Parse(line.Split('=')[1]);
+                    }
+                }
+            }
+        }
+    }
+
     private void Awake() // add all "animations" to allAnim list , // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
 
@@ -280,19 +306,28 @@ public class Cheetah : MonoBehaviour
         {
             return;
         }
-        if (NextPoint == HuntAnimation[1]) //if after the first screen hunt animation , or if close enough to the end of the current screen (3 placeholder)
+        if (NextPoint == HuntAnimation[1] || Vector3.Distance(transform.position, HuntAnimation[0].PointPosition) < 3) //if after the first screen hunt animation , or if close enough to the end of the current screen (3 placeholder)
         {
-            print("1");
-            SetRunScreenState();
+            if (!TeleportFlag)
+            {
+                TeleportFlag = true;
+                print("short hunt is on, cat finished first screen of hunt phase");
+                StartCoroutine(TeleportDelay());
+            }
+          
+
         }
-        if (Vector3.Distance(transform.position, HuntAnimation[0].PointPosition) < 3)
-        {
-            print("2");
-            SetRunScreenState();
-        }
+     
 
     }
 
+    public IEnumerator TeleportDelay()
+    {
+        yield return new WaitForSeconds(LastScreenTeleportDelay);
+        
+            SetRunScreenState();
+        
+    }
     /*  if (!ShortRun || MyState != CatState.Hunt)
       {
           return;
@@ -565,12 +600,12 @@ public class Cheetah : MonoBehaviour
             {
                 SetRunScreenState();
             }
-            else if (other.gameObject.transform.position == HuntAnimation[NextPointNum].PointPosition)
+            else if (other.gameObject.transform.position == HuntAnimation[NextPointNum].PointPosition && !ShortRun)
             {
 
                 float currentTime = Time.time;
-                /* if (currentTime - LastTeleportTime >= TeleportInterval)
-                 {*/
+                 //if (currentTime - LastTeleportTime >= TeleportInterval)
+                 
                 CheetahMove();
                 if (NextPointNum % 2 != 0)
                 {
