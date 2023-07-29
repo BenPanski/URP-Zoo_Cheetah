@@ -27,10 +27,7 @@ public class GameManager : MonoBehaviour
 
 
     bool GameStarted = false;
-    private void Start()
-    {
-        soundManager.PlayBeforeCat();
-    }
+  
 
 
 
@@ -162,6 +159,7 @@ public class GameManager : MonoBehaviour
         {
             GameStarted = true;
             StartingTimer.SetActive(true);
+            soundManager.AfterTimer();
             StartCoroutine(SetCatActive()); // hardcoded 5 seconds
             //soundManager.PlayCatHunt();
             print("countdown started");
@@ -177,7 +175,7 @@ public class GameManager : MonoBehaviour
         if (!PlayersWereWrongBool)
         {
             yield return new WaitForSeconds(5); // hardcoded 5 seconds
-            soundManager.PlayTimer();
+
             Cat.SetActive(true);
             StartingTimer.SetActive(false);
         }
