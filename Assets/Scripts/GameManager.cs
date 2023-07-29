@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
             //  StartCoroutine(WaitUntilPlayerWon());
             catCoughtPlayer.SetActive(true);
             SomeoneWon = true;
-            StartCoroutine(ShowEndUI(End_Players_Lost, 20)); //hardcoded 20 seconds timer
-            StartCoroutine(RestartGame()); // hardcoded 60 seconds timer
+            StartCoroutine(ShowEndUI(End_Players_Lost, 5)); //hardcoded 5 seconds timer
+            StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
         }
 
     }
@@ -106,8 +106,8 @@ public class GameManager : MonoBehaviour
             Cat.SetActive(false);
             PlayerWon.SetActive(true);
             SomeoneWon = true;
-            StartCoroutine(ShowEndUI(End_Players_Won, 20)); //hardcoded 20 seconds timer
-            StartCoroutine(RestartGame()); // hardcoded 60 seconds timer
+            StartCoroutine(ShowEndUI(End_Players_Won, 5)); //hardcoded 5 seconds timer
+            StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
         }
 
     }
@@ -120,16 +120,16 @@ public class GameManager : MonoBehaviour
             print("players are wrong");
             Cat.SetActive(false);
             // SET ACTIVE releveant ui
-            StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 1)); // hardcoded 20 seconds timer
-            StartCoroutine(RestartGame()); // hardcoded 60 seconds timer
+            StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 1)); // hardcoded 1 seconds timer
+            StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
         }
        
     }
 
 
-    public IEnumerator RestartGame()// hardcoded 60 seconds
+    public IEnumerator RestartGame()// hardcoded 5 seconds
     {
-        yield return new WaitForSeconds(60);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene(0);
     }
     /*private IEnumerator WaitUntilPlayerWon()
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
     {
         CatWasCought = true;
     }
-    public IEnumerator SetCatActive() // called from start game 
+    public IEnumerator SetCatActive() // called from start game  // hardcoded 5 seconds
     {
         if (!PlayersWereWrongBool)
         {
