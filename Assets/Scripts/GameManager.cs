@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool PlayersLost;
     [SerializeField] bool GameEnded;
     [SerializeField] bool SomeoneWon;
+    [SerializeField] bool FirstSensorTriggered;
     [SerializeField] SoundManager soundManager;
 
 
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     public void IfNoCatPlayersWereWrong()
     {
-        if (Cat.activeSelf == false)
+        if (Cat.activeSelf == false && GameStarted)
         {
             PlayersWereWrong();
         }
@@ -96,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
     {
-        if (!SomeoneWon && CatWasCought && !PlayersWereWrongBool)
+        if (!SomeoneWon && CatWasCought && !PlayersWereWrongBool&& GameStarted)
         {
             soundManager.PlayPlayersWon();
             print("players reached finish line");
