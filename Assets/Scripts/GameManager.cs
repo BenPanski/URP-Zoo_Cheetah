@@ -84,11 +84,11 @@ public class GameManager : MonoBehaviour
         }
         if ( Input.GetKeyDown(KeyCode.Space))
         {
-            PlayerAreWrongAndNoCat();
+            IfNoCatPlayersWereWrong();
         }
     }
 
-    public void PlayerAreWrongAndNoCat()
+    public void IfNoCatPlayersWereWrong()
     {
         if (Cat.activeSelf == false)
         {
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
     {
-        if (!SomeoneWon && CatWasCought & !PlayersWereWrongBool)
+        if (!SomeoneWon && CatWasCought && !PlayersWereWrongBool)
         {
             soundManager.PlayPlayersWon();
             print("players reached finish line");
@@ -115,13 +115,17 @@ public class GameManager : MonoBehaviour
     }
     public void PlayersWereWrong()
     {
-        PlayersWereWrongBool = true;
-        soundManager.PlayCatWasntFound();
-        print("players are wrong");
-        Cat.SetActive(false);
-        // SET ACTIVE releveant ui
-        StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 1)); // hardcoded 20 seconds timer
-        StartCoroutine(RestartGame()); // hardcoded 60 seconds timer
+        if (!PlayersWereWrongBool)
+        {
+            PlayersWereWrongBool = true;
+            soundManager.PlayCatWasntFound();
+            print("players are wrong");
+            Cat.SetActive(false);
+            // SET ACTIVE releveant ui
+            StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 1)); // hardcoded 20 seconds timer
+            StartCoroutine(RestartGame()); // hardcoded 60 seconds timer
+        }
+       
     }
 
 
