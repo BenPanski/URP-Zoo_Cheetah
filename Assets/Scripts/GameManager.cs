@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool SomeoneWon;
     [SerializeField] bool FirstSensorTriggered;
     [SerializeField] SoundManager soundManager;
+    [SerializeField] float RestartDelay = 10;
+    [SerializeField] float UIDelay = 5;
+
 
 
     bool GameStarted = false;
@@ -42,7 +45,7 @@ public class GameManager : MonoBehaviour
             //  StartCoroutine(WaitUntilPlayerWon());
             catCoughtPlayer.SetActive(true);
             SomeoneWon = true;
-            StartCoroutine(ShowEndUI(End_Players_Lost, 5)); //hardcoded 5 seconds timer
+            StartCoroutine(ShowEndUI(End_Players_Lost)); //hardcoded 5 seconds timer
             StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
         }
 
@@ -106,32 +109,28 @@ public class GameManager : MonoBehaviour
             Cat.SetActive(false);
             PlayerWon.SetActive(true);
             SomeoneWon = true;
-            StartCoroutine(ShowEndUI(End_Players_Won, 5)); //hardcoded 5 seconds timer
+            StartCoroutine(ShowEndUI(End_Players_Won)); //hardcoded 5 seconds timer
             StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
         }
 
     }
     public void PlayersWereWrong()
     {
-        if (!PlayersWereWrongBool)
+        if (!PlayersWereWrongBool && !SomeoneWon)
         {
             PlayersWereWrongBool = true;
             soundManager.PlayCatWasntFound();
             print("players are wrong");
             Cat.SetActive(false);
             // SET ACTIVE releveant ui
-            StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 1)); // hardcoded 1 seconds timer
+            StartCoroutine(ShowEndUI(End_Players_Were_Wrong)); // hardcoded 1 seconds timer
             StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
         }
        
     }
 
 
-    public IEnumerator RestartGame()// hardcoded 5 seconds
-    {
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(0);
-    }
+  
     /*private IEnumerator WaitUntilPlayerWon()
     {
         if (!SomeoneWon)
@@ -171,6 +170,11 @@ public class GameManager : MonoBehaviour
     {
         CatWasCought = true;
     }
+    public IEnumerator RestartGame()// hardcoded 5 seconds
+    {
+        yield return new WaitForSeconds(RestartDelay);
+        SceneManager.LoadScene(0);
+    }
     public IEnumerator SetCatActive() // called from start game  // hardcoded 5 seconds
     {
         if (!PlayersWereWrongBool)
@@ -183,9 +187,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public IEnumerator ShowEndUI(GameObject EndUI, float waitTime)
+    public IEnumerator ShowEndUI(GameObject EndUI)
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(UIDelay);
         PlayerWon.SetActive(false);
         catCoughtPlayer.SetActive(false);
 
