@@ -27702,6 +27702,8 @@ MonoBehaviour:
   SomeoneWon: 0
   FirstSensorTriggered: 0
   soundManager: {fileID: 1509960803}
+  RestartDelay: 10
+  UIDelay: 5
 --- !u!4 &1397053231
 Transform:
   m_ObjectHideFlags: 0

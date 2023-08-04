@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] SoundManager soundManager;
     [SerializeField] float RestartDelay = 10;
     [SerializeField] float UIDelay = 5;
+    public float CatSpawnDelay = 5;
 
 
 
@@ -83,11 +85,30 @@ public class GameManager : MonoBehaviour
         {
             FPSC.SetActive(!FPSC.activeSelf);
         }
-        if ( Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             IfNoCatPlayersWereWrong();
         }
     }
+
+    private void LoadCatSpawnTimerFromConfig()
+    {
+        string[] configLines = File.ReadAllLines(Application.streamingAssetsPath + "/cheetah.ini");
+        if (configLines != null && configLines.Length > 0)
+        {
+            foreach (string line in configLines)
+            {
+                if (line != null && line.Length > 0 && line.Contains("="))
+                {
+                    if (line.Split('=')[0].Trim().StartsWith("catSpawnDelay"))
+                    {
+                        CatSpawnDelay = float.Parse(line.Split('=')[1].Trim());
+                    }
+                }
+            }
+        }
+    }
+
 
     public void IfNoCatPlayersWereWrong()
     {
@@ -130,7 +151,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-  
+
     /*private IEnumerator WaitUntilPlayerWon()
     {
         if (!SomeoneWon)
@@ -151,7 +172,10 @@ public class GameManager : MonoBehaviour
           }
       }*/
 
-
+    private void Awake()
+    {
+        LoadCatSpawnTimerFromConfig();
+    }
     public void StartGame()
     {
 
@@ -179,7 +203,7 @@ public class GameManager : MonoBehaviour
     {
         if (!PlayersWereWrongBool)
         {
-            yield return new WaitForSeconds(5); // hardcoded 5 seconds
+            yield return new WaitForSeconds(5+CatSpawnDelay); // hardcoded 5 seconds for 5 seconds clock
 
             Cat.SetActive(true);
             StartingTimer.SetActive(false);
