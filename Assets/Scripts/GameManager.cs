@@ -28,7 +28,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] SoundManager soundManager;
     [SerializeField] float RestartDelay = 10;
     [SerializeField] float UIDelay = 5;
-    public float CatSpawnDelay = 5;
+    public float CatSpawnDelayMin = 2;
+    public float CatSpawnDelayMax = 5;
+
 
 
 
@@ -100,14 +102,23 @@ public class GameManager : MonoBehaviour
             {
                 if (line != null && line.Length > 0 && line.Contains("="))
                 {
-                    if (line.Split('=')[0].Trim().StartsWith("catSpawnDelay"))
+                    string[] keyValue = line.Split('=');
+                    string key = keyValue[0].Trim();
+                    string value = keyValue[1].Trim();
+
+                    if (key == "catSpawnDelayMin")
                     {
-                        CatSpawnDelay = float.Parse(line.Split('=')[1].Trim());
+                        CatSpawnDelayMin = float.Parse(value);
+                    }
+                    else if (key == "catSpawnDelayMax")
+                    {
+                        CatSpawnDelayMax = float.Parse(value);
                     }
                 }
             }
         }
     }
+
 
 
     public void IfNoCatPlayersWereWrong()
@@ -203,12 +214,13 @@ public class GameManager : MonoBehaviour
     {
         if (!PlayersWereWrongBool)
         {
-            yield return new WaitForSeconds(5+CatSpawnDelay); // hardcoded 5 seconds for 5 seconds clock
-
-            Cat.SetActive(true);
+            yield return new WaitForSeconds(5); // hardcoded 5 seconds for 5 seconds clock
             StartingTimer.SetActive(false);
-        }
+            var RandCatDelay = Random.Range(CatSpawnDelayMin, CatSpawnDelayMax); // decide on cat spawn delay
 
+            yield return new WaitForSeconds(RandCatDelay); // wait for the cat spawn delay to activate the cat
+            Cat.SetActive(true);
+        }
     }
 
     public IEnumerator ShowEndUI(GameObject EndUI)
