@@ -12362,6 +12362,7 @@ MonoBehaviour:
   NoHuntPhase: 0
   ShortRun: 1
   TeleportFlag: 0
+  NoHuntingJustRunning: 1
   LastScreenTeleportDelay: 0
 --- !u!4 &606359513
 Transform:
@@ -27704,6 +27705,8 @@ MonoBehaviour:
   soundManager: {fileID: 1509960803}
   RestartDelay: 10
   UIDelay: 5
+  CatSpawnDelayMin: 2
+  CatSpawnDelayMax: 5
 --- !u!4 &1397053231
 Transform:
   m_ObjectHideFlags: 0

@@ -68,6 +68,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool NoHuntPhase = false;
     [SerializeField] bool ShortRun = false;
     [SerializeField] bool TeleportFlag = false;
+    [SerializeField] bool NoHuntingJustRunning = false;
 
     [SerializeField] float LastScreenTeleportDelay = 0.1f;
     bool LerpInitFlag = false;
@@ -207,11 +208,18 @@ public class Cheetah : MonoBehaviour
             if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1) // if cat is visble 
             {
                 print("cat was visable!");
-                MyState = CatState.Hunt;
-                // _SoundManager.PlayCatFound();
-                _GameManager.UpdateManagerCatWasCought();
-                SetHuntScreenState();
-              
+                if (NoHuntingJustRunning)
+                {
+                    YouMayMove = false;
+                    StartCoroutine(MayMoveRator(LastScreenTeleportDelay,true));
+                }
+                else
+                {
+                    MyState = CatState.Hunt;
+                    // _SoundManager.PlayCatFound();
+                    _GameManager.UpdateManagerCatWasCought();
+                    SetHuntScreenState();
+                }
             }
             else
             {
@@ -647,6 +655,19 @@ public class Cheetah : MonoBehaviour
         yield return new WaitForSeconds(waitForSeconds);
         MyAnimator.SetFloat("Speed", Speed);
         YouMayMove = true;
+        CheetahMove();
+
+    }
+    public IEnumerator MayMoveRator(float waitForSeconds,bool SetRunScreen)
+    {
+        MyAnimator.SetFloat("Speed", 0);
+        yield return new WaitForSeconds(waitForSeconds);
+        MyAnimator.SetFloat("Speed", Speed);
+        YouMayMove = true;
+        if (SetRunScreen)
+        {
+            SetRunScreenState();
+        }
         CheetahMove();
 
     }
