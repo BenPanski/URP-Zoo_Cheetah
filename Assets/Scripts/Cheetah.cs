@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering.UI;
 using static UnityEngine.Random;
 using System.IO;
+using UnityEngine.UI;
 
 enum CatState
 {
@@ -35,6 +36,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] public List<Point> RunAnimation;
     List<Point> HuntAnimation = new List<Point>();
     [SerializeField] float HuntSpeed; // more then 10 causes problems
+    [SerializeField] List<RawImage> CatWasHereScreens;
     #endregion
     #region Cheetah attributes
     [Header("Cheetah attributes")]
@@ -210,6 +212,7 @@ public class Cheetah : MonoBehaviour
                 print("cat was visable!");
                 if (NoHuntingJustRunning)
                 {
+                    CatWasHereScreens[CurrentHidingCam].gameObject.SetActive(true);
                     YouMayMove = false;
                     StartCoroutine(MayMoveRator(LastScreenTeleportDelay,true));
                 }
