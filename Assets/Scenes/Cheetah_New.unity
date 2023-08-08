@@ -17575,7 +17575,7 @@ RectTransform:
   m_GameObject: {fileID: 830283717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.0223, y: 2.0223, z: 2.0223}
   m_Children: []
   m_Father: {fileID: 183912509}
   m_RootOrder: 2
@@ -17583,7 +17583,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -348, y: 539}
-  m_SizeDelta: {x: 2560, y: 192}
+  m_SizeDelta: {x: 1275, y: 126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &830283719
 MonoBehaviour:
@@ -21780,7 +21780,7 @@ RectTransform:
   m_GameObject: {fileID: 1041981048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.0223, y: 2.0223, z: 2.0223}
   m_Children: []
   m_Father: {fileID: 988713214}
   m_RootOrder: 0
@@ -21788,7 +21788,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -348, y: 539}
-  m_SizeDelta: {x: 2560, y: 192}
+  m_SizeDelta: {x: 1275, y: 126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1041981050
 MonoBehaviour:
@@ -25721,7 +25721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: eventDispatch.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlayerAreWrongAndNoCat
+      value: IfNoCatPlayersWereWrong
       objectReference: {fileID: 0}
     - target: {fileID: 2304537122465170757, guid: e337af839a55ee5419778dfff26ccb70, type: 3}
       propertyPath: eventDispatch.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -27919,7 +27919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catCoughtPlayer: {fileID: 988713213}
   PlayerWon: {fileID: 183912508}
-  Cat: {fileID: 606359508}
+  Cat: {fileID: 606359512}
   FPSC: {fileID: 1755599356}
   StartingTimer: {fileID: 268771495}
   End_Players_Won: {fileID: 537178884}

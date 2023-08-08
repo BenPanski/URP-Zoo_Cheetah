@@ -212,6 +212,8 @@ public class Cheetah : MonoBehaviour
                 print("cat was visable!");
                 if (NoHuntingJustRunning)
                 {
+                    _GameManager.UpdateManagerCatWasCought();
+                    _SoundManager.PlayCatFound();
                     CatWasHereScreens[CurrentHidingCam].gameObject.SetActive(true);
                     YouMayMove = false;
                     StartCoroutine(MayMoveRator(LastScreenTeleportDelay,true));
@@ -235,6 +237,7 @@ public class Cheetah : MonoBehaviour
     #region SetState
     private void SetRunScreenState()
     {
+        MyAnimator.SetTrigger("Run");
         _SoundManager.PlayRunScreen();
         MyState = CatState.RunScreen;
 
@@ -298,6 +301,7 @@ public class Cheetah : MonoBehaviour
                 {
                     _GameManager.CatWon();
                     print("Cheetah finished race, turning cheetah off");
+                    TurnOffCatWasHereImages();
                     this.gameObject.SetActive(false);
                 }
                 break;
@@ -310,6 +314,13 @@ public class Cheetah : MonoBehaviour
         }
     }
 
+    public void TurnOffCatWasHereImages()
+    {
+        foreach (var item in CatWasHereScreens)
+        {
+            item.gameObject.SetActive(false);
+        }
+    }
 
     private void ShortHunt()  // if short hunt is on make sure the hunt phase runs through only one screen
     {

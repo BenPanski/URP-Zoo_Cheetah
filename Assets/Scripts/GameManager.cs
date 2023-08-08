@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject catCoughtPlayer;
     [SerializeField] GameObject PlayerWon;
-    [SerializeField] GameObject Cat;
+    [SerializeField] Cheetah Cat;
     [SerializeField] GameObject FPSC;
     [SerializeField] GameObject StartingTimer;
     [SerializeField] GameObject End_Players_Won;
@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
         {
             IfNoCatPlayersWereWrong();
         }
+        
     }
 
     private void LoadCatSpawnTimerFromConfig()
@@ -123,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     public void IfNoCatPlayersWereWrong()
     {
-        if (Cat.activeSelf == false && GameStarted)
+        if (Cat.gameObject.activeSelf == false && GameStarted)
         {
             PlayersWereWrong();
         }
@@ -132,17 +133,23 @@ public class GameManager : MonoBehaviour
 
     public void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
     {
+        print("SomeoneWon "+SomeoneWon);
+        print("CatWasCought " + CatWasCought);
+        print("PlayersWereWrongBool " + PlayersWereWrongBool);
+        print("GameStarted " + GameStarted);
         if (!SomeoneWon && CatWasCought && !PlayersWereWrongBool&& GameStarted)
         {
             soundManager.PlayPlayersWon();
             print("players reached finish line");
             PlayerFinishedRace = true;
             // StartCoroutine(WaitUntilCatWon());
-            Cat.SetActive(false);
+            Cat.TurnOffCatWasHereImages();
+            Cat.gameObject.SetActive(false);
             PlayerWon.SetActive(true);
             SomeoneWon = true;
             StartCoroutine(ShowEndUI(End_Players_Won)); //hardcoded 5 seconds timer
             StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
+            print(2);
         }
 
     }
@@ -153,7 +160,8 @@ public class GameManager : MonoBehaviour
             PlayersWereWrongBool = true;
             soundManager.PlayCatWasntFound();
             print("players are wrong");
-            Cat.SetActive(false);
+            Cat.TurnOffCatWasHereImages();
+            Cat.gameObject.SetActive(false);
             // SET ACTIVE releveant ui
             StartCoroutine(ShowEndUI(End_Players_Were_Wrong)); // hardcoded 1 seconds timer
             StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
@@ -219,7 +227,7 @@ public class GameManager : MonoBehaviour
             var RandCatDelay = Random.Range(CatSpawnDelayMin, CatSpawnDelayMax); // decide on cat spawn delay
 
             yield return new WaitForSeconds(RandCatDelay); // wait for the cat spawn delay to activate the cat
-            Cat.SetActive(true);
+            Cat.gameObject.SetActive(true);
         }
     }
 
