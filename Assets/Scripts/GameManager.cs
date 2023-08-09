@@ -19,11 +19,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] bool CatFinishedRace;
     [SerializeField] bool CatWasCought;
-    [SerializeField] bool PlayersWereWrongBool;
+    [SerializeField] public bool PlayersWereWrongBool;
     [SerializeField] bool PlayerFinishedRace;
     [SerializeField] bool PlayersLost;
     [SerializeField] bool GameEnded;
-    [SerializeField] bool SomeoneWon;
+    [SerializeField] public bool SomeoneWon;
     [SerializeField] bool FirstSensorTriggered;
     [SerializeField] SoundManager soundManager;
     [SerializeField] float RestartDelay = 10;
@@ -158,6 +158,7 @@ public class GameManager : MonoBehaviour
         if (!PlayersWereWrongBool && !SomeoneWon)
         {
             PlayersWereWrongBool = true;
+            SomeoneWon = true;
             soundManager.PlayCatWasntFound();
             print("players are wrong");
             Cat.TurnOffCatWasHereImages();

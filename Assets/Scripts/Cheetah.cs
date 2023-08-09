@@ -210,7 +210,7 @@ public class Cheetah : MonoBehaviour
             if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1) // if cat is visble 
             {
                 print("cat was visable!");
-                if (NoHuntingJustRunning)
+                if (NoHuntingJustRunning && !_GameManager.SomeoneWon && !_GameManager.PlayersWereWrongBool)
                 {
                     _GameManager.UpdateManagerCatWasCought();
                     _SoundManager.PlayCatFound();
