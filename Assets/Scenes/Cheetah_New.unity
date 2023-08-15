@@ -10483,6 +10483,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b018466e0ae8784ba41051e726d5b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &532495108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 869525837680598647, guid: a548d10dd1984134896a1f064ddfadc9, type: 3}
+  m_PrefabInstance: {fileID: 723011091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &537178884
 GameObject:
   m_ObjectHideFlags: 0
@@ -12269,7 +12274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &606359509
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12324,6 +12329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b18cbd062d9c148ab9829271c3a918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyVisual: {fileID: 532495108}
   _GameManager: {fileID: 1397053230}
   CatLineDrawer: {fileID: 1640726165}
   _LerpCalculations: {fileID: 606359514}
@@ -12449,7 +12455,9 @@ MonoBehaviour:
   ShortRun: 1
   TeleportFlag: 0
   NoHuntingJustRunning: 1
-  LastScreenTeleportDelay: 0
+  LastScreenTeleportDelayClose: 0.1
+  LastScreenTeleportDelayMid: 0.1
+  LastScreenTeleportDelayFar: 0.1
 --- !u!4 &606359513
 Transform:
   m_ObjectHideFlags: 0
@@ -15073,6 +15081,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 606359513}
     m_Modifications:
+    - target: {fileID: 869525837680598647, guid: a548d10dd1984134896a1f064ddfadc9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2442778892033891859, guid: a548d10dd1984134896a1f064ddfadc9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -15132,6 +15144,14 @@ PrefabInstance:
     - target: {fileID: 3075306368235783337, guid: a548d10dd1984134896a1f064ddfadc9, type: 3}
       propertyPath: m_Name
       value: Cheetah_Animation
+      objectReference: {fileID: 0}
+    - target: {fileID: 3075306368235783337, guid: a548d10dd1984134896a1f064ddfadc9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761252066714113522, guid: a548d10dd1984134896a1f064ddfadc9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8576633392789800041, guid: a548d10dd1984134896a1f064ddfadc9, type: 3}
       propertyPath: m_Controller

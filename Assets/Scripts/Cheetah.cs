@@ -13,6 +13,7 @@ enum CatState
 }
 public class Cheetah : MonoBehaviour
 {
+    [SerializeField] GameObject MyVisual;
     #region REF
     [Header("Refrences")]
     [SerializeField] GameManager _GameManager;
@@ -72,7 +73,11 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool TeleportFlag = false;
     [SerializeField] bool NoHuntingJustRunning = false;
 
-    [SerializeField] float LastScreenTeleportDelay = 0.1f;
+    [SerializeField] float LastScreenTeleportDelayClose = 0.1f;
+    [SerializeField] float LastScreenTeleportDelayMid = 0.1f;
+    [SerializeField] float LastScreenTeleportDelayFar = 0.1f;
+
+
     bool LerpInitFlag = false;
 
     #endregion
@@ -85,16 +90,27 @@ public class Cheetah : MonoBehaviour
 
     private void LoadCheetahConfig()
     {
-        string[] configLines = File.ReadAllLines(Application.streamingAssetsPath + "/cheetah.ini");
-        if (configLines!= null && configLines.Length > 0)
+        string[] configLines1 = File.ReadAllLines(Application.streamingAssetsPath + "/cheetah.ini");
+        if (configLines1 != null && configLines1.Length > 0)
         {
-            foreach (string line in configLines)
+            foreach (string line in configLines1)
             {
                 if (line != null && line.Length > 0 && line.Contains("="))
                 {
-                    if (line.Split('=')[0].StartsWith("teleportTime"))
+                    string key = line.Split('=')[0];
+                    float value = float.Parse(line.Split('=')[1]);
+
+                    if (key.StartsWith("teleportTimeClose"))
                     {
-                        LastScreenTeleportDelay = float.Parse(line.Split('=')[1]);
+                        LastScreenTeleportDelayClose = value;
+                    }
+                    else if (key.StartsWith("teleportTimeMid"))
+                    {
+                        LastScreenTeleportDelayMid = value;
+                    }
+                    else if (key.StartsWith("teleportTimeFar"))
+                    {
+                        LastScreenTeleportDelayFar = value;
                     }
                 }
             }
@@ -212,11 +228,27 @@ public class Cheetah : MonoBehaviour
                 print("cat was visable!");
                 if (NoHuntingJustRunning && !_GameManager.SomeoneWon && !_GameManager.PlayersWereWrongBool)
                 {
+                    int CatScreenNum = CurrentHidingCam;
                     _GameManager.UpdateManagerCatWasCought();
                     _SoundManager.PlayCatFound();
                     CatWasHereScreens[CurrentHidingCam].gameObject.SetActive(true);
                     YouMayMove = false;
-                    StartCoroutine(MayMoveRator(LastScreenTeleportDelay,true));
+                    MyVisual.SetActive(false);
+
+                    if (CatScreenNum > 5)
+                    {
+                        StartCoroutine(MayMoveRator(LastScreenTeleportDelayClose, true));
+                    }
+                    else if (CatScreenNum > 2)
+                    {
+                        StartCoroutine(MayMoveRator(LastScreenTeleportDelayMid, true));
+                    }
+                    else
+                    {
+                        StartCoroutine(MayMoveRator(LastScreenTeleportDelayFar, true));
+                    }
+                   
+                  
                 }
                 else
                 {
@@ -345,7 +377,7 @@ public class Cheetah : MonoBehaviour
 
     public IEnumerator TeleportDelay()
     {
-        yield return new WaitForSeconds(LastScreenTeleportDelay);
+        yield return new WaitForSeconds(LastScreenTeleportDelayClose);
         
             SetRunScreenState();
         
@@ -677,6 +709,7 @@ public class Cheetah : MonoBehaviour
         MyAnimator.SetFloat("Speed", 0);
         yield return new WaitForSeconds(waitForSeconds);
         MyAnimator.SetFloat("Speed", Speed);
+        MyVisual.SetActive(true);
         YouMayMove = true;
         if (SetRunScreen)
         {
