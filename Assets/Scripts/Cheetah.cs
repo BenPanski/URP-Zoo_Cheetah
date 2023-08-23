@@ -221,6 +221,10 @@ public class Cheetah : MonoBehaviour
     #endregion
     public void TryToCatchCat()    // Itay - this method is called when the first sensor is triggered
     {
+        if (!this.gameObject.activeSelf)
+        {
+            return;
+        }
         if (MyState == CatState.Hide)
         {
             if (HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).x <= 1.1 && HidingCameras[CurrentHidingCam].WorldToViewportPoint(transform.position).y <= 1.1) // if cat is visble 
@@ -228,7 +232,8 @@ public class Cheetah : MonoBehaviour
                 print("cat was visable!");
                 if (NoHuntingJustRunning && !_GameManager.SomeoneWon && !_GameManager.PlayersWereWrongBool)
                 {
-                    int CatScreenNum = CurrentHidingCam;
+                    int CatScreenNum = CurrentHidingCam+1;
+                    print("cat was found in screen"+CatScreenNum);
                     _GameManager.UpdateManagerCatWasCought();
                     _SoundManager.PlayCatFound();
                     CatWasHereScreens[CurrentHidingCam].gameObject.SetActive(true);
@@ -238,17 +243,20 @@ public class Cheetah : MonoBehaviour
                     if (CatScreenNum > 5)
                     {
                         StartCoroutine(MayMoveRator(LastScreenTeleportDelayClose, true));
+                        print("(close) cat should have a teleport delay of " + LastScreenTeleportDelayClose);
                     }
                     else if (CatScreenNum > 2)
                     {
                         StartCoroutine(MayMoveRator(LastScreenTeleportDelayMid, true));
+                        print("(mid) cat should have a teleport delay of " + LastScreenTeleportDelayMid);
                     }
                     else
                     {
                         StartCoroutine(MayMoveRator(LastScreenTeleportDelayFar, true));
+                        print("(far) cat should have a teleport delay of " + LastScreenTeleportDelayFar);
                     }
-                   
-                  
+
+
                 }
                 else
                 {
@@ -272,7 +280,6 @@ public class Cheetah : MonoBehaviour
         MyAnimator.SetTrigger("Run");
         _SoundManager.PlayRunScreen();
         MyState = CatState.RunScreen;
-
         print("cat is in run screen state");
         transform.position = RunAnimation[0].PointPosition;
         NextPoint = RunAnimation[1];
@@ -340,10 +347,11 @@ public class Cheetah : MonoBehaviour
             default:
                 break;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+       /* if (Input.GetKeyDown(KeyCode.Space))
         {
             TryToCatchCat();
-        }
+            _GameManager.IfNoCatPlayersWereWrong();
+        }*/
     }
 
     public void TurnOffCatWasHereImages()

@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Cat.TryToCatchCat();
             IfNoCatPlayersWereWrong();
         }
         
@@ -157,6 +158,7 @@ public class GameManager : MonoBehaviour
     {
         if (!PlayersWereWrongBool && !SomeoneWon)
         {
+            StartingTimer.SetActive(false);
             PlayersWereWrongBool = true;
             SomeoneWon = true;
             soundManager.PlayCatWasntFound();
@@ -164,7 +166,7 @@ public class GameManager : MonoBehaviour
             Cat.TurnOffCatWasHereImages();
             Cat.gameObject.SetActive(false);
             // SET ACTIVE releveant ui
-            StartCoroutine(ShowEndUI(End_Players_Were_Wrong)); // hardcoded 1 seconds timer
+            StartCoroutine(ShowEndUI(End_Players_Were_Wrong,1)); // hardcoded 1 seconds timer
             StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
         }
        
@@ -224,11 +226,13 @@ public class GameManager : MonoBehaviour
         if (!PlayersWereWrongBool)
         {
             yield return new WaitForSeconds(5); // hardcoded 5 seconds for 5 seconds clock
-            StartingTimer.SetActive(false);
+                StartingTimer.SetActive(false);
             var RandCatDelay = Random.Range(CatSpawnDelayMin, CatSpawnDelayMax); // decide on cat spawn delay
-
             yield return new WaitForSeconds(RandCatDelay); // wait for the cat spawn delay to activate the cat
-            Cat.gameObject.SetActive(true);
+            if (!PlayersWereWrongBool)
+            {
+                Cat.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -240,4 +244,12 @@ public class GameManager : MonoBehaviour
 
         EndUI.SetActive(true);
     }
+    public IEnumerator ShowEndUI(GameObject EndUI, float Costumedelay)
+    {
+        yield return new WaitForSeconds(Costumedelay);
+        PlayerWon.SetActive(false);
+        catCoughtPlayer.SetActive(false);
+        EndUI.SetActive(true);
+    }
+   
 }
