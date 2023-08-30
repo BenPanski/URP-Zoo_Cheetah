@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.LowLevel;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject End_Players_Won;
     [SerializeField] GameObject End_Players_Lost;
     [SerializeField] GameObject End_Players_Were_Wrong;
-    [SerializeField] GameObject End_Out_Of_Power; // not implemented
+    [SerializeField] GameObject End_Out_Of_Power;
 
 
     [SerializeField] bool CatFinishedRace;
@@ -31,13 +32,10 @@ public class GameManager : MonoBehaviour
     public float CatSpawnDelayMin = 2;
     public float CatSpawnDelayMax = 5;
 
-
+    int playerLostTimes;
 
 
     bool GameStarted = false;
-  
-
-
 
     // Start is called before the first frame update
     public void CatWon()
@@ -47,10 +45,15 @@ public class GameManager : MonoBehaviour
             soundManager.PlayCatWon();
             CatFinishedRace = true;
             //  StartCoroutine(WaitUntilPlayerWon());
-            catCoughtPlayer.SetActive(true);
             SomeoneWon = true;
-            StartCoroutine(ShowEndUI(End_Players_Lost)); //hardcoded 5 seconds timer
-            StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
+            if (!PlayerLost3Times())
+            {
+                catCoughtPlayer.SetActive(true);
+                StartCoroutine(ShowEndUI(End_Players_Lost)); //hardcoded 5 seconds timer
+                StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
+            }
+
+           
         }
 
     }
@@ -121,7 +124,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool PlayerLost3Times()
+    {
+        UpdatePlayerLotTimes();
 
+        if (playerLostTimes >= 3)
+        {
+            //open special UI
+            StartCoroutine(ShowEndUI(End_Out_Of_Power, 1));
+            // Reset player lost count
+            PlayerPrefs.SetInt("PlayerLostCount", 0);
+            StartCoroutine(RestartGame());
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void UpdatePlayerLotTimes()
+    {
+        playerLostTimes = PlayerPrefs.GetInt("PlayerLostCount");
+        playerLostTimes++;
+        PlayerPrefs.SetInt("PlayerLostCount", playerLostTimes);
+    }
 
     public void IfNoCatPlayersWereWrong()
     {
@@ -134,10 +161,6 @@ public class GameManager : MonoBehaviour
 
     public void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
     {
-        print("SomeoneWon "+SomeoneWon);
-        print("CatWasCought " + CatWasCought);
-        print("PlayersWereWrongBool " + PlayersWereWrongBool);
-        print("GameStarted " + GameStarted);
         if (!SomeoneWon && CatWasCought && !PlayersWereWrongBool&& GameStarted)
         {
             soundManager.PlayPlayersWon();
@@ -158,6 +181,7 @@ public class GameManager : MonoBehaviour
     {
         if (!PlayersWereWrongBool && !SomeoneWon)
         {
+           
             StartingTimer.SetActive(false);
             PlayersWereWrongBool = true;
             SomeoneWon = true;
@@ -165,9 +189,14 @@ public class GameManager : MonoBehaviour
             print("players are wrong");
             Cat.TurnOffCatWasHereImages();
             Cat.gameObject.SetActive(false);
-            // SET ACTIVE releveant ui
-            StartCoroutine(ShowEndUI(End_Players_Were_Wrong,1)); // hardcoded 1 seconds timer
-            StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
+            if (!PlayerLost3Times())  // if player didnt lose 3 times
+            {
+                // SET ACTIVE releveant ui
+                StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 1)); // hardcoded 1 seconds timer
+                StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
+            }
+           
+            
         }
        
     }
@@ -196,6 +225,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        playerLostTimes = PlayerPrefs.GetInt("PlayerLostCount", 0);
+
         LoadCatSpawnTimerFromConfig();
     }
     public void StartGame()

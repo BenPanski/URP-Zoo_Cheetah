@@ -17663,7 +17663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 171fbe7e8f6c6db49981029ea08a214c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c3bd8f9e82f2c20408f4d389ad53f86f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20766,7 +20766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &988713214
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21867,7 +21867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b75b894ec462e9f49bb866963da49dc4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6eeae9974a866f148b88c01d7a810f16, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -27982,7 +27982,7 @@ MonoBehaviour:
   End_Players_Won: {fileID: 537178884}
   End_Players_Lost: {fileID: 2040216691}
   End_Players_Were_Wrong: {fileID: 1994127165}
-  End_Out_Of_Power: {fileID: 0}
+  End_Out_Of_Power: {fileID: 2069165113}
   CatFinishedRace: 0
   CatWasCought: 0
   PlayersWereWrongBool: 0
