@@ -7,6 +7,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource audioSourceNoneLoop;
     [SerializeField] AudioSource audioSourceLoop;
     [SerializeField] AudioSource audioSourceLoopMusic;
+    [SerializeField] AudioSource CatRunning;
+    
     
     [SerializeField] AudioClip CatMusic;//sound 1
     [SerializeField] AudioClip TimerSound;// sound 2
@@ -40,6 +42,7 @@ public class SoundManager : MonoBehaviour
     {
         audioSourceLoop.Stop();
         audioSourceLoopMusic.Stop();
+        CatRunning.Stop();
     }
 
     public void PlayBeforeCat() //sound 1
@@ -66,7 +69,9 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayRunScreen() //sound 6
     {
-        swapPlayLoop(RunScreen);
+        CatRunning.Stop();
+        CatRunning.clip =RunScreen;
+        CatRunning.Play();
     }
     public void PlayCatWon()// sound 7
     {

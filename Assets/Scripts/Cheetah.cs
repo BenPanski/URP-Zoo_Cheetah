@@ -234,6 +234,7 @@ public class Cheetah : MonoBehaviour
                 {
                     int CatScreenNum = CurrentHidingCam+1;
                     print("cat was found in screen"+CatScreenNum);
+                    _SoundManager.PlayRunScreen();
                     _GameManager.UpdateManagerCatWasCought();
                     _SoundManager.PlayCatFound();
                     CatWasHereScreens[CurrentHidingCam].gameObject.SetActive(true);
@@ -263,6 +264,7 @@ public class Cheetah : MonoBehaviour
                     MyState = CatState.Hunt;
                     // _SoundManager.PlayCatFound();
                     _GameManager.UpdateManagerCatWasCought();
+
                     SetHuntScreenState();
                 }
             }
@@ -278,7 +280,6 @@ public class Cheetah : MonoBehaviour
     private void SetRunScreenState()
     {
         MyAnimator.SetTrigger("Run");
-        _SoundManager.PlayRunScreen();
         MyState = CatState.RunScreen;
         print("cat is in run screen state");
         transform.position = RunAnimation[0].PointPosition;
@@ -292,7 +293,7 @@ public class Cheetah : MonoBehaviour
     {
         InitHuntAnim();
         MyState = CatState.Hunt;
-       _SoundManager.PlayCatFound();
+        _SoundManager.PlayCatFound();
         print("cat is in hunt state");
         NextPointNum = 0;
         NextPoint = HuntAnimation[0];
@@ -368,6 +369,7 @@ public class Cheetah : MonoBehaviour
         {
             return;
         }
+       
         if (NextPoint == HuntAnimation[1] || Vector3.Distance(transform.position, HuntAnimation[0].PointPosition) < 3) //if after the first screen hunt animation , or if close enough to the end of the current screen (3 placeholder)
         {
             if (!TeleportFlag)
