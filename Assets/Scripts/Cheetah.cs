@@ -77,7 +77,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] float LastScreenTeleportDelayMid = 0.1f;
     [SerializeField] float LastScreenTeleportDelayFar = 0.1f;
 
-
+    
     bool LerpInitFlag = false;
 
     #endregion
@@ -514,6 +514,11 @@ public class Cheetah : MonoBehaviour
     /// </summary>
     public void SetHideCam()
     {
+        print("Sethidecam"); 
+        /*{  if (CurrentHidingCam == 6 && MyState == CatState.Hide)
+       print("not debug.log");
+     CurrentHidingCam = 5;
+             }*/
         if (SpawnOnlyInCam1)
         {
             print("SpawnOnlyInCam1 is true");
@@ -537,13 +542,17 @@ public class Cheetah : MonoBehaviour
         }
         else if (Spawn6to8AndGoDown)
         {
+            print("Spawn6to8AndGoDown");
+
             if (CurrentHidingCam == 1 || CurrentHidingCam == 2)
             {
                 CurrentHidingCam -= 1;
             }
-            else if (CurrentHidingCam >= 2)
+            else if (CurrentHidingCam >= 2)    // all screens other then 1 & 2
             {
-                CurrentHidingCam -= Random.Range(1, 3);
+                CurrentHidingCam -= Random.Range(1, 3);  // CurrentHidingCam -2/ CurrentHidingCam -1  
+
+                SkipScreens();
             }
             else if (CurrentHidingCam == 1)
             {
@@ -553,14 +562,25 @@ public class Cheetah : MonoBehaviour
             {
                 SetHuntScreenState();
             }
+           
         }
         else
         {
             RandomizeHideCam();
         }
 
-
+        
     }
+
+    private void SkipScreens() // all screens we want to skip will be here
+    {
+        if (CurrentHidingCam == 5)
+        {
+            print("busted");
+            CurrentHidingCam = 4;
+        }
+    }
+
     private void InitCheetahLoc()
     {
         if (SpawnOnlyInCam1)
@@ -580,7 +600,7 @@ public class Cheetah : MonoBehaviour
         }
         else if (Spawn6to8AndGoDown)
         {
-            CurrentHidingCam = Random.Range(5, 9);
+            CurrentHidingCam = Random.Range(7, 9);
         }
         else
         {
@@ -627,8 +647,8 @@ public class Cheetah : MonoBehaviour
             if (PrintAnimNum)
             {
                 print("current animation is " + (CurrentHidingCam + 1));
-                MyAnimator.SetFloat("Speed", Speed);
             }
+                MyAnimator.SetFloat("Speed", Speed);
         }
 
 

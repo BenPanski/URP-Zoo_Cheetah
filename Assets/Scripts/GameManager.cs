@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour
 
     bool GameStarted = false;
 
-    // Start is called before the first frame update
+    // Screen mapping
+    // game screen 6 = user screen 1
     public void CatWon()
     {
         if (!SomeoneWon & !PlayersWereWrongBool)
