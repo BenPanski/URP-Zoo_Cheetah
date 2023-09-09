@@ -52,8 +52,8 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(ShowEndUI(End_Players_Lost)); //hardcoded 5 seconds timer
                 StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
             }
+            PlayerPrefs.SetInt("PlayersWereWrongBefore", 0);
 
-           
         }
 
     }
@@ -183,9 +183,9 @@ public class GameManager : MonoBehaviour
             Cat.gameObject.SetActive(false);
             PlayerWon.SetActive(true);
             SomeoneWon = true;
+            PlayerPrefs.SetInt("PlayersWereWrongBefore", 0);
             StartCoroutine(ShowEndUI(End_Players_Won)); //hardcoded 5 seconds timer
             StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
-            print(2);
         }
 
     }
@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
             {
                 // SET ACTIVE releveant ui
                 StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 0)); // hardcoded 1 seconds timer
-                StartCoroutine(RestartGame(2)); // hardcoded 5 seconds timer
+                StartCoroutine(RestartGame(5)); // hardcoded 5 seconds timer
             }
 
         }
