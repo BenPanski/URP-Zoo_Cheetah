@@ -56,6 +56,10 @@ public class Cheetah : MonoBehaviour
     float temp;
     float LastTeleportTime = 0f;
     public float TeleportInterval = 0.05f;
+    float RunSpeedClose;
+    float RunSpeedMid;
+    float RunSpeedFar;
+
     #endregion
     #region Tests
     [Header("Tests")]
@@ -79,7 +83,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] float LastScreenTeleportDelayMid = 0.1f;
     [SerializeField] float LastScreenTeleportDelayFar = 0.1f;
 
-    
+
     bool LerpInitFlag = false;
 
     #endregion
@@ -92,32 +96,60 @@ public class Cheetah : MonoBehaviour
 
     private void LoadCheetahConfig()
     {
-        string[] configLines1 = File.ReadAllLines(Application.streamingAssetsPath + "/cheetah.ini");
-        if (configLines1 != null && configLines1.Length > 0)
-        {
-            foreach (string line in configLines1)
-            {
-                if (line != null && line.Length > 0 && line.Contains("="))
-                {
-                    string key = line.Split('=')[0];
-                    float value = float.Parse(line.Split('=')[1]);
+        string path = Application.streamingAssetsPath + "/cheetah.ini";
 
-                    if (key.StartsWith("teleportTimeClose"))
+        if (File.Exists(path))
+        {
+            string[] configLines = File.ReadAllLines(path);
+
+            foreach (string line in configLines)
+            {
+                if (!string.IsNullOrEmpty(line) && line.Contains("="))
+                {
+                    string[] parts = line.Split('=');
+                    if (parts.Length == 2)
                     {
-                        LastScreenTeleportDelayClose = value;
-                    }
-                    else if (key.StartsWith("teleportTimeMid"))
-                    {
-                        LastScreenTeleportDelayMid = value;
-                    }
-                    else if (key.StartsWith("teleportTimeFar"))
-                    {
-                        LastScreenTeleportDelayFar = value;
+                        string key = parts[0].Trim();
+                        if (float.TryParse(parts[1].Trim(), out float value))
+                        {
+                            switch (key)
+                            {
+                                case "teleportTimeClose":
+                                    LastScreenTeleportDelayClose = value;
+                                    break;
+                                case "teleportTimeMid":
+                                    LastScreenTeleportDelayMid = value;
+                                    break;
+                                case "teleportTimeFar":
+                                    LastScreenTeleportDelayFar = value;
+                                    break;
+                                case "catSpawnDelayMin":
+                                    // Assign to the appropriate variable
+                                    break;
+                                case "catSpawnDelayMax":
+                                    // Assign to the appropriate variable
+                                    break;
+                                case "catSpeedCloseScreens":
+                                    RunSpeedClose = value;
+                                    break;
+                                case "catSpeedMidScreens":
+                                    RunSpeedMid = value;
+                                    break;
+                                case "catSpeedFarScreens":
+                                    RunSpeedFar = value;
+                                    break;
+                            }
+                        }
                     }
                 }
             }
         }
+        else
+        {
+            Debug.LogError("Cheetah.ini not found!");
+        }
     }
+
 
     private void Awake() // add all "animations" to allAnim list , // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
@@ -234,8 +266,8 @@ public class Cheetah : MonoBehaviour
                 print("cat was visable!");
                 if (NoHuntingJustRunning && !_GameManager.SomeoneWon && !_GameManager.PlayersWereWrongBool)
                 {
-                    int CatScreenNum = CurrentHidingCam+1;
-                    print("cat was found in screen"+CatScreenNum);
+                    int CatScreenNum = CurrentHidingCam + 1;
+                    print("cat was found in screen" + CatScreenNum);
                     _SoundManager.PlayRunScreen();
                     _GameManager.UpdateManagerCatWasCought();
                     _SoundManager.PlayCatFound();
@@ -245,22 +277,22 @@ public class Cheetah : MonoBehaviour
 
                     if (CatScreenNum > 5)
                     {
-                        lastRunPoint.SpeedToMe = 12;
-                        StartCoroutine(MayMoveRator(LastScreenTeleportDelayClose, true));   
+                        lastRunPoint.SpeedToMe = RunSpeedClose;
+                        StartCoroutine(MayMoveRator(LastScreenTeleportDelayClose, true));
                         print("(close) cat should have a teleport delay of " + LastScreenTeleportDelayClose);
                     }
                     else if (CatScreenNum > 2)
                     {
-                        lastRunPoint.SpeedToMe = 12;
+                        lastRunPoint.SpeedToMe = RunSpeedMid;
                         StartCoroutine(MayMoveRator(LastScreenTeleportDelayMid, true));
                         print("(mid) cat should have a teleport delay of " + LastScreenTeleportDelayMid);
                     }
                     else
                     {
-                        lastRunPoint.SpeedToMe = 12;
+                        lastRunPoint.SpeedToMe = RunSpeedFar;
                         StartCoroutine(MayMoveRator(LastScreenTeleportDelayFar, true));
                         print("(far) cat should have a teleport delay of " + LastScreenTeleportDelayFar);
-                        
+
                     }
 
 
@@ -354,11 +386,11 @@ public class Cheetah : MonoBehaviour
             default:
                 break;
         }
-       /* if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TryToCatchCat();
-            _GameManager.IfNoCatPlayersWereWrong();
-        }*/
+        /* if (Input.GetKeyDown(KeyCode.Space))
+         {
+             TryToCatchCat();
+             _GameManager.IfNoCatPlayersWereWrong();
+         }*/
     }
 
     public void TurnOffCatWasHereImages()
@@ -375,7 +407,7 @@ public class Cheetah : MonoBehaviour
         {
             return;
         }
-       
+
         if (NextPoint == HuntAnimation[1] || Vector3.Distance(transform.position, HuntAnimation[0].PointPosition) < 3) //if after the first screen hunt animation , or if close enough to the end of the current screen (3 placeholder)
         {
             if (!TeleportFlag)
@@ -384,19 +416,19 @@ public class Cheetah : MonoBehaviour
                 print("short hunt is on, cat finished first screen of hunt phase");
                 StartCoroutine(TeleportDelay());
             }
-          
+
 
         }
-     
+
 
     }
 
     public IEnumerator TeleportDelay()
     {
         yield return new WaitForSeconds(LastScreenTeleportDelayClose);
-        
-            SetRunScreenState();
-        
+
+        SetRunScreenState();
+
     }
     /*  if (!ShortRun || MyState != CatState.Hunt)
       {
@@ -520,7 +552,7 @@ public class Cheetah : MonoBehaviour
     /// </summary>
     public void SetHideCam()
     {
-        print("Sethidecam"); 
+        print("Sethidecam");
         /*{  if (CurrentHidingCam == 6 && MyState == CatState.Hide)
        print("not debug.log");
      CurrentHidingCam = 5;
@@ -568,16 +600,16 @@ public class Cheetah : MonoBehaviour
             {
                 SetHuntScreenState();
             }
-           
+
         }
         else
         {
             RandomizeHideCam();
         }
 
-        
+
     }
- 
+
     private void SkipScreens() // all screens we want to skip will be here
     {
         if (CurrentHidingCam == 5)
@@ -654,7 +686,7 @@ public class Cheetah : MonoBehaviour
             {
                 print("current animation is " + (CurrentHidingCam + 1));
             }
-                MyAnimator.SetFloat("Speed", Speed);
+            MyAnimator.SetFloat("Speed", Speed);
         }
 
 
@@ -694,8 +726,8 @@ public class Cheetah : MonoBehaviour
             {
 
                 float currentTime = Time.time;
-                 //if (currentTime - LastTeleportTime >= TeleportInterval)
-                 
+                //if (currentTime - LastTeleportTime >= TeleportInterval)
+
                 CheetahMove();
                 if (NextPointNum % 2 != 0)
                 {
@@ -740,7 +772,7 @@ public class Cheetah : MonoBehaviour
         CheetahMove();
 
     }
-    public IEnumerator MayMoveRator(float waitForSeconds,bool SetRunScreen)
+    public IEnumerator MayMoveRator(float waitForSeconds, bool SetRunScreen)
     {
         MyAnimator.SetFloat("Speed", 0);
         yield return new WaitForSeconds(waitForSeconds);
