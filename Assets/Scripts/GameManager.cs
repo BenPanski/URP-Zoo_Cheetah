@@ -31,10 +31,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] float UIDelay = 5;
     public float CatSpawnDelayMin = 2;
     public float CatSpawnDelayMax = 5;
-
+    float GameCounter = 0;
     int playerLostTimes;
-
-
+    bool PlayersWereWrongLastGame;
     bool GameStarted = false;
 
     // Screen mapping
@@ -61,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+       
         if (Input.GetKeyDown(KeyCode.G))
         {
             StartGame();
@@ -91,7 +91,18 @@ public class GameManager : MonoBehaviour
         {
             FPSC.SetActive(!FPSC.activeSelf);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (PlayersWereWrongLastGame)
+        {
+            GameCounter += Time.deltaTime;
+            print("counting" + GameCounter);
+            if (GameCounter >= 4.5f)
+            {
+                PlayersWereWrongLastGame = false;
+            }
+            print("playerswerewronglastgame = " + PlayersWereWrongLastGame);
+        }
+        if (Input.GetKeyDown(KeyCode.Space)&& !PlayersWereWrongLastGame)
         {
             Cat.TryToCatchCat();
             IfNoCatPlayersWereWrong();
@@ -190,14 +201,14 @@ public class GameManager : MonoBehaviour
             print("players are wrong");
             Cat.TurnOffCatWasHereImages();
             Cat.gameObject.SetActive(false);
+            PlayerPrefs.SetInt("PlayersWereWrongBefore", 1);
             if (!PlayerLost3Times())  // if player didnt lose 3 times
             {
                 // SET ACTIVE releveant ui
-                StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 1)); // hardcoded 1 seconds timer
-                StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
+                StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 0)); // hardcoded 1 seconds timer
+                StartCoroutine(RestartGame(2)); // hardcoded 5 seconds timer
             }
-           
-            
+
         }
        
     }
@@ -226,7 +237,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        playerLostTimes = PlayerPrefs.GetInt("PlayerLostCount", 0);
+        playerLostTimes = PlayerPrefs.GetInt("PlayerLostCount", 0); // check how many times the player lost
+
+        if (PlayerPrefs.GetInt("PlayersWereWrongBefore", 0) == 1) // if players were wrong last time
+        {
+            PlayersWereWrongLastGame = true;
+            StartGame();
+            PlayerPrefs.SetInt("PlayersWereWrongBefore", 0); // reset player preds for players were wrong
+        }
 
         LoadCatSpawnTimerFromConfig();
     }
@@ -248,9 +266,14 @@ public class GameManager : MonoBehaviour
     {
         CatWasCought = true;
     }
-    public IEnumerator RestartGame()// hardcoded 5 seconds
+    public IEnumerator RestartGame()// 
     {
         yield return new WaitForSeconds(RestartDelay);
+        SceneManager.LoadScene(0);
+    }
+    public IEnumerator RestartGame(int manualRestartDelay)// 
+    {
+        yield return new WaitForSeconds(manualRestartDelay);
         SceneManager.LoadScene(0);
     }
     public IEnumerator SetCatActive() // called from start game  // hardcoded 5 seconds
