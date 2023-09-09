@@ -20,6 +20,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] LineRenderer CatLineDrawer;
     [SerializeField] LerpCalculations _LerpCalculations;
     [SerializeField] SoundManager _SoundManager;
+    [SerializeField] Point lastRunPoint;
 
     #endregion
     #region Hide Cams & Points
@@ -244,18 +245,22 @@ public class Cheetah : MonoBehaviour
 
                     if (CatScreenNum > 5)
                     {
-                        StartCoroutine(MayMoveRator(LastScreenTeleportDelayClose, true));
+                        lastRunPoint.SpeedToMe = 12;
+                        StartCoroutine(MayMoveRator(LastScreenTeleportDelayClose, true));   
                         print("(close) cat should have a teleport delay of " + LastScreenTeleportDelayClose);
                     }
                     else if (CatScreenNum > 2)
                     {
+                        lastRunPoint.SpeedToMe = 12;
                         StartCoroutine(MayMoveRator(LastScreenTeleportDelayMid, true));
                         print("(mid) cat should have a teleport delay of " + LastScreenTeleportDelayMid);
                     }
                     else
                     {
+                        lastRunPoint.SpeedToMe = 12;
                         StartCoroutine(MayMoveRator(LastScreenTeleportDelayFar, true));
                         print("(far) cat should have a teleport delay of " + LastScreenTeleportDelayFar);
+                        
                     }
 
 
