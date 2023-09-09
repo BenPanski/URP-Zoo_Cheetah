@@ -129,13 +129,13 @@ public class Cheetah : MonoBehaviour
                                 case "catSpawnDelayMax":
                                     // Assign to the appropriate variable
                                     break;
-                                case "catSpeedCloseScreens":
+                                case "runScreenSpeedCloseScreens":
                                     RunSpeedClose = value;
                                     break;
-                                case "catSpeedMidScreens":
+                                case "runScreenSpeedMidScreens":
                                     RunSpeedMid = value;
                                     break;
-                                case "catSpeedFarScreens":
+                                case "runScreenSpeedFarScreens":
                                     RunSpeedFar = value;
                                     break;
                             }
