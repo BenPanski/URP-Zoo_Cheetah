@@ -72,6 +72,7 @@ public class Cheetah : MonoBehaviour
     [SerializeField] bool ShortRun = false;
     [SerializeField] bool TeleportFlag = false;
     [SerializeField] bool NoHuntingJustRunning = false;
+    [SerializeField] float HideSpeedMultiplier = 1.25f;
 
     [SerializeField] float LastScreenTeleportDelayClose = 0.1f;
     [SerializeField] float LastScreenTeleportDelayMid = 0.1f;
@@ -285,7 +286,7 @@ public class Cheetah : MonoBehaviour
         transform.position = RunAnimation[0].PointPosition;
         NextPoint = RunAnimation[1];
         NextPointNum = 1;
-        Speed = NextPoint.SpeedToMe;
+        Speed = NextPoint.SpeedToMe; // run screen speed ? speedtome
         MyAnimator.SetFloat("Speed", Speed);
         // transform.LookAt(NextPoint.PointPosition);
     }
@@ -571,7 +572,7 @@ public class Cheetah : MonoBehaviour
 
         
     }
-
+ 
     private void SkipScreens() // all screens we want to skip will be here
     {
         if (CurrentHidingCam == 5)
@@ -643,7 +644,7 @@ public class Cheetah : MonoBehaviour
         }
         if (MyState == CatState.Hide)
         {
-            Speed = allAnims[CurrentHidingCam][NextPointNum].SpeedToMe;
+            Speed = allAnims[CurrentHidingCam][NextPointNum].SpeedToMe * HideSpeedMultiplier;
             if (PrintAnimNum)
             {
                 print("current animation is " + (CurrentHidingCam + 1));
