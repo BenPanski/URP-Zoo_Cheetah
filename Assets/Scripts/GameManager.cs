@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
             {
                 // SET ACTIVE releveant ui
                 StartCoroutine(ShowEndUI(End_Players_Were_Wrong, 0)); // hardcoded 1 seconds timer
-                StartCoroutine(RestartGame(5)); // hardcoded 5 seconds timer
+                StartCoroutine(RestartGame(0)); // hardcoded 5 seconds timer
             }
 
         }
