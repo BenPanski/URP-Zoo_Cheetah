@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public float CatSpawnDelayMin = 2;
     public float CatSpawnDelayMax = 5;
     float GameCounter = 0;
+    float ResetLoseCounter= 0;
+
     int playerLostTimes;
     bool PlayersWereWrongLastGame;
     bool GameStarted = false;
@@ -48,8 +50,9 @@ public class GameManager : MonoBehaviour
             SomeoneWon = true;
             if (!PlayerLost3Times())
             {
+                print("bl bla");
                 catCoughtPlayer.SetActive(true);
-                StartCoroutine(ShowEndUI(End_Players_Lost)); //hardcoded 5 seconds timer
+                //StartCoroutine(ShowEndUI(End_Players_Lost)); //hardcoded 5 seconds timer
                 StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
             }
             PlayerPrefs.SetInt("PlayersWereWrongBefore", 0);
@@ -60,7 +63,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-       
+        IdleChecker(); // checks if the game ran without play for 3 minutes -> reset player lost count
+
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             StartGame();
@@ -102,12 +107,27 @@ public class GameManager : MonoBehaviour
             }
             print("playerswerewronglastgame = " + PlayersWereWrongLastGame);
         }
-        if (Input.GetKeyDown(KeyCode.Space)&& !PlayersWereWrongLastGame)
+        if (Input.GetKeyDown(KeyCode.Space) && !PlayersWereWrongLastGame)
         {
             Cat.TryToCatchCat();
             IfNoCatPlayersWereWrong();
         }
-        
+
+    }
+
+    private void IdleChecker()
+    {
+        if (!GameStarted)
+        {
+            ResetLoseCounter += Time.deltaTime;
+
+            if (ResetLoseCounter > 180)
+            {
+                ResetLoseCounter = 0;
+                PlayerPrefs.SetInt("PlayersWereWrongBefore", 1);
+            }
+
+        }
     }
 
     private void LoadCatSpawnTimerFromConfig()
@@ -143,7 +163,7 @@ public class GameManager : MonoBehaviour
         if (playerLostTimes >= 3)
         {
             //open special UI
-            StartCoroutine(ShowEndUI(End_Out_Of_Power, 1));
+           // StartCoroutine(ShowEndUI(End_Out_Of_Power, 1));
             // Reset player lost count
             PlayerPrefs.SetInt("PlayerLostCount", 0);
             StartCoroutine(RestartGame());
@@ -184,7 +204,7 @@ public class GameManager : MonoBehaviour
             PlayerWon.SetActive(true);
             SomeoneWon = true;
             PlayerPrefs.SetInt("PlayersWereWrongBefore", 0);
-            StartCoroutine(ShowEndUI(End_Players_Won)); //hardcoded 5 seconds timer
+            //StartCoroutine(ShowEndUI(End_Players_Won)); //hardcoded 5 seconds timer
             StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
         }
 
