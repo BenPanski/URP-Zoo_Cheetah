@@ -588,9 +588,9 @@ public class Cheetah : MonoBehaviour
             }
             else if (CurrentHidingCam >= 2)    // all screens other then 1 & 2
             {
-                CurrentHidingCam -= Random.Range(1, 3);  // CurrentHidingCam -2/ CurrentHidingCam -1  
-
-                SkipScreens();
+                int rnd = Random.Range(1, 3);
+                CurrentHidingCam -= rnd; // CurrentHidingCam -2/ CurrentHidingCam -1  
+                FixforScreen5();
             }
             else if (CurrentHidingCam == 1)
             {
@@ -610,7 +610,7 @@ public class Cheetah : MonoBehaviour
 
     }
 
-    private void SkipScreens() // all screens we want to skip will be here
+    private void FixforScreen5() // all screens we want to skip will be here
     {
         if (CurrentHidingCam == 5)
         {
