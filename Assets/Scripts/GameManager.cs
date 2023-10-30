@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     int playerLostTimes;
     bool PlayersWereWrongLastGame;
     bool GameStarted = false;
-
+    
     // Screen mapping
     // game screen 6 = user screen 1
     public void CatWon()
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             SomeoneWon = true;
             if (!PlayerLost3Times())
             {
-                print("bl bla");
+              
                 catCoughtPlayer.SetActive(true);
                 //StartCoroutine(ShowEndUI(End_Players_Lost)); //hardcoded 5 seconds timer
                 StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         if (PlayersWereWrongLastGame)
         {
             GameCounter += Time.deltaTime;
-            print("counting" + GameCounter);
+           // print("counting" + GameCounter);
             if (GameCounter >= 4.5f)
             {
                 PlayersWereWrongLastGame = false;
@@ -162,10 +162,12 @@ public class GameManager : MonoBehaviour
 
         if (playerLostTimes >= 3)
         {
+            print("player was wrong 3 times");
             //open special UI
-           // StartCoroutine(ShowEndUI(End_Out_Of_Power, 1));
+            StartCoroutine(ShowEndUI(End_Out_Of_Power, 2.5f));
             // Reset player lost count
             PlayerPrefs.SetInt("PlayerLostCount", 0);
+            PlayerPrefs.SetInt("PlayersWereWrongBefore", 0);
             StartCoroutine(RestartGame());
             return true;
         }
@@ -254,9 +256,10 @@ public class GameManager : MonoBehaviour
               PlayerWon.SetActive(true);
           }
       }*/
-
+ 
     private void Awake()
     {
+        print("this should happen after");
         playerLostTimes = PlayerPrefs.GetInt("PlayerLostCount", 0); // check how many times the player lost
 
         if (PlayerPrefs.GetInt("PlayersWereWrongBefore", 0) == 1) // if players were wrong last time

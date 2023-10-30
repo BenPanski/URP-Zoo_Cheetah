@@ -260,7 +260,7 @@ public class SimpleAnimalController : MonoBehaviour
                 y++;
             }
         }
-        print("DRAWING IS FUN !! : " + x);
+       // print("DRAWING IS FUN !! : " + x);
 
     }
 }
