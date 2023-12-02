@@ -5336,7 +5336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 633.7
+      value: 617.22
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12482,10 +12482,10 @@ MonoBehaviour:
   TeleportInterval: 0.05
   YouMayMove: 1
   SpawnOnlyInCam1: 0
-  Spawn6to8AndGoDown: 0
+  Spawn6to8AndGoDown: 1
   MyState: 0
   OFIR_Y: 0
-  MoveThroughAnimsInOrder: 1
+  MoveThroughAnimsInOrder: 0
   MoveThroughAnimsInReverseOrder: 0
   WorldSpeedTimes5: 0
   PrintAnimNum: 1
@@ -20296,7 +20296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 561.004
+      value: 561.14
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20304,7 +20304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 236.166
+      value: 236.73
       objectReference: {fileID: 0}
     - target: {fileID: 6764004533733901136, guid: eb0fc7f84af85a442996179977f2dbf7, type: 3}
       propertyPath: m_LocalRotation.w
