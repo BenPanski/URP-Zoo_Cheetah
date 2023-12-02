@@ -582,24 +582,65 @@ public class Cheetah : MonoBehaviour
         {
             print("Spawn6to8AndGoDown");
 
-            if (CurrentHidingCam == 1 || CurrentHidingCam == 2)
+            /* if (CurrentHidingCam == 1 || CurrentHidingCam == 2)
+             {
+                 CurrentHidingCam -= 1;
+             }
+             else if (CurrentHidingCam >= 2)    // all screens other then 1 & 2
+             {
+                 int rnd = Random.Range(1, 3);
+                 CurrentHidingCam -= rnd; // CurrentHidingCam -2/ CurrentHidingCam -1  
+                 FixforScreen5();
+             }
+             else if (CurrentHidingCam == 1)
+             {
+                 CurrentHidingCam -= 1;
+             }
+             else
+             {
+                 SetHuntScreenState();
+             }*/
+
+            if (CurrentHidingCam == 7 || CurrentHidingCam == 6|| CurrentHidingCam == 5)
             {
-                CurrentHidingCam -= 1;
+                int rnd = Random.Range(1, 4);
+                switch (rnd)
+                {
+                    case 1:
+                        CurrentHidingCam = 4;
+                        break;
+                    case 2:
+                        CurrentHidingCam = 3;
+                        break;
+                    case 3:
+                        CurrentHidingCam = 2;
+                        break;
+                    default:
+                        break;
+                }
+                //CurrentHidingCam =random 4/5/6
             }
-            else if (CurrentHidingCam >= 2)    // all screens other then 1 & 2
+            else if (CurrentHidingCam == 4 || CurrentHidingCam == 3 || CurrentHidingCam == 2)
             {
+                print("tst 2");
                 int rnd = Random.Range(1, 3);
-                CurrentHidingCam -= rnd; // CurrentHidingCam -2/ CurrentHidingCam -1  
-                FixforScreen5();
+                switch (rnd)
+                {
+                    case 1:
+                        CurrentHidingCam = 1;
+                        break;
+                    case 2:
+                        CurrentHidingCam = 0;
+                        break;
+                    default:
+                        break;
+                }
             }
-            else if (CurrentHidingCam == 1)
-            {
-                CurrentHidingCam -= 1;
-            }
-            else
+            else if (CurrentHidingCam == 1 || CurrentHidingCam == 0)
             {
                 SetHuntScreenState();
             }
+            
 
         }
         else
@@ -638,7 +679,7 @@ public class Cheetah : MonoBehaviour
         }
         else if (Spawn6to8AndGoDown)
         {
-            CurrentHidingCam = Random.Range(7, 9);
+            CurrentHidingCam = Random.Range(5, 8);
         }
         else
         {
