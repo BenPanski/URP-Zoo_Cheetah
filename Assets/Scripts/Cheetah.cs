@@ -150,11 +150,8 @@ public class Cheetah : MonoBehaviour
         }
     }
 
-
     private void Awake() // add all "animations" to allAnim list , // get random camera , spawn cheetha in the first point of the new animation, start moving cheetha torwards the 2nd point 
     {
-
-
         NullRefCheck();
 
         MyState = CatState.Hide;
@@ -195,7 +192,6 @@ public class Cheetah : MonoBehaviour
             CatLineDrawer = FindObjectOfType<LineRenderer>();
         }
     }
-
     private void InitLineDrawer()
     {
         int x = 0;
@@ -622,26 +618,19 @@ public class Cheetah : MonoBehaviour
             }
             else if (CurrentHidingCam == 4 || CurrentHidingCam == 3 || CurrentHidingCam == 2)
             {
-                print("tst 2");
-                int rnd = Random.Range(1, 3);
-                switch (rnd)
-                {
-                    case 1:
+                
                         CurrentHidingCam = 1;
-                        break;
-                    case 2:
-                        CurrentHidingCam = 0;
-                        break;
-                    default:
-                        break;
-                }
+                       
             }
-            else if (CurrentHidingCam == 1 || CurrentHidingCam == 0)
+            else if (CurrentHidingCam == 1)
+            {
+                CurrentHidingCam = 0;
+
+            }
+            else if (CurrentHidingCam == 0)
             {
                 SetHuntScreenState();
             }
-            
-
         }
         else
         {
@@ -679,7 +668,7 @@ public class Cheetah : MonoBehaviour
         }
         else if (Spawn6to8AndGoDown)
         {
-            CurrentHidingCam = Random.Range(5, 8);
+            CurrentHidingCam = Random.Range(6, 8);
         }
         else
         {
