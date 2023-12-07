@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            StartGame();
+            PressedStartButton();
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -98,23 +98,39 @@ public class GameManager : MonoBehaviour
             FPSC.SetActive(!FPSC.activeSelf);
         }
 
-        if (true)
+        if (GameCounter<10 && GameStarted)
         {
             GameCounter += Time.deltaTime;
-           // print("counting" + GameCounter);
-            if (GameCounter >= 4.5f)
+            // print("counting" + GameCounter);
+            if (GameCounter >= 5f)
             {
                 PlayersWereWrongLastGame = false;
+             
             }
-          
+
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !PlayersWereWrongLastGame)
+        if (Input.GetKeyDown(KeyCode.Space) && GameCounter >= 4.5f && !PlayersWereWrongLastGame)
         {
             Cat.TryToCatchCat();
             IfNoCatPlayersWereWrong();
         }
 
     }
+
+    public void PressedStartButton()
+    {
+        PlayerPrefs.DeleteAll();
+        if (GameStarted)
+        {
+            StartCoroutine(RestartGame(1));
+        }
+        else
+        {
+            StartGame();
+        }
+       
+    }
+
     private void IdleChecker()
     {
         if (!GameStarted)
@@ -267,7 +283,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-
+        
         if (GameStarted == false)
         {
             GameStarted = true;
