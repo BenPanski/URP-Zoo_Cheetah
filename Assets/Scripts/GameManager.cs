@@ -50,12 +50,13 @@ public class GameManager : MonoBehaviour
             SomeoneWon = true;
             if (!PlayerLost3Times())
             {
-              
+                PlayerPrefs.SetInt("PlayersWereWrongBefore", 0);
+                PlayerPrefs.SetInt("PlayerLostCount", 0);
                 catCoughtPlayer.SetActive(true);
                 //StartCoroutine(ShowEndUI(End_Players_Lost)); //hardcoded 5 seconds timer
                 StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
             }
-            PlayerPrefs.SetInt("PlayersWereWrongBefore", 0);
+           
 
         }
 
@@ -97,7 +98,7 @@ public class GameManager : MonoBehaviour
             FPSC.SetActive(!FPSC.activeSelf);
         }
 
-        if (PlayersWereWrongLastGame)
+        if (true)
         {
             GameCounter += Time.deltaTime;
            // print("counting" + GameCounter);
@@ -105,7 +106,7 @@ public class GameManager : MonoBehaviour
             {
                 PlayersWereWrongLastGame = false;
             }
-            print("playerswerewronglastgame = " + PlayersWereWrongLastGame);
+          
         }
         if (Input.GetKeyDown(KeyCode.Space) && !PlayersWereWrongLastGame)
         {
@@ -114,7 +115,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
     private void IdleChecker()
     {
         if (!GameStarted)
@@ -129,7 +129,6 @@ public class GameManager : MonoBehaviour
 
         }
     }
-
     private void LoadCatSpawnTimerFromConfig()
     {
         string[] configLines = File.ReadAllLines(Application.streamingAssetsPath + "/cheetah.ini");
@@ -155,7 +154,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     public bool PlayerLost3Times()
     {
         UpdatePlayerLotTimes();
@@ -176,14 +174,12 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
-
     private void UpdatePlayerLotTimes()
     {
         playerLostTimes = PlayerPrefs.GetInt("PlayerLostCount");
         playerLostTimes++;
         PlayerPrefs.SetInt("PlayerLostCount", playerLostTimes);
     }
-
     public void IfNoCatPlayersWereWrong()
     {
         if (Cat.gameObject.activeSelf == false && GameStarted)
@@ -192,7 +188,6 @@ public class GameManager : MonoBehaviour
         }
       
     }
-
     public void PlayersFinishedRace()/// Itay - this method is called when the second sensor is triggered
     {
         if (!SomeoneWon && CatWasCought && !PlayersWereWrongBool&& GameStarted)
@@ -206,6 +201,7 @@ public class GameManager : MonoBehaviour
             PlayerWon.SetActive(true);
             SomeoneWon = true;
             PlayerPrefs.SetInt("PlayersWereWrongBefore", 0);
+            PlayerPrefs.SetInt("PlayerLostCount", 0);
             //StartCoroutine(ShowEndUI(End_Players_Won)); //hardcoded 5 seconds timer
             StartCoroutine(RestartGame()); // hardcoded 5 seconds timer
         }
@@ -236,7 +232,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
     /*private IEnumerator WaitUntilPlayerWon()
     {
         if (!SomeoneWon)
@@ -259,7 +254,6 @@ public class GameManager : MonoBehaviour
  
     private void Awake()
     {
-        print("this should happen after");
         playerLostTimes = PlayerPrefs.GetInt("PlayerLostCount", 0); // check how many times the player lost
 
         if (PlayerPrefs.GetInt("PlayersWereWrongBefore", 0) == 1) // if players were wrong last time
